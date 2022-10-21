@@ -50,7 +50,11 @@ builder.Services.AddAutoMapper(Assembly.Load("Application"));
 builder.Services.AddDbContext<TicketsContext>(opt =>
 {
     opt.UseSqlServer(config.GetConnectionString("local"),
-        sqlOpts => { sqlOpts.MigrationsHistoryTable("_MigrationHistory", config.GetValue<string>("SchemaName")); });
+        sqlOpts =>
+        {
+            sqlOpts.MigrationsHistoryTable("_MigrationHistory",
+                config.GetValue<string>("SchemaName"));
+        });
 });
 
 builder.Services.AddHealthChecks().AddSqlServer(config["ConnectionStrings:local"]);
@@ -84,7 +88,7 @@ builder.Services.AddAuthentication(x =>
             ValidateAudience = false
         };
     });
-builder.Services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new() { Title = "Airport Api", Version = "v1" }); });
+builder.Services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tickets Api", Version = "v1" }); });
 builder.Services.Configure<AppSettings>(builder.Configuration);
 
 Log.Logger = new LoggerConfiguration().Enrich.FromLogContext()
@@ -97,7 +101,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Airport Api"));
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ticket Api"));
 }
 
 app.UseMiddleware<JwtMiddleware<UserDto>>();
