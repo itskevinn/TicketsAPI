@@ -15,18 +15,17 @@ public class TicketDetailRepository : GenericRepository<TicketDetail>, ITicketDe
     {
         _connectionFactory = connectionFactory;
     }
-    public async  Task<IEnumerable<TicketDetail>> GetTicketDetailByTicketIdAsync(Guid ticketId,
+
+    public async Task<IEnumerable<TicketDetail>> GetTicketDetailByTicketIdAsync(Guid ticketId,
         CancellationToken cancellationToken = default)
     {
-        using var conn = _connectionFactory.Connection ??
-                         throw new NullReferenceException(nameof(_connectionFactory.Connection));
-        {
-            var sqlQuery = $"SELECT * FROM TicketDetail WHERE TicketId = {ticketId}";
+        var conn = _connectionFactory.Connection ??
+                   throw new NullReferenceException(nameof(_connectionFactory.Connection));
+        var sqlQuery = $"SELECT * FROM TicketDetail WHERE TicketId = {ticketId}";
 
-            var ticketDetails = await conn.QueryAsync<TicketDetail>(sqlQuery);
-            conn.Close();
+        var ticketDetails = await conn.QueryAsync<TicketDetail>(sqlQuery);
+        conn.Close();
 
-            return ticketDetails.ToList();
-        }
+        return ticketDetails.ToList();
     }
 }

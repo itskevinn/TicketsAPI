@@ -3,7 +3,7 @@ using Domain.Entity.Base;
 
 namespace Domain.Entity;
 
-public class UserRole : BaseEntity<Guid>
+public class UserRole : AuditableEntity<Guid>
 {
     public UserRole(Guid userId, Guid roleId)
     {

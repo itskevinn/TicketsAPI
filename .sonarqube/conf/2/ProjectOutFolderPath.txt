@@ -1,0 +1,1 @@
+C:\Users\WINDOWS\RiderProjects\TicketsAPI\.sonarqube\out\2

@@ -2,7 +2,7 @@
 
 namespace Domain.Entity;
 
-public class MenuItem : BaseEntity<Guid>
+public class MenuItem : AuditableEntity<Guid>
 {
 	public string Icon { get; set; } = default!;
 	public string RouterLink { get; set; } = default!;

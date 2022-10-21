@@ -1,0 +1,13 @@
+﻿C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\Extensions\AutoMapperExtensions.cs
+C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\Extensions\PersistenceExtension.cs
+C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\Extensions\RepoSettings.cs
+C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\Extensions\ServiceExtensions.cs
+C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\Filters\AppExceptionFilterAttribute.cs
+C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\Program.cs
+C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\obj\Debug\net6.0\Api.GlobalUsings.g.cs
+C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\obj\Debug\net6.0\Api.AssemblyInfo.cs
+C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\obj\Debug\net6.0\Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\appsettings.Development.json
+C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\appsettings.json
+C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\Properties\launchSettings.json

@@ -4,7 +4,7 @@ using Domain.Entity.Base;
 
 namespace Domain.Entity;
 
-public class User : BaseEntity<Guid>
+public class User : AuditableEntity<Guid>
 {
     public string Name { get; set; } = default!;
     public string Username { get; set; } = default!;

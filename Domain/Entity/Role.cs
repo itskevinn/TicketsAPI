@@ -4,7 +4,7 @@ using Domain.Entity.Base;
 
 namespace Domain.Entity;
 
-public class Role : BaseEntity<Guid>
+public class Role : AuditableEntity<Guid>
 {
     public string RoleName { get; set; } = default!;
     [NotMapped] [JsonIgnore] public IEnumerable<MenuItem> Authorities { get; set; } = default!;

@@ -1,17 +1,19 @@
-﻿
-using Domain.Entity.Base;
+﻿using Domain.Entity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Mapping;
 
-public class UserRole : BaseEntity<Guid>
+public class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
 {
-    public UserRole(Guid userId, Guid roleId)
+    public void Configure(EntityTypeBuilder<UserRole> builder)
     {
-        UserId = userId;
-        RoleId = roleId;
+        builder.HasKey(ur => new { ur.RoleId, ur.UserId });
+        builder.HasOne(ur => ur.Role)
+            .WithMany(r => r.UserRoles)
+            .HasForeignKey(ur => ur.RoleId);
+        builder.HasOne(ur => ur.User)
+            .WithMany(u => u.UserRoles)
+            .HasForeignKey(ur => ur.UserId);
     }
-    public Guid UserId { get; set; }
-    public User User { get; set; } = default!;
-    public Guid RoleId { get; set; }
-    public Role Role { get; set; } = default!;
 }

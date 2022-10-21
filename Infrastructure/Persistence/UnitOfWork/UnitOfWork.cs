@@ -1,19 +1,21 @@
 ﻿using Infrastructure.Persistence.Context;
 using Infrastructure.Persistence.Factory;
 using Infrastructure.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.UnitOfWork;
 
-public class UnitOfWork : IUnitOfWork, IDisposable
+public sealed class UnitOfWork : IUnitOfWork, IDisposable
 {
     private readonly IConnectionFactory _connectionFactory;
+    private readonly TicketsContext _context;
 
-    public UnitOfWork(IConnectionFactory connectionFactory)
+    public UnitOfWork(IConnectionFactory connectionFactory, TicketsContext context)
     {
         _connectionFactory = connectionFactory ?? throw new ArgumentNullException(nameof(connectionFactory));
+        _context = context;
     }
 
-    private readonly TicketsContext _context = new();
     private TicketRepository? _ticketRepository;
     private TicketDetailRepository? _ticketDetailRepository;
     private UserRepository? _userRepository;
@@ -25,7 +27,11 @@ public class UnitOfWork : IUnitOfWork, IDisposable
 
     public TicketRepository TicketRepository
     {
-        get { return _ticketRepository ??= new TicketRepository(_context, _connectionFactory.Connection); }
+        get
+        {
+            if (_connectionFactory.Connection == null) return null!;
+            return _ticketRepository ??= new TicketRepository(_context, _connectionFactory.Connection);
+        }
     }
 
     public UserRoleRepository UserRoleRepository
@@ -63,21 +69,18 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         _context.SaveChanges();
     }
 
-    void IUnitOfWork.Dispose(bool disposing)
+    public DbContext GetDbContext()
     {
-        Dispose(disposing);
+        return _context;
     }
 
     private bool _disposed;
 
-    protected virtual void Dispose(bool disposing)
+    private void Dispose(bool disposing)
     {
-        if (!_disposed)
+        if (!_disposed && disposing)
         {
-            if (disposing)
-            {
-                _context.Dispose();
-            }
+            _context.Dispose();
         }
 
         _disposed = true;

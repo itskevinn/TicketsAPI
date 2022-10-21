@@ -2,6 +2,7 @@
 
 namespace Infrastructure.Persistence.Exceptions;
 
+[Serializable]
 public class DatabaseUnavailableException : Exception
 {
     public DatabaseUnavailableException()

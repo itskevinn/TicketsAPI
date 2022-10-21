@@ -1,9 +1,10 @@
-﻿using Application.Base;
+﻿using System.Net;
+using Application.Base;
 using Application.Tickets.Http.Dto;
 using Application.Tickets.Http.Request;
 using AutoMapper;
-using Domain.Entity;
 using Domain.Ports;
+using Infrastructure.Persistence.Exceptions;
 using Infrastructure.Persistence.UnitOfWork;
 using Microsoft.Extensions.Logging;
 
@@ -13,38 +14,42 @@ public class TicketService : BaseService, ITicketService
 {
     private readonly ITicketRepository _ticketRepository;
     private readonly IMapper _mapper;
-    private readonly ILogger _logger;
+    private readonly ILogger<TicketService> _logger;
 
-    public TicketService(IUnitOfWork unitOfWork, IMapper mapper, ILogger logger)
+    public TicketService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<TicketService> logger)
     {
         _ticketRepository = unitOfWork.TicketRepository ??
-                            throw new ArgumentNullException(nameof(unitOfWork), "Repo not available");
-        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper), "Mapper not available");
+                            throw new RepositoryUnavailableException(
+                                $"Repo not available {nameof(unitOfWork.TicketRepository)}");
+        _mapper = mapper ?? throw new RepositoryUnavailableException("Mapper not available");
         _logger = logger;
     }
 
-    public async Task<IEnumerable<TicketDto>> GetAllAsync()
+    public async Task<Response<IEnumerable<TicketDto>>> GetAllAsync()
     {
         try
         {
             var tickets = await _ticketRepository.GetAsync();
             var ticketDtoList = _mapper.Map<IEnumerable<TicketDto>>(tickets.AsEnumerable());
-            return ticketDtoList;
+            return new Response<IEnumerable<TicketDto>>(HttpStatusCode.OK, "Found tickets: ",
+                true, ticketDtoList);
         }
         catch (Exception e)
         {
             _logger.Log(LogLevel.Error, "{AnErrorHappenedMessage} {EMessage}", AnErrorHappenedMessage, e.Message);
-            return new List<TicketDto>();
+            return new Response<IEnumerable<TicketDto>>(HttpStatusCode.InternalServerError, AnErrorHappenedMessage,
+                false, new List<TicketDto>(), e);
         }
     }
 
-    public async Task<TicketDto> GetByIdAsync(string code)
+    public async Task<Response<TicketDto>> GetByIdAsync(string code)
     {
         try
         {
             var ticket = await _ticketRepository.FindByCodeAsync(code);
-            var ticketDtoList = _mapper.Map<TicketDto>(ticket);
-            return ticketDtoList;
+            var foundTicket = _mapper.Map<TicketDto>(ticket);
+            return new Response<TicketDto>(HttpStatusCode.OK, "Found ticket: ",
+                true, foundTicket);
         }
         catch (Exception e)
         {
@@ -53,7 +58,7 @@ public class TicketService : BaseService, ITicketService
         }
     }
 
-    public Task<TicketDto> CreateAsync(TicketRequest request)
+    public Task<Response<TicketDto>> CreateAsync(TicketRequest request)
     {
         throw new NotImplementedException();
     }

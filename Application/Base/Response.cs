@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Infrastructure.Core.Response;
+namespace Application.Base;
 
 public class Response<T>
 {

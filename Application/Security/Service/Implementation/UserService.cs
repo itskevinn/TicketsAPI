@@ -5,7 +5,6 @@ using Application.Security.Http.Request;
 using AutoMapper;
 using Domain.Entity;
 using Domain.Ports;
-using Infrastructure.Core.Response;
 using Infrastructure.Persistence.UnitOfWork;
 using Infrastructure.Security.Encrypt;
 using Microsoft.AspNetCore.Http;
@@ -22,10 +21,14 @@ public class UserService : BaseService, IUserService
 
     public UserService(IMapper mapper,
         IUnitOfWork unitOfWork,
-        IHttpContextAccessor accessor
-    ) : base(accessor)
+        IHttpContextAccessor accessor, IGenericRepository<UserRole> userRoleRepository,
+        IGenericRepository<MenuItemRole> menuItemRoleRepository) : base(accessor)
     {
         _mapper = mapper ?? throw new ArgumentNullException($"{nameof(mapper)}");
+        _userRoleRepository =
+            userRoleRepository ?? throw new ArgumentNullException($"{nameof(menuItemRoleRepository)}");
+        _menuItemRoleRepository = menuItemRoleRepository ??
+                                  throw new ArgumentNullException($"{nameof(menuItemRoleRepository)}");
         _userRepository = unitOfWork.UserRepository ??
                           throw new ArgumentNullException($"{nameof(unitOfWork)}");
         _menuItemRepository = unitOfWork.MenuItemRepository ?? throw new ArgumentNullException($"{nameof(unitOfWork)}");
@@ -62,17 +65,6 @@ public class UserService : BaseService, IUserService
             return new Response<IEnumerable<UserDto>>(HttpStatusCode.InternalServerError, AnErrorHappenedMessage,
                 false, null!, e);
         }
-    }
-
-    public async Task<Response<UserDto>> FindById(Guid id)
-    {
-        var currentUser = GetCurrentUser();
-        if (currentUser == null!)
-            return new Response<UserDto>(HttpStatusCode.Unauthorized, "Sesión caducada", false);
-        if (id != currentUser.Id &&
-            currentUser.Roles?.First(r => r.RoleName == "Admin").RoleName != "Admin")
-            return new Response<UserDto>(HttpStatusCode.Unauthorized, "No está autorizado", false);
-        return await GetById(id);
     }
 
     public async Task<Response<UserDto>> GetById(Guid id)

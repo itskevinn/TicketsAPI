@@ -1,15 +1,25 @@
-﻿using Domain.Entity;
-using Infrastructure.Persistence.Mapping;
+﻿using Infrastructure.Configuration;
+using Infrastructure.Core.Helpers;
+using Infrastructure.Seeding;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Context;
 
 public class TicketsContext : DbContext
 {
-    public DbSet<User> Users { get; set; } = default!;
+    private readonly AppSettings? _settings;
+
+    public TicketsContext(DbContextOptions<TicketsContext> options,
+        AppSettings repoSettings) : base(options)
+    {
+        _settings = repoSettings;
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.ApplyConfiguration(new UserConfiguration());
+        modelBuilder.HasDefaultSchema(_settings?.SchemaName);
+        EntitiesConfigurator.Configure(modelBuilder);
+        Seeder.GenerateSeeds(modelBuilder);
     }
 }

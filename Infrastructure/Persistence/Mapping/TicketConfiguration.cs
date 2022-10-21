@@ -1,16 +1,20 @@
-﻿using Domain.Entity.Base;
+﻿using Domain.Entity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Mapping;
 
-public class Ticket : AuditableEntity<Guid>
+public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
 {
-    public string Code { get; set; } = default!;
-    public string Title { get; set; } = default!;
-    public string Message { get; set; } = default!;
-    public string Status { get; set; } = default!;
-    public User GeneratedBy { get; set; } = default!;
-    public DateTime GeneratedOn { get; set; }
-    public DateTime SolvedOn { get; set; }
-    public DateTime AllegedSolveDate { get; set; }
-    public string Description { get; set; } = default!;
+    public void Configure(EntityTypeBuilder<Ticket> builder)
+    {
+        builder.Property(t => t.Code).IsRequired();
+        builder.Property(t => t.Title).HasMaxLength(255);
+        builder.Property(t => t.Status).IsRequired();
+        builder.Property(t => t.GeneratedOn).IsRequired();
+        builder.Property(t => t.AllegedSolveDate).IsRequired();
+        builder.Property(t => t.Description).IsRequired();
+        
+        builder.Ignore(t => t.GeneratedBy);
+    }
 }

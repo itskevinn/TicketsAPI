@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.UnitOfWork;
 
@@ -14,8 +15,6 @@ public interface IUnitOfWork
     public MenuItemRoleRepository MenuItemRoleRepository { get; }
 
     public void Save();
+    public DbContext GetDbContext();
 
-    protected void Dispose(bool disposing);
-
-    public void Dispose();
 }

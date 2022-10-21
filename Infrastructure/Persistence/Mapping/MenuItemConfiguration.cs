@@ -1,12 +1,17 @@
-﻿using Domain.Entity.Base;
+﻿using Domain.Entity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Domain.Entity;
+namespace Infrastructure.Persistence.Mapping;
 
-public class MenuItem : BaseEntity<Guid>
+public class MenuItemConfiguration : IEntityTypeConfiguration<MenuItem>
 {
-	public string Icon { get; set; } = default!;
-	public string RouterLink { get; set; } = default!;
-	public string Label { get; set; } = default!;
-	public int Order { get; set; } = default!;
-	public IEnumerable<MenuItemRole> MenuItemRoles { get; set; } = default!;
+    public void Configure(EntityTypeBuilder<MenuItem> builder)
+    {
+        builder.HasKey(mi => mi.Id);
+        builder.Property(mi => mi.Icon).HasMaxLength(30).IsRequired();
+        builder.Property(mi => mi.RouterLink).HasMaxLength(255).IsRequired();
+        builder.Property(mi => mi.Order).IsRequired();
+        builder.Property(mi => mi.Label).HasMaxLength(30).IsRequired();
+    }
 }

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using TicketsWebServices.Extensions;
-using TicketsWebServices.Filters;
+using TicketsWebServices.Utils.Extensions;
+using TicketsWebServices.Utils.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 const string myAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -43,30 +43,23 @@ builder.Services.AddSwaggerGen(c =>
     c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
-        { securityScheme, new string[] { } }
+        { securityScheme, Array.Empty<string>() }
     });
 });
 builder.Services.AddAutoMapper(Assembly.Load("Application"));
-builder.Services.AddDbContext<TicketsContext>(opt =>
-{
-    opt.UseSqlServer(config.GetConnectionString("local"),
-        sqlOpts =>
-        {
-            sqlOpts.MigrationsHistoryTable("_MigrationHistory",
-                config.GetValue<string>("SchemaName"));
-        });
-});
 
-builder.Services.AddHealthChecks().AddSqlServer(config["ConnectionStrings:local"]);
+builder.Services.AddHealthChecks().AddOracle(config["ConnectionStrings:local"]);
 
 builder.Services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
 
 builder.Services.AddPersistence(config).AddServices().AddScopedServices();
+
 builder.Services.AddScoped(typeof(IJwtUtils<>), typeof(JwtUtils<>));
 builder.Services.AddAuthorization();
 
 var appSettingsSection = config.GetSection("AppSettings");
 builder.Services.Configure<AppSettings>(appSettingsSection);
+builder.Services.AddSingleton<AppSettings>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var appSettings = appSettingsSection.Get<AppSettings>();
@@ -90,12 +83,26 @@ builder.Services.AddAuthentication(x =>
     });
 builder.Services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tickets Api", Version = "v1" }); });
 builder.Services.Configure<AppSettings>(builder.Configuration);
+builder.Services.AddDbContext<TicketsContext>(opt =>
+{
+    opt.UseOracle(config.GetConnectionString("local"),
+        sqlOpts =>
+        {
+            sqlOpts.MigrationsHistoryTable("_MigrationHistory",
+                config.GetValue<string>("SchemaName"));
+        });
+});
+
 
 Log.Logger = new LoggerConfiguration().Enrich.FromLogContext()
     .WriteTo.Console()
-    .WriteTo.File($"AppLogs/Api-{DateTime.Now.Millisecond}.log", rollingInterval: RollingInterval.Day)
+    .WriteTo.File(
+        $"AppLogs/Api-{DateTime.Now.Year}-" +
+        $"{DateTime.Now.Month}-{DateTime.Now.Day}-" +
+        $"{DateTime.Now.Hour}-{DateTime.Now.Minute}-" +
+        $"{DateTime.Now.Second}-{DateTime.Now.Millisecond}.log",
+        rollingInterval: RollingInterval.Day)
     .CreateLogger();
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -103,6 +110,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ticket Api"));
 }
+
+//TODO: Migration in runtime
 
 app.UseMiddleware<JwtMiddleware<UserDto>>();
 app.UseCors(myAllowSpecificOrigins);
