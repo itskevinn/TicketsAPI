@@ -1,6 +1,6 @@
-﻿using Infrastructure.Configuration;
-using Infrastructure.Core.Helpers;
-using Infrastructure.Seeding;
+﻿using Infrastructure.Core.Helpers;
+using Infrastructure.Persistence.Configuration;
+using Infrastructure.Persistence.Seeding;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Context;

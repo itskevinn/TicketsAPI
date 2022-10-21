@@ -1,7 +1,7 @@
 ﻿using Infrastructure.Persistence.Mapping;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Configuration;
+namespace Infrastructure.Persistence.Configuration;
 
 public static class EntitiesConfigurator
 {

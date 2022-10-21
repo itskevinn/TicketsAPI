@@ -1,7 +1,7 @@
 ﻿using Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Seeding;
+namespace Infrastructure.Persistence.Seeding;
 
 public static class Seeder
 {
