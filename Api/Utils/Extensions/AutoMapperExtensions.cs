@@ -1,4 +1,5 @@
 ﻿using Application.Security.Http.Profiles;
+using Application.Tickets.Http.Profiles;
 using AutoMapper;
 
 namespace TicketsWebServices.Utils.Extensions;
@@ -11,7 +12,11 @@ public static class AutoMapperExtensions
         {
             var profiles = new List<Profile>
             {
-                new MenuItemProfile(), new RoleProfile(), new UserProfile() 
+                new MenuItemProfile(),
+                new RoleProfile(),
+                new UserProfile(),
+                new TicketProfile(),
+                new TicketDetailProfile()
             };
             m.AddProfiles(profiles);
         });

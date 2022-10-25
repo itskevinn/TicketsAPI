@@ -4,10 +4,10 @@ namespace Domain.Entity;
 
 public class Ticket : AuditableEntity<Guid>
 {
-    public string Code { get; set; } = default!;
+    public int Code { get; set; }
     public string Title { get; set; } = default!;
     public string Status { get; set; } = default!;
-    public User GeneratedBy { get; set; } = default!;
+    public string GeneratedBy { get; set; } = default!;
     public DateTime GeneratedOn { get; set; }
     public DateTime SolvedOn { get; set; }
     public DateTime AllegedSolveDate { get; set; }

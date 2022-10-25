@@ -1,0 +1,81 @@
+2022-10-22 22:06:10.339 -05:00 [INF] User profile is available. Using 'C:\Users\WINDOWS\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-22 22:06:10.587 -05:00 [INF] Now listening on: http://localhost:5000
+2022-10-22 22:06:10.591 -05:00 [INF] Now listening on: https://localhost:5001
+2022-10-22 22:06:10.597 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-22 22:06:10.600 -05:00 [INF] Hosting environment: Production
+2022-10-22 22:06:10.604 -05:00 [INF] Content root path: C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\
+2022-10-22 22:06:12.594 -05:00 [INF] Request starting HTTP/1.1 POST https://localhost:5001/api/v1/User/Authenticate application/json 55
+2022-10-22 22:06:13.457 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-22 22:06:14.552 -05:00 [INF] Executed DbCommand (65ms) [Parameters=[:userId_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t"."Id", "t"."CreatedBy", "t"."CreatedOn", "t"."LastModifiedBy", "t"."LastModifiedOn", "t"."Name", "t"."Password", "t"."Username", "u0"."RoleId", "u0"."UserId", "u0"."CreatedBy", "u0"."CreatedOn", "u0"."Id", "u0"."LastModifiedBy", "u0"."LastModifiedOn"
+FROM (
+    SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+    FROM "User" "u"
+    WHERE "u"."Id" = :userId_0
+    FETCH FIRST 1 ROWS ONLY
+    ) "t"
+    LEFT JOIN "UserRole" "u0" ON "t"."Id" = "u0"."UserId"
+    ORDER BY "t"."Id", "u0"."RoleId"
+2022-10-22 22:06:14.718 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:user_Id_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "r"."Id", "r"."CreatedBy", "r"."CreatedOn", "r"."LastModifiedBy", "r"."LastModifiedOn", "r"."RoleName"
+FROM "UserRole" "u"
+INNER JOIN "Role" "r" ON "u"."RoleId" = "r"."Id"
+WHERE "u"."UserId" = :user_Id_0
+2022-10-22 22:06:14.771 -05:00 [INF] Request:
+Protocol: HTTP/1.1
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/v1/User/Authenticate
+Accept: */*
+Connection: keep-alive
+Host: localhost:5001
+User-Agent: PostmanRuntime/7.29.2
+Accept-Encoding: gzip, deflate, br
+Authorization: [Redacted]
+Content-Type: application/json
+Content-Length: 55
+Postman-Token: [Redacted]
+2022-10-22 22:06:14.809 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Security.UserController.Authenticate (Api)'
+2022-10-22 22:06:14.829 -05:00 [INF] Route matched with {action = "Authenticate", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[Application.Security.Http.Dto.AuthenticateDto]] Authenticate(Application.Security.Http.Request.AuthenticateRequest) on controller TicketsWebServices.Controllers.Security.UserController (Api).
+2022-10-22 22:06:22.666 -05:00 [ERR] This property cannot be set after a connection has been opened
+System.InvalidOperationException: This property cannot be set after a connection has been opened
+   at Oracle.ManagedDataAccess.Client.OracleDataSourceCollection.Add(String tnsName, String tnsDescriptor)
+   at Infrastructure.Persistence.Factory.ConnectionFactory.SetupOracleConnection() in C:\Users\WINDOWS\RiderProjects\TicketsAPI\Infrastructure\Persistence\Factory\ConnectionFactory.cs:line 26
+   at Infrastructure.Persistence.Factory.ConnectionFactory..ctor(ILogger`1 logger) in C:\Users\WINDOWS\RiderProjects\TicketsAPI\Infrastructure\Persistence\Factory\ConnectionFactory.cs:line 16
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Span`1& arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method213(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass7_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2022-10-22 22:06:22.715 -05:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2022-10-22 22:07:20.046 -05:00 [INF] Executed action TicketsWebServices.Controllers.Security.UserController.Authenticate (Api) in 65184.9283ms
+2022-10-22 22:07:22.251 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Security.UserController.Authenticate (Api)'
+2022-10-22 22:07:33.792 -05:00 [INF] Response:
+StatusCode: 500
+Content-Type: application/json; charset=utf-8
+Date: Sun, 23 Oct 2022 03:06:22 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+2022-10-22 22:08:10.064 -05:00 [INF] Request finished HTTP/1.1 POST https://localhost:5001/api/v1/User/Authenticate application/json 55 - 500 - application/json;+charset=utf-8 117471.6527ms

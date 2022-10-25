@@ -13,5 +13,6 @@ public class MenuItemConfiguration : IEntityTypeConfiguration<MenuItem>
         builder.Property(mi => mi.RouterLink).HasMaxLength(255).IsRequired();
         builder.Property(mi => mi.Order).IsRequired();
         builder.Property(mi => mi.Label).HasMaxLength(30).IsRequired();
+        builder.Property(mi => mi.LastModifiedBy).IsRequired(false);
     }
 }

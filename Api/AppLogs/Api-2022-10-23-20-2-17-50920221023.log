@@ -1,0 +1,31 @@
+2022-10-23 20:02:18.392 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory OracleSQLCompatibility=11 
+2022-10-23 20:02:19.113 -05:00 [INF] Executed DbCommand (87ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT t.table_name FROM user_tables t WHERE t.table_name = N'_MigrationHistory'
+2022-10-23 20:02:19.228 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT t.table_name FROM user_tables t WHERE t.table_name = N'_MigrationHistory'
+2022-10-23 20:02:19.284 -05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT "MigrationId", "ProductVersion"
+FROM "_MigrationHistory"
+ORDER BY "MigrationId"
+2022-10-23 20:02:19.307 -05:00 [INF] Applying migration '20221024010150_updatedby chaged to LastModifiedBy in auditable entites'.
+2022-10-23 20:02:19.597 -05:00 [ERR] 2022-10-23 20:02:19.585548 ThreadID:1   (ERROR)   OracleRelationalCommand.ExecuteNonQuery() :  Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-04044: procedure, function, package, or type is not allowed here
+ORA-06512: at line 10
+   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Oracle.EntityFrameworkCore.Storage.Internal.OracleRelationalCommandBuilderFactory.OracleRelationalCommandBuilder.OracleRelationalCommand.ExecuteNonQuery(RelationalCommandParameterObject parameterObject)
+2022-10-23 20:02:19.606 -05:00 [ERR] Failed executing DbCommand (194ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+declare
+   l_nullable user_tab_columns.nullable % type;
+begin 
+   select nullable into l_nullable 
+   from user_tab_columns 
+  where table_name = 'UserRole' 
+  and column_name = 'LastModifiedOn' 
+;
+   if l_nullable = 'N' then 
+        EXECUTE IMMEDIATE 'ALTER TABLE "UserRole" MODIFY "LastModifiedOn" TIMESTAMP(7) DEFAULT (GETDATE()) ';
+ else 
+        EXECUTE IMMEDIATE 'ALTER TABLE "UserRole" MODIFY "LastModifiedOn" TIMESTAMP(7) DEFAULT (GETDATE()) NOT NULL';
+ end if;
+end;

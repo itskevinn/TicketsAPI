@@ -5,6 +5,7 @@ using Domain.Entity;
 using Domain.Exceptions;
 using Domain.Ports;
 using Infrastructure.Core.Helpers;
+using Infrastructure.Persistence.UnitOfWork;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -28,18 +29,17 @@ public class JwtMiddleware<T>
         _appSettings = appSettings.Value;
     }
 
-    public async Task Invoke(HttpContext context, IGenericRepository<User> userRepository,
-        IGenericRepository<UserRole> userRoleRepository)
+    public async Task Invoke(HttpContext context, IUnitOfWork unitOfWork)
     {
         var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
         if (token != null)
-            AttachUserToContext(context, userRepository, token, userRoleRepository);
+            await AttachUserToContext(context, unitOfWork.UserRepository, token, unitOfWork.UserRoleRepository);
 
         await _next(context);
     }
 
-    private void AttachUserToContext(HttpContext context, IGenericRepository<User> userRepository, string token,
+    private async Task AttachUserToContext(HttpContext context, IGenericRepository<User> userRepository, string token,
         IGenericRepository<UserRole> userRoleRepository)
     {
         try
@@ -58,7 +58,7 @@ public class JwtMiddleware<T>
             var jwtToken = (JwtSecurityToken)validatedToken;
             Guid.TryParse(jwtToken.Claims.First(x => x.Type.ToLower() == "id").Value, out var userId);
             if (userId == Guid.Empty) throw new InvalidOperationException("id must be in the claims");
-            var user = GetUserInfo(userRepository, userRoleRepository, userId);
+            var user = await GetUserInfo(userRepository, userRoleRepository, userId);
             var userDto = _mapper.Map<T>(user);
             context.Items["User"] = userDto;
         }
@@ -71,7 +71,7 @@ public class JwtMiddleware<T>
     private static async Task<User> GetUserInfo(IGenericRepository<User> userRepository,
         IGenericRepository<UserRole> userRoleRepository, Guid userId)
     {
-        var user = await userRepository.Find(u => u.Id == userId, false, "UserRoles");
+        var user = await userRepository.FindByAsync(u => u.Id == userId, false, "UserRoles");
         var userRoles =
             await userRoleRepository.GetAsync(ur => ur.UserId == user.Id, null, false, "Role");
         user.Roles = userRoles.Select(u => u.Role);

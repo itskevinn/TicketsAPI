@@ -1,0 +1,221 @@
+2022-10-22 22:36:11.913 -05:00 [INF] User profile is available. Using 'C:\Users\WINDOWS\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-22 22:36:12.144 -05:00 [INF] Now listening on: http://localhost:5000
+2022-10-22 22:36:12.146 -05:00 [INF] Now listening on: https://localhost:5001
+2022-10-22 22:36:12.154 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-22 22:36:12.156 -05:00 [INF] Hosting environment: Production
+2022-10-22 22:36:12.159 -05:00 [INF] Content root path: C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\
+2022-10-22 22:37:53.940 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/v1/Ticket/All - -
+2022-10-22 22:37:54.713 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-22 22:37:55.761 -05:00 [INF] Executed DbCommand (67ms) [Parameters=[:userId_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t"."Id", "t"."CreatedBy", "t"."CreatedOn", "t"."LastModifiedBy", "t"."LastModifiedOn", "t"."Name", "t"."Password", "t"."Username", "u0"."RoleId", "u0"."UserId", "u0"."CreatedBy", "u0"."CreatedOn", "u0"."Id", "u0"."LastModifiedBy", "u0"."LastModifiedOn"
+FROM (
+    SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+    FROM "User" "u"
+    WHERE "u"."Id" = :userId_0
+    FETCH FIRST 1 ROWS ONLY
+    ) "t"
+    LEFT JOIN "UserRole" "u0" ON "t"."Id" = "u0"."UserId"
+    ORDER BY "t"."Id", "u0"."RoleId"
+2022-10-22 22:37:55.935 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:user_Id_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "r"."Id", "r"."CreatedBy", "r"."CreatedOn", "r"."LastModifiedBy", "r"."LastModifiedOn", "r"."RoleName"
+FROM "UserRole" "u"
+INNER JOIN "Role" "r" ON "u"."RoleId" = "r"."Id"
+WHERE "u"."UserId" = :user_Id_0
+2022-10-22 22:37:55.991 -05:00 [INF] Request:
+Protocol: HTTP/1.1
+Method: GET
+Scheme: https
+PathBase: 
+Path: /api/v1/Ticket/All
+Accept: */*
+Connection: keep-alive
+Host: localhost:5001
+User-Agent: PostmanRuntime/7.29.2
+Accept-Encoding: gzip, deflate, br
+Authorization: [Redacted]
+Postman-Token: [Redacted]
+2022-10-22 22:37:56.029 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.GetAll (Api)'
+2022-10-22 22:37:56.044 -05:00 [INF] Route matched with {action = "GetAll", controller = "Ticket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[System.Collections.Generic.IEnumerable`1[Application.Tickets.Http.Dto.TicketDto]]] GetAll() on controller TicketsWebServices.Controllers.Tickets.TicketController (Api).
+2022-10-22 22:39:27.107 -05:00 [INF] Authorization failed for the request at filter 'Application.Security.AuthorizeAttribute'.
+2022-10-22 22:39:27.118 -05:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2022-10-22 22:39:27.151 -05:00 [INF] Executed action TicketsWebServices.Controllers.Tickets.TicketController.GetAll (Api) in 91097.8379ms
+2022-10-22 22:39:27.154 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.GetAll (Api)'
+2022-10-22 22:39:27.155 -05:00 [INF] Response:
+StatusCode: 401
+Content-Type: application/problem+json; charset=utf-8
+Date: Sun, 23 Oct 2022 03:39:27 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+2022-10-22 22:39:27.164 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/v1/Ticket/All - - - 401 - application/problem+json;+charset=utf-8 93226.9025ms
+2022-10-22 22:39:30.321 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/v1/Ticket/All - -
+2022-10-22 22:39:30.344 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-22 22:39:30.398 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:userId_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t"."Id", "t"."CreatedBy", "t"."CreatedOn", "t"."LastModifiedBy", "t"."LastModifiedOn", "t"."Name", "t"."Password", "t"."Username", "u0"."RoleId", "u0"."UserId", "u0"."CreatedBy", "u0"."CreatedOn", "u0"."Id", "u0"."LastModifiedBy", "u0"."LastModifiedOn"
+FROM (
+    SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+    FROM "User" "u"
+    WHERE "u"."Id" = :userId_0
+    FETCH FIRST 1 ROWS ONLY
+    ) "t"
+    LEFT JOIN "UserRole" "u0" ON "t"."Id" = "u0"."UserId"
+    ORDER BY "t"."Id", "u0"."RoleId"
+2022-10-22 22:39:30.526 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:user_Id_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "r"."Id", "r"."CreatedBy", "r"."CreatedOn", "r"."LastModifiedBy", "r"."LastModifiedOn", "r"."RoleName"
+FROM "UserRole" "u"
+INNER JOIN "Role" "r" ON "u"."RoleId" = "r"."Id"
+WHERE "u"."UserId" = :user_Id_0
+2022-10-22 22:39:30.532 -05:00 [INF] Request:
+Protocol: HTTP/1.1
+Method: GET
+Scheme: https
+PathBase: 
+Path: /api/v1/Ticket/All
+Accept: */*
+Connection: keep-alive
+Host: localhost:5001
+User-Agent: PostmanRuntime/7.29.2
+Accept-Encoding: gzip, deflate, br
+Authorization: [Redacted]
+Postman-Token: [Redacted]
+2022-10-22 22:39:30.537 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.GetAll (Api)'
+2022-10-22 22:39:30.539 -05:00 [INF] Route matched with {action = "GetAll", controller = "Ticket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[System.Collections.Generic.IEnumerable`1[Application.Tickets.Http.Dto.TicketDto]]] GetAll() on controller TicketsWebServices.Controllers.Tickets.TicketController (Api).
+2022-10-22 22:40:12.838 -05:00 [INF] Authorization failed for the request at filter 'Application.Security.AuthorizeAttribute'.
+2022-10-22 22:40:12.846 -05:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2022-10-22 22:40:12.849 -05:00 [INF] Executed action TicketsWebServices.Controllers.Tickets.TicketController.GetAll (Api) in 42305.8306ms
+2022-10-22 22:40:12.860 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.GetAll (Api)'
+2022-10-22 22:40:12.861 -05:00 [INF] Response:
+StatusCode: 401
+Content-Type: application/problem+json; charset=utf-8
+Date: Sun, 23 Oct 2022 03:40:12 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+2022-10-22 22:40:12.863 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/v1/Ticket/All - - - 401 - application/problem+json;+charset=utf-8 42542.1451ms
+2022-10-22 22:42:17.517 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/v1/Ticket/All - -
+2022-10-22 22:42:17.530 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-22 22:42:17.611 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:userId_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t"."Id", "t"."CreatedBy", "t"."CreatedOn", "t"."LastModifiedBy", "t"."LastModifiedOn", "t"."Name", "t"."Password", "t"."Username", "u0"."RoleId", "u0"."UserId", "u0"."CreatedBy", "u0"."CreatedOn", "u0"."Id", "u0"."LastModifiedBy", "u0"."LastModifiedOn"
+FROM (
+    SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+    FROM "User" "u"
+    WHERE "u"."Id" = :userId_0
+    FETCH FIRST 1 ROWS ONLY
+    ) "t"
+    LEFT JOIN "UserRole" "u0" ON "t"."Id" = "u0"."UserId"
+    ORDER BY "t"."Id", "u0"."RoleId"
+2022-10-22 22:42:17.654 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:user_Id_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "r"."Id", "r"."CreatedBy", "r"."CreatedOn", "r"."LastModifiedBy", "r"."LastModifiedOn", "r"."RoleName"
+FROM "UserRole" "u"
+INNER JOIN "Role" "r" ON "u"."RoleId" = "r"."Id"
+WHERE "u"."UserId" = :user_Id_0
+2022-10-22 22:42:17.658 -05:00 [INF] Request:
+Protocol: HTTP/1.1
+Method: GET
+Scheme: https
+PathBase: 
+Path: /api/v1/Ticket/All
+Accept: */*
+Connection: keep-alive
+Host: localhost:5001
+User-Agent: PostmanRuntime/7.29.2
+Accept-Encoding: gzip, deflate, br
+Authorization: [Redacted]
+Postman-Token: [Redacted]
+2022-10-22 22:42:17.662 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.GetAll (Api)'
+2022-10-22 22:42:17.662 -05:00 [INF] Route matched with {action = "GetAll", controller = "Ticket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[System.Collections.Generic.IEnumerable`1[Application.Tickets.Http.Dto.TicketDto]]] GetAll() on controller TicketsWebServices.Controllers.Tickets.TicketController (Api).
+2022-10-22 22:42:17.666 -05:00 [INF] Authorization failed for the request at filter 'Application.Security.AuthorizeAttribute'.
+2022-10-22 22:42:17.667 -05:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2022-10-22 22:42:17.671 -05:00 [INF] Executed action TicketsWebServices.Controllers.Tickets.TicketController.GetAll (Api) in 6.5059ms
+2022-10-22 22:42:17.673 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.GetAll (Api)'
+2022-10-22 22:42:17.674 -05:00 [INF] Response:
+StatusCode: 401
+Content-Type: application/problem+json; charset=utf-8
+Date: Sun, 23 Oct 2022 03:42:16 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+2022-10-22 22:42:17.676 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/v1/Ticket/All - - - 401 - application/problem+json;+charset=utf-8 161.3979ms
+2022-10-22 22:42:24.977 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/v1/Ticket/All - -
+2022-10-22 22:42:24.980 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-22 22:42:25.018 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:userId_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t"."Id", "t"."CreatedBy", "t"."CreatedOn", "t"."LastModifiedBy", "t"."LastModifiedOn", "t"."Name", "t"."Password", "t"."Username", "u0"."RoleId", "u0"."UserId", "u0"."CreatedBy", "u0"."CreatedOn", "u0"."Id", "u0"."LastModifiedBy", "u0"."LastModifiedOn"
+FROM (
+    SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+    FROM "User" "u"
+    WHERE "u"."Id" = :userId_0
+    FETCH FIRST 1 ROWS ONLY
+    ) "t"
+    LEFT JOIN "UserRole" "u0" ON "t"."Id" = "u0"."UserId"
+    ORDER BY "t"."Id", "u0"."RoleId"
+2022-10-22 22:42:25.059 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:user_Id_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "r"."Id", "r"."CreatedBy", "r"."CreatedOn", "r"."LastModifiedBy", "r"."LastModifiedOn", "r"."RoleName"
+FROM "UserRole" "u"
+INNER JOIN "Role" "r" ON "u"."RoleId" = "r"."Id"
+WHERE "u"."UserId" = :user_Id_0
+2022-10-22 22:42:25.065 -05:00 [INF] Request:
+Protocol: HTTP/1.1
+Method: GET
+Scheme: https
+PathBase: 
+Path: /api/v1/Ticket/All
+Accept: */*
+Connection: keep-alive
+Host: localhost:5001
+User-Agent: PostmanRuntime/7.29.2
+Accept-Encoding: gzip, deflate, br
+Authorization: [Redacted]
+Postman-Token: [Redacted]
+2022-10-22 22:42:25.067 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.GetAll (Api)'
+2022-10-22 22:42:25.068 -05:00 [INF] Route matched with {action = "GetAll", controller = "Ticket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[System.Collections.Generic.IEnumerable`1[Application.Tickets.Http.Dto.TicketDto]]] GetAll() on controller TicketsWebServices.Controllers.Tickets.TicketController (Api).
+2022-10-22 22:43:48.551 -05:00 [INF] Authorization failed for the request at filter 'Application.Security.AuthorizeAttribute'.
+2022-10-22 22:43:48.553 -05:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2022-10-22 22:43:48.556 -05:00 [INF] Executed action TicketsWebServices.Controllers.Tickets.TicketController.GetAll (Api) in 83485.3644ms
+2022-10-22 22:43:48.563 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.GetAll (Api)'
+2022-10-22 22:43:48.566 -05:00 [INF] Response:
+StatusCode: 401
+Content-Type: application/problem+json; charset=utf-8
+Date: Sun, 23 Oct 2022 03:43:48 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+2022-10-22 22:43:48.568 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/v1/Ticket/All - - - 401 - application/problem+json;+charset=utf-8 83590.9416ms
+2022-10-22 22:43:50.443 -05:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/v1/Ticket/All - -
+2022-10-22 22:43:50.446 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-22 22:43:50.517 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:userId_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t"."Id", "t"."CreatedBy", "t"."CreatedOn", "t"."LastModifiedBy", "t"."LastModifiedOn", "t"."Name", "t"."Password", "t"."Username", "u0"."RoleId", "u0"."UserId", "u0"."CreatedBy", "u0"."CreatedOn", "u0"."Id", "u0"."LastModifiedBy", "u0"."LastModifiedOn"
+FROM (
+    SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+    FROM "User" "u"
+    WHERE "u"."Id" = :userId_0
+    FETCH FIRST 1 ROWS ONLY
+    ) "t"
+    LEFT JOIN "UserRole" "u0" ON "t"."Id" = "u0"."UserId"
+    ORDER BY "t"."Id", "u0"."RoleId"
+2022-10-22 22:43:50.568 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:user_Id_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "r"."Id", "r"."CreatedBy", "r"."CreatedOn", "r"."LastModifiedBy", "r"."LastModifiedOn", "r"."RoleName"
+FROM "UserRole" "u"
+INNER JOIN "Role" "r" ON "u"."RoleId" = "r"."Id"
+WHERE "u"."UserId" = :user_Id_0
+2022-10-22 22:43:50.574 -05:00 [INF] Request:
+Protocol: HTTP/1.1
+Method: GET
+Scheme: https
+PathBase: 
+Path: /api/v1/Ticket/All
+Accept: */*
+Connection: keep-alive
+Host: localhost:5001
+User-Agent: PostmanRuntime/7.29.2
+Accept-Encoding: gzip, deflate, br
+Authorization: [Redacted]
+Postman-Token: [Redacted]
+2022-10-22 22:43:50.576 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.GetAll (Api)'
+2022-10-22 22:43:50.577 -05:00 [INF] Route matched with {action = "GetAll", controller = "Ticket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[System.Collections.Generic.IEnumerable`1[Application.Tickets.Http.Dto.TicketDto]]] GetAll() on controller TicketsWebServices.Controllers.Tickets.TicketController (Api).
+2022-10-22 22:45:36.944 -05:00 [INF] Authorization failed for the request at filter 'Application.Security.AuthorizeAttribute'.
+2022-10-22 22:45:36.948 -05:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2022-10-22 22:45:36.950 -05:00 [INF] Executed action TicketsWebServices.Controllers.Tickets.TicketController.GetAll (Api) in 106370.1996ms
+2022-10-22 22:45:36.962 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.GetAll (Api)'
+2022-10-22 22:45:36.963 -05:00 [INF] Response:
+StatusCode: 401
+Content-Type: application/problem+json; charset=utf-8
+Date: Sun, 23 Oct 2022 03:45:36 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+2022-10-22 22:45:36.964 -05:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/v1/Ticket/All - - - 401 - application/problem+json;+charset=utf-8 106521.2821ms

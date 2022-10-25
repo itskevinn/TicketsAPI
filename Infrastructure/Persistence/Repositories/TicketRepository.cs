@@ -2,8 +2,8 @@
 using Dapper;
 using Domain.Entity;
 using Domain.Ports;
-using Infrastructure.Persistence.Base;
 using Infrastructure.Persistence.Context;
+using Infrastructure.Persistence.Repositories.Base;
 
 namespace Infrastructure.Persistence.Repositories;
 
@@ -16,9 +16,9 @@ public class TicketRepository : GenericRepository<Ticket>, ITicketRepository
         _dbConnection = dbConnection;
     }
 
-    public async Task<Ticket> FindByCodeAsync(string code)
+    public async Task<Ticket> FindByCodeAsync(int code)
     {
-        var sql = $"SELECT * FROM Ticket WHERE Code = '{code}'";
+        var sql = $"SELECT * FROM \"Ticket\" WHERE \"Code\" = '{code}'";
         return await _dbConnection.QueryFirstAsync<Ticket>(sql);
     }
 }

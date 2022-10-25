@@ -1,0 +1,97 @@
+2022-10-23 20:34:09.345 -05:00 [INF] User profile is available. Using 'C:\Users\WINDOWS\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-23 20:34:09.605 -05:00 [INF] Now listening on: http://localhost:5000
+2022-10-23 20:34:09.608 -05:00 [INF] Now listening on: https://localhost:5001
+2022-10-23 20:34:09.617 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-23 20:34:09.622 -05:00 [INF] Hosting environment: Production
+2022-10-23 20:34:09.625 -05:00 [INF] Content root path: C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\
+2022-10-23 20:34:09.836 -05:00 [INF] Request starting HTTP/1.1 POST https://localhost:5001/api/v1/Ticket/Create application/json 161
+2022-10-23 20:34:11.094 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory OracleSQLCompatibility=11 
+2022-10-23 20:34:12.157 -05:00 [INF] Executed DbCommand (63ms) [Parameters=[:userId_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t"."Id", "t"."CreatedBy", "t"."CreatedOn", "t"."LastModifiedBy", "t"."LastModifiedOn", "t"."Name", "t"."Password", "t"."Username", "u0"."RoleId", "u0"."UserId", "u0"."CreatedBy", "u0"."CreatedOn", "u0"."Id", "u0"."LastModifiedBy", "u0"."LastModifiedOn"
+FROM (
+    SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+    FROM "User" "u"
+    WHERE ("u"."Id" = :userId_0)
+    and rownum <= 1
+) "t"
+LEFT JOIN "UserRole" "u0" ON ("t"."Id" = "u0"."UserId")
+
+ORDER BY "t"."Id", "u0"."RoleId"
+2022-10-23 20:34:12.343 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[:user_Id_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "r"."Id", "r"."CreatedBy", "r"."CreatedOn", "r"."LastModifiedBy", "r"."LastModifiedOn", "r"."RoleName"
+FROM "UserRole" "u"
+INNER JOIN "Role" "r" ON ("u"."RoleId" = "r"."Id")
+WHERE ("u"."UserId" = :user_Id_0)
+2022-10-23 20:34:12.395 -05:00 [INF] Request:
+Protocol: HTTP/1.1
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/v1/Ticket/Create
+Accept: */*
+Connection: keep-alive
+Host: localhost:5001
+User-Agent: PostmanRuntime/7.29.2
+Accept-Encoding: gzip, deflate, br
+Authorization: [Redacted]
+Content-Type: application/json
+Content-Length: 161
+Postman-Token: [Redacted]
+2022-10-23 20:34:12.435 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.Create (Api)'
+2022-10-23 20:34:12.452 -05:00 [INF] Route matched with {action = "Create", controller = "Ticket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[Application.Tickets.Http.Dto.TicketDto]] Create(Application.Tickets.Http.Request.TicketRequest) on controller TicketsWebServices.Controllers.Tickets.TicketController (Api).
+2022-10-23 20:34:12.631 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[:request_GeneratedBy_0='?' (Size = 15)], CommandType='"Text"', CommandTimeout='0']
+SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+FROM "User" "u"
+WHERE ("u"."Username" = :request_GeneratedBy_0)
+and rownum <= 1
+2022-10-23 20:34:25.397 -05:00 [ERR] Ocurrió un error Object of type 'System.String' cannot be converted to type 'Domain.Entity.User'.
+2022-10-23 20:34:25.411 -05:00 [INF] Executing ObjectResult, writing value of type 'Application.Base.Response`1[[Application.Tickets.Http.Dto.TicketDto, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-10-23 20:34:25.445 -05:00 [INF] Executed action TicketsWebServices.Controllers.Tickets.TicketController.Create (Api) in 12983.1061ms
+2022-10-23 20:34:25.447 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.Create (Api)'
+2022-10-23 20:34:25.449 -05:00 [INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Date: Mon, 24 Oct 2022 01:34:25 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+2022-10-23 20:34:25.458 -05:00 [INF] Request finished HTTP/1.1 POST https://localhost:5001/api/v1/Ticket/Create application/json 161 - 200 - application/json;+charset=utf-8 15626.0365ms
+2022-10-23 20:34:28.242 -05:00 [INF] Request starting HTTP/1.1 POST https://localhost:5001/api/v1/Ticket/Create application/json 161
+2022-10-23 20:34:28.272 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory OracleSQLCompatibility=11 
+2022-10-23 20:34:28.313 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:userId_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t"."Id", "t"."CreatedBy", "t"."CreatedOn", "t"."LastModifiedBy", "t"."LastModifiedOn", "t"."Name", "t"."Password", "t"."Username", "u0"."RoleId", "u0"."UserId", "u0"."CreatedBy", "u0"."CreatedOn", "u0"."Id", "u0"."LastModifiedBy", "u0"."LastModifiedOn"
+FROM (
+    SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+    FROM "User" "u"
+    WHERE ("u"."Id" = :userId_0)
+    and rownum <= 1
+) "t"
+LEFT JOIN "UserRole" "u0" ON ("t"."Id" = "u0"."UserId")
+
+ORDER BY "t"."Id", "u0"."RoleId"
+2022-10-23 20:34:28.356 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:user_Id_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "r"."Id", "r"."CreatedBy", "r"."CreatedOn", "r"."LastModifiedBy", "r"."LastModifiedOn", "r"."RoleName"
+FROM "UserRole" "u"
+INNER JOIN "Role" "r" ON ("u"."RoleId" = "r"."Id")
+WHERE ("u"."UserId" = :user_Id_0)
+2022-10-23 20:34:28.361 -05:00 [INF] Request:
+Protocol: HTTP/1.1
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/v1/Ticket/Create
+Accept: */*
+Connection: keep-alive
+Host: localhost:5001
+User-Agent: PostmanRuntime/7.29.2
+Accept-Encoding: gzip, deflate, br
+Authorization: [Redacted]
+Content-Type: application/json
+Content-Length: 161
+Postman-Token: [Redacted]
+2022-10-23 20:34:28.365 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.Create (Api)'
+2022-10-23 20:34:28.368 -05:00 [INF] Route matched with {action = "Create", controller = "Ticket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[Application.Tickets.Http.Dto.TicketDto]] Create(Application.Tickets.Http.Request.TicketRequest) on controller TicketsWebServices.Controllers.Tickets.TicketController (Api).
+2022-10-23 20:34:28.429 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:request_GeneratedBy_0='?' (Size = 15)], CommandType='"Text"', CommandTimeout='0']
+SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+FROM "User" "u"
+WHERE ("u"."Username" = :request_GeneratedBy_0)
+and rownum <= 1

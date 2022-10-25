@@ -88,6 +88,7 @@ builder.Services.AddDbContext<TicketsContext>(opt =>
     opt.UseOracle(config.GetConnectionString("local"),
         sqlOpts =>
         {
+            sqlOpts.UseOracleSQLCompatibility("11");
             sqlOpts.MigrationsHistoryTable("_MigrationHistory",
                 config.GetValue<string>("SchemaName"));
         });
@@ -108,7 +109,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ticket Api"));
+    app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ticket Api"); }
+    );
 }
 
 //TODO: Migration in runtime

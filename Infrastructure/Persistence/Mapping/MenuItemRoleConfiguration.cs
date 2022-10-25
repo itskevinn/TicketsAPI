@@ -6,11 +6,6 @@ namespace Infrastructure.Persistence.Mapping;
 
 public class MenuItemRoleConfiguration : IEntityTypeConfiguration<MenuItemRole>
 {
-    public Guid MenuItemId { get; set; }
-    public MenuItem MenuItem { get; set; } = default!;
-    public Guid RoleId { get; set; }
-    public Role Role { get; set; } = default!;
-
     public void Configure(EntityTypeBuilder<MenuItemRole> builder)
     {
         builder.HasKey(mr => new { mr.RoleId, mr.MenuItemId });
@@ -21,5 +16,6 @@ public class MenuItemRoleConfiguration : IEntityTypeConfiguration<MenuItemRole>
             .WithMany(r => r.MenuItemRoles)
             .HasForeignKey(mr => mr.MenuItemId);
         builder.Property("CreatedBy").IsRequired(false);
+        builder.Property(p => p.LastModifiedBy).IsRequired(false);
     }
 }

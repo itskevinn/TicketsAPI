@@ -123,10 +123,6 @@
               "target": "Package",
               "version": "[6.21.61, )"
             },
-            "Oracle.ManagedDataAccess.Core": {
-              "target": "Package",
-              "version": "[3.21.61, )"
-            },
             "Swashbuckle.AspNetCore.Swagger": {
               "target": "Package",
               "version": "[6.4.0, )"
@@ -134,10 +130,6 @@
             "Swashbuckle.AspNetCore.SwaggerGen": {
               "target": "Package",
               "version": "[6.4.0, )"
-            },
-            "System.Data.SqlClient": {
-              "target": "Package",
-              "version": "[4.8.4, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",

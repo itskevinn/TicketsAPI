@@ -1,5 +1,4 @@
-﻿using Application.Security.Http.Dto;
-
+﻿
 namespace Application.Tickets.Http.Dto;
 
 public class TicketDto
@@ -8,7 +7,7 @@ public class TicketDto
     public string Title { get; set; } = default!;
     public string Message { get; set; } = default!;
     public string Status { get; set; } = default!;
-    public UserDto GeneratedBy { get; set; } = default!;
+    public string GeneratedBy { get; set; } = default!;
     public DateTime GeneratedOn { get; set; }
     public DateTime SolvedOn { get; set; }
     public DateTime AllegedSolveDate { get; set; }

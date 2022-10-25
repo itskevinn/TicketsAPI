@@ -2,6 +2,9 @@
 
 namespace Infrastructure.Persistence.Exceptions;
 
+/// <summary>
+/// Exception that is thrown when database connection has errors
+/// </summary>
 [Serializable]
 public class DatabaseUnavailableException : Exception
 {

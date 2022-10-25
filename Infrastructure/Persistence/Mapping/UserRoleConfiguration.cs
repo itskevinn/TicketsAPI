@@ -15,5 +15,6 @@ public class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
         builder.HasOne(ur => ur.User)
             .WithMany(u => u.UserRoles)
             .HasForeignKey(ur => ur.UserId);
+        builder.Property(p => p.LastModifiedBy).IsRequired(false);
     }
 }

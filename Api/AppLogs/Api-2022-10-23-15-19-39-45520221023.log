@@ -1,0 +1,1 @@
+2022-10-23 15:19:40.363 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory OracleSQLCompatibility=11 

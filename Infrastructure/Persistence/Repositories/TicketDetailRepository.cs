@@ -1,9 +1,10 @@
 ﻿using Dapper;
 using Domain.Entity;
 using Domain.Ports;
-using Infrastructure.Persistence.Base;
 using Infrastructure.Persistence.Context;
+using Infrastructure.Persistence.Exceptions;
 using Infrastructure.Persistence.Factory;
+using Infrastructure.Persistence.Repositories.Base;
 
 namespace Infrastructure.Persistence.Repositories;
 
@@ -20,7 +21,7 @@ public class TicketDetailRepository : GenericRepository<TicketDetail>, ITicketDe
         CancellationToken cancellationToken = default)
     {
         var conn = _connectionFactory.Connection ??
-                   throw new NullReferenceException(nameof(_connectionFactory.Connection));
+                   throw new DatabaseUnavailableException(nameof(_connectionFactory.Connection));
         var sqlQuery = $"SELECT * FROM TicketDetail WHERE TicketId = {ticketId}";
 
         var ticketDetails = await conn.QueryAsync<TicketDetail>(sqlQuery);

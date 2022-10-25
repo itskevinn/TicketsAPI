@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace TicketsWebServices.Controllers.Security;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/v1/[controller]")]
 public class UserController : Controller
 {
     private readonly IUserService _userService;

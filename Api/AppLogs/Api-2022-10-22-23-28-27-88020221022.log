@@ -1,0 +1,232 @@
+2022-10-22 23:28:28.063 -05:00 [INF] User profile is available. Using 'C:\Users\WINDOWS\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-22 23:28:28.228 -05:00 [INF] Now listening on: https://localhost:7055
+2022-10-22 23:28:28.229 -05:00 [INF] Now listening on: http://localhost:5286
+2022-10-22 23:28:28.236 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-22 23:28:28.237 -05:00 [INF] Hosting environment: Development
+2022-10-22 23:28:28.238 -05:00 [INF] Content root path: C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\
+2022-10-22 23:28:30.403 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7055/api/v1/Ticket/Create application/json 296
+2022-10-22 23:28:31.669 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-22 23:28:32.680 -05:00 [INF] Executed DbCommand (98ms) [Parameters=[:userId_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t"."Id", "t"."CreatedBy", "t"."CreatedOn", "t"."LastModifiedBy", "t"."LastModifiedOn", "t"."Name", "t"."Password", "t"."Username", "u0"."RoleId", "u0"."UserId", "u0"."CreatedBy", "u0"."CreatedOn", "u0"."Id", "u0"."LastModifiedBy", "u0"."LastModifiedOn"
+FROM (
+    SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+    FROM "User" "u"
+    WHERE "u"."Id" = :userId_0
+    FETCH FIRST 1 ROWS ONLY
+    ) "t"
+    LEFT JOIN "UserRole" "u0" ON "t"."Id" = "u0"."UserId"
+    ORDER BY "t"."Id", "u0"."RoleId"
+2022-10-22 23:28:32.866 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:user_Id_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "r"."Id", "r"."CreatedBy", "r"."CreatedOn", "r"."LastModifiedBy", "r"."LastModifiedOn", "r"."RoleName"
+FROM "UserRole" "u"
+INNER JOIN "Role" "r" ON "u"."RoleId" = "r"."Id"
+WHERE "u"."UserId" = :user_Id_0
+2022-10-22 23:28:32.896 -05:00 [INF] CORS policy execution successful.
+2022-10-22 23:28:32.919 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/v1/Ticket/Create
+Accept: text/plain
+Host: localhost:7055
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.52
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Authorization: [Redacted]
+Content-Type: application/json
+Origin: [Redacted]
+Referer: [Redacted]
+Content-Length: 296
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2022-10-22 23:28:32.943 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.Create (Api)'
+2022-10-22 23:28:32.963 -05:00 [INF] Route matched with {action = "Create", controller = "Ticket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[Application.Tickets.Http.Dto.TicketDto]] Create(Application.Tickets.Http.Request.TicketRequest) on controller TicketsWebServices.Controllers.Tickets.TicketController (Api).
+2022-10-22 23:28:33.053 -05:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2022-10-22 23:28:33.068 -05:00 [INF] Executed action TicketsWebServices.Controllers.Tickets.TicketController.Create (Api) in 96.7791ms
+2022-10-22 23:28:33.069 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.Create (Api)'
+2022-10-22 23:28:33.070 -05:00 [INF] Response:
+StatusCode: 400
+Content-Type: application/problem+json; charset=utf-8
+Date: Sun, 23 Oct 2022 04:28:32 GMT
+Server: Kestrel
+Access-Control-Allow-Origin: [Redacted]
+2022-10-22 23:28:33.077 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7055/api/v1/Ticket/Create application/json 296 - 400 - application/problem+json;+charset=utf-8 2680.5569ms
+2022-10-22 23:30:11.640 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7055/api/v1/Ticket/Create application/json 319
+2022-10-22 23:30:11.691 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-22 23:30:11.738 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:userId_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t"."Id", "t"."CreatedBy", "t"."CreatedOn", "t"."LastModifiedBy", "t"."LastModifiedOn", "t"."Name", "t"."Password", "t"."Username", "u0"."RoleId", "u0"."UserId", "u0"."CreatedBy", "u0"."CreatedOn", "u0"."Id", "u0"."LastModifiedBy", "u0"."LastModifiedOn"
+FROM (
+    SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+    FROM "User" "u"
+    WHERE "u"."Id" = :userId_0
+    FETCH FIRST 1 ROWS ONLY
+    ) "t"
+    LEFT JOIN "UserRole" "u0" ON "t"."Id" = "u0"."UserId"
+    ORDER BY "t"."Id", "u0"."RoleId"
+2022-10-22 23:30:11.783 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:user_Id_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "r"."Id", "r"."CreatedBy", "r"."CreatedOn", "r"."LastModifiedBy", "r"."LastModifiedOn", "r"."RoleName"
+FROM "UserRole" "u"
+INNER JOIN "Role" "r" ON "u"."RoleId" = "r"."Id"
+WHERE "u"."UserId" = :user_Id_0
+2022-10-22 23:30:11.790 -05:00 [INF] CORS policy execution successful.
+2022-10-22 23:30:11.793 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/v1/Ticket/Create
+Accept: text/plain
+Host: localhost:7055
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.52
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Authorization: [Redacted]
+Content-Type: application/json
+Origin: [Redacted]
+Referer: [Redacted]
+Content-Length: 319
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2022-10-22 23:30:11.796 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.Create (Api)'
+2022-10-22 23:30:11.797 -05:00 [INF] Route matched with {action = "Create", controller = "Ticket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[Application.Tickets.Http.Dto.TicketDto]] Create(Application.Tickets.Http.Request.TicketRequest) on controller TicketsWebServices.Controllers.Tickets.TicketController (Api).
+2022-10-22 23:30:11.804 -05:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2022-10-22 23:30:11.806 -05:00 [INF] Executed action TicketsWebServices.Controllers.Tickets.TicketController.Create (Api) in 6.5264ms
+2022-10-22 23:30:11.807 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.Create (Api)'
+2022-10-22 23:30:11.808 -05:00 [INF] Response:
+StatusCode: 400
+Content-Type: application/problem+json; charset=utf-8
+Date: Sun, 23 Oct 2022 04:30:10 GMT
+Server: Kestrel
+Access-Control-Allow-Origin: [Redacted]
+2022-10-22 23:30:11.809 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7055/api/v1/Ticket/Create application/json 319 - 400 - application/problem+json;+charset=utf-8 168.8891ms
+2022-10-22 23:30:19.618 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7055/api/v1/Ticket/Create application/json 317
+2022-10-22 23:30:19.639 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-22 23:30:19.689 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:userId_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t"."Id", "t"."CreatedBy", "t"."CreatedOn", "t"."LastModifiedBy", "t"."LastModifiedOn", "t"."Name", "t"."Password", "t"."Username", "u0"."RoleId", "u0"."UserId", "u0"."CreatedBy", "u0"."CreatedOn", "u0"."Id", "u0"."LastModifiedBy", "u0"."LastModifiedOn"
+FROM (
+    SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+    FROM "User" "u"
+    WHERE "u"."Id" = :userId_0
+    FETCH FIRST 1 ROWS ONLY
+    ) "t"
+    LEFT JOIN "UserRole" "u0" ON "t"."Id" = "u0"."UserId"
+    ORDER BY "t"."Id", "u0"."RoleId"
+2022-10-22 23:30:19.764 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:user_Id_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "r"."Id", "r"."CreatedBy", "r"."CreatedOn", "r"."LastModifiedBy", "r"."LastModifiedOn", "r"."RoleName"
+FROM "UserRole" "u"
+INNER JOIN "Role" "r" ON "u"."RoleId" = "r"."Id"
+WHERE "u"."UserId" = :user_Id_0
+2022-10-22 23:30:19.768 -05:00 [INF] CORS policy execution successful.
+2022-10-22 23:30:19.769 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/v1/Ticket/Create
+Accept: text/plain
+Host: localhost:7055
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.52
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Authorization: [Redacted]
+Content-Type: application/json
+Origin: [Redacted]
+Referer: [Redacted]
+Content-Length: 317
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2022-10-22 23:30:19.773 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.Create (Api)'
+2022-10-22 23:30:19.774 -05:00 [INF] Route matched with {action = "Create", controller = "Ticket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[Application.Tickets.Http.Dto.TicketDto]] Create(Application.Tickets.Http.Request.TicketRequest) on controller TicketsWebServices.Controllers.Tickets.TicketController (Api).
+2022-10-22 23:30:19.781 -05:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2022-10-22 23:30:19.783 -05:00 [INF] Executed action TicketsWebServices.Controllers.Tickets.TicketController.Create (Api) in 6.97ms
+2022-10-22 23:30:19.784 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.Create (Api)'
+2022-10-22 23:30:19.785 -05:00 [INF] Response:
+StatusCode: 400
+Content-Type: application/problem+json; charset=utf-8
+Date: Sun, 23 Oct 2022 04:30:19 GMT
+Server: Kestrel
+Access-Control-Allow-Origin: [Redacted]
+2022-10-22 23:30:19.786 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7055/api/v1/Ticket/Create application/json 317 - 400 - application/problem+json;+charset=utf-8 168.5490ms
+2022-10-22 23:30:27.404 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7055/api/v1/Ticket/Create application/json 317
+2022-10-22 23:30:27.405 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-22 23:30:27.456 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:userId_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t"."Id", "t"."CreatedBy", "t"."CreatedOn", "t"."LastModifiedBy", "t"."LastModifiedOn", "t"."Name", "t"."Password", "t"."Username", "u0"."RoleId", "u0"."UserId", "u0"."CreatedBy", "u0"."CreatedOn", "u0"."Id", "u0"."LastModifiedBy", "u0"."LastModifiedOn"
+FROM (
+    SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+    FROM "User" "u"
+    WHERE "u"."Id" = :userId_0
+    FETCH FIRST 1 ROWS ONLY
+    ) "t"
+    LEFT JOIN "UserRole" "u0" ON "t"."Id" = "u0"."UserId"
+    ORDER BY "t"."Id", "u0"."RoleId"
+2022-10-22 23:30:27.498 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[:user_Id_0='?' (Size = 16) (DbType = Binary)], CommandType='"Text"', CommandTimeout='0']
+SELECT "r"."Id", "r"."CreatedBy", "r"."CreatedOn", "r"."LastModifiedBy", "r"."LastModifiedOn", "r"."RoleName"
+FROM "UserRole" "u"
+INNER JOIN "Role" "r" ON "u"."RoleId" = "r"."Id"
+WHERE "u"."UserId" = :user_Id_0
+2022-10-22 23:30:27.502 -05:00 [INF] CORS policy execution successful.
+2022-10-22 23:30:27.503 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/v1/Ticket/Create
+Accept: text/plain
+Host: localhost:7055
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.52
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Authorization: [Redacted]
+Content-Type: application/json
+Origin: [Redacted]
+Referer: [Redacted]
+Content-Length: 317
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2022-10-22 23:30:27.505 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.Create (Api)'
+2022-10-22 23:30:27.506 -05:00 [INF] Route matched with {action = "Create", controller = "Ticket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[Application.Tickets.Http.Dto.TicketDto]] Create(Application.Tickets.Http.Request.TicketRequest) on controller TicketsWebServices.Controllers.Tickets.TicketController (Api).
+2022-10-22 23:30:27.521 -05:00 [ERR] Ocurrió un error Error mapping types.
+
+Mapping types:
+TicketRequest -> Ticket
+Application.Tickets.Http.Request.TicketRequest -> Domain.Entity.Ticket
+
+Type Map configuration:
+TicketRequest -> Ticket
+Application.Tickets.Http.Request.TicketRequest -> Domain.Entity.Ticket
+
+Destination Member:
+GeneratedBy
+
+2022-10-22 23:30:27.523 -05:00 [INF] Executing ObjectResult, writing value of type 'Application.Base.Response`1[[Application.Tickets.Http.Dto.TicketDto, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-10-22 23:30:27.548 -05:00 [INF] Executed action TicketsWebServices.Controllers.Tickets.TicketController.Create (Api) in 40.9261ms
+2022-10-22 23:30:27.549 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Tickets.TicketController.Create (Api)'
+2022-10-22 23:30:27.553 -05:00 [INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Date: Sun, 23 Oct 2022 04:30:27 GMT
+Server: Kestrel
+Access-Control-Allow-Origin: [Redacted]
+2022-10-22 23:30:27.554 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7055/api/v1/Ticket/Create application/json 317 - 200 - application/json;+charset=utf-8 149.7298ms
+2022-10-22 23:34:40.295 -05:00 [INF] Application is shutting down...

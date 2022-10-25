@@ -1,9 +1,10 @@
 ﻿using Application.Security.Http.Dto;
+using Domain.Entity.Base;
 using Microsoft.AspNetCore.Http;
 
 namespace Application.Base;
 
-public class BaseService
+public class BaseService<TEntity> where TEntity : IAuditableEntity
 {
     protected const string AnErrorHappenedMessage = "Ocurrió un error";
     private readonly IHttpContextAccessor? _contextAccessor;
@@ -12,15 +13,21 @@ public class BaseService
     {
     }
 
-    protected BaseService(
-        IHttpContextAccessor context)
+    protected BaseService(IHttpContextAccessor context)
     {
         _contextAccessor = context;
     }
 
-    protected UserDto GetCurrentUser()
+    /// <summary>
+    /// Use this method to set the user that is authenticated to the audit attributes of the specified entity
+    /// </summary>
+    /// <param name="entity"></param>
+    /// <param name="updating">Determines if the entity is being updated in order to set the LastModifiedBy attribute as well <seealso cref="AuditableEntity{TKey}"/>></param>
+    protected void SetCurrentUserToEntity(TEntity entity, bool updating = false)
     {
         var value = (UserDto)_contextAccessor?.HttpContext?.Items["User"]!;
-        return value;
+        entity.GetType().GetProperty("CreatedBy")?.SetValue(entity, value.Username, null);
+        entity.GetType().GetProperty("GeneratedBy")?.SetValue(entity, value.Username, null);
+        if (updating) entity.GetType().GetProperty("LastModifiedBy")?.SetValue(entity, value.Username, null);
     }
 }

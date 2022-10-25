@@ -1,0 +1,31 @@
+2022-10-23 21:15:43.110 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory OracleSQLCompatibility=11 
+2022-10-23 21:15:43.839 -05:00 [INF] Executed DbCommand (74ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT t.table_name FROM user_tables t WHERE t.table_name = N'_MigrationHistory'
+2022-10-23 21:15:43.918 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT t.table_name FROM user_tables t WHERE t.table_name = N'_MigrationHistory'
+2022-10-23 21:15:43.971 -05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT "MigrationId", "ProductVersion"
+FROM "_MigrationHistory"
+ORDER BY "MigrationId"
+2022-10-23 21:15:43.993 -05:00 [INF] Applying migration '20221024021509_Ticket id column type fixed'.
+2022-10-23 21:15:44.329 -05:00 [ERR] 2022-10-23 21:15:44.319268 ThreadID:1   (ERROR)   OracleRelationalCommand.ExecuteNonQuery() :  Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-01439: column to be modified must be empty to change datatype
+ORA-06512: at line 10
+   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Oracle.EntityFrameworkCore.Storage.Internal.OracleRelationalCommandBuilderFactory.OracleRelationalCommandBuilder.OracleRelationalCommand.ExecuteNonQuery(RelationalCommandParameterObject parameterObject)
+2022-10-23 21:15:44.334 -05:00 [ERR] Failed executing DbCommand (263ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+declare
+   l_nullable user_tab_columns.nullable % type;
+begin 
+   select nullable into l_nullable 
+   from user_tab_columns 
+  where table_name = 'Ticket' 
+  and column_name = 'Id' 
+;
+   if l_nullable = 'N' then 
+        EXECUTE IMMEDIATE 'ALTER TABLE "Ticket" MODIFY "Id" VARCHAR(36) ';
+ else 
+        EXECUTE IMMEDIATE 'ALTER TABLE "Ticket" MODIFY "Id" VARCHAR(36) NOT NULL';
+ end if;
+end;

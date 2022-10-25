@@ -4,5 +4,5 @@ namespace Domain.Ports;
 
 public interface ITicketRepository : IGenericRepository<Ticket>
 {
-    Task<Ticket> FindByCodeAsync(string code);
+    Task<Ticket> FindByCodeAsync(int code);
 }

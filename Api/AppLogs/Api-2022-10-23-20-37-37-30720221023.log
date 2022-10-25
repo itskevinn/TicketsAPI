@@ -1,0 +1,21 @@
+2022-10-23 20:37:38.173 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory OracleSQLCompatibility=11 
+2022-10-23 20:37:38.828 -05:00 [INF] Executed DbCommand (75ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT t.table_name FROM user_tables t WHERE t.table_name = N'_MigrationHistory'
+2022-10-23 20:37:38.940 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT t.table_name FROM user_tables t WHERE t.table_name = N'_MigrationHistory'
+2022-10-23 20:37:38.992 -05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT "MigrationId", "ProductVersion"
+FROM "_MigrationHistory"
+ORDER BY "MigrationId"
+2022-10-23 20:37:39.015 -05:00 [INF] Applying migration '20221024013726_Ticket doesn't have user anymore'.
+2022-10-23 20:37:39.108 -05:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+ALTER TABLE "Ticket" DROP CONSTRAINT "FK_Ticket_User_GeneratedById"
+2022-10-23 20:37:39.244 -05:00 [INF] Executed DbCommand (134ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+DROP INDEX "IX_Ticket_GeneratedById"
+2022-10-23 20:37:39.257 -05:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+ALTER TABLE "Ticket" DROP COLUMN "GeneratedById"
+2022-10-23 20:37:39.277 -05:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+ALTER TABLE "Ticket" ADD "GeneratedBy" NVARCHAR2(2000) NOT NULL
+2022-10-23 20:37:39.280 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+INSERT INTO "_MigrationHistory" ("MigrationId", "ProductVersion")
+VALUES (N'20221024013726_Ticket doesn''t have user anymore', N'6.0.10')

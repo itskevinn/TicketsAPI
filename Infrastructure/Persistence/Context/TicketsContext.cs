@@ -1,4 +1,5 @@
-﻿using Infrastructure.Core.Helpers;
+﻿using Domain.Entity.Base;
+using Infrastructure.Core.Helpers;
 using Infrastructure.Persistence.Configuration;
 using Infrastructure.Persistence.Seeding;
 using Microsoft.EntityFrameworkCore;
@@ -18,8 +19,23 @@ public class TicketsContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.HasSequence("sq_ticket_code");
         modelBuilder.HasDefaultSchema(_settings?.SchemaName);
+        SetDefaultValues(modelBuilder);
         EntitiesConfigurator.Configure(modelBuilder);
+    }
+
+    private static void SetDefaultValues(ModelBuilder modelBuilder)
+    {
         Seeder.GenerateSeeds(modelBuilder);
+        foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+        {
+            var t = entityType.ClrType;
+            if (!typeof(DomainEntity).IsAssignableFrom(t)) continue;
+            modelBuilder.Entity(entityType.Name).Property<DateTime>("CreatedOn").HasDefaultValueSql("sysdate()");
+            modelBuilder.Entity(entityType.Name).Property<DateTime>("LastModifiedOn")
+                .HasDefaultValueSql("sysdate()");
+            modelBuilder.Entity(entityType.Name).Property<string>("LastModifiedBy").IsRequired(false);
+        }
     }
 }

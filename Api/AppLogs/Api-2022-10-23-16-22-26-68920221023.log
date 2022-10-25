@@ -1,0 +1,388 @@
+2022-10-23 16:22:27.597 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory OracleSQLCompatibility=11 
+2022-10-23 16:22:28.230 -05:00 [INF] Executed DbCommand (72ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT t.table_name FROM user_tables t WHERE t.table_name = N'_MigrationHistory'
+2022-10-23 16:22:28.465 -05:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+Begin
+BEGIN 
+
+execute immediate 'CREATE TABLE "_MigrationHistory" (
+    "MigrationId" NVARCHAR2(150) NOT NULL,
+    "ProductVersion" NVARCHAR2(32) NOT NULL,
+    CONSTRAINT "PK__MigrationHistory" PRIMARY KEY ("MigrationId")
+)';
+END;
+
+End;
+2022-10-23 16:22:28.546 -05:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT t.table_name FROM user_tables t WHERE t.table_name = N'_MigrationHistory'
+2022-10-23 16:22:28.601 -05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT "MigrationId", "ProductVersion"
+FROM "_MigrationHistory"
+ORDER BY "MigrationId"
+2022-10-23 16:22:28.626 -05:00 [INF] Applying migration '20221021182633_InitialCreate'.
+2022-10-23 16:22:28.764 -05:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+BEGIN 
+
+execute immediate 'CREATE TABLE "MenuItem" (
+    "Id" RAW(16) NOT NULL,
+    "Icon" NVARCHAR2(30) NOT NULL,
+    "RouterLink" NVARCHAR2(255) NOT NULL,
+    "Label" NVARCHAR2(30) NOT NULL,
+    "Order" NUMBER(10) NOT NULL,
+    "CreatedBy" NVARCHAR2(2000) NOT NULL,
+    "CreatedOn" TIMESTAMP(7) NOT NULL,
+    "LastModifiedBy" NVARCHAR2(2000) NOT NULL,
+    "LastModifiedOn" TIMESTAMP(7) NOT NULL,
+    CONSTRAINT "PK_MenuItem" PRIMARY KEY ("Id")
+)';
+END;
+2022-10-23 16:22:28.777 -05:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+BEGIN 
+
+execute immediate 'CREATE TABLE "Role" (
+    "Id" RAW(16) NOT NULL,
+    "RoleName" NVARCHAR2(20) NOT NULL,
+    "CreatedBy" NVARCHAR2(2000) NOT NULL,
+    "CreatedOn" TIMESTAMP(7) NOT NULL,
+    "LastModifiedBy" NVARCHAR2(2000) NOT NULL,
+    "LastModifiedOn" TIMESTAMP(7) NOT NULL,
+    CONSTRAINT "PK_Role" PRIMARY KEY ("Id")
+)';
+END;
+2022-10-23 16:22:28.802 -05:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+BEGIN 
+
+execute immediate 'CREATE TABLE "Ticket" (
+    "Id" RAW(16) NOT NULL,
+    "Code" NVARCHAR2(2000) NOT NULL,
+    "Title" NVARCHAR2(255) NOT NULL,
+    "Status" NVARCHAR2(2000) NOT NULL,
+    "GeneratedOn" TIMESTAMP(7) NOT NULL,
+    "SolvedOn" TIMESTAMP(7) NOT NULL,
+    "AllegedSolveDate" TIMESTAMP(7) NOT NULL,
+    "Description" NVARCHAR2(2000) NOT NULL,
+    "CreatedBy" NVARCHAR2(2000) NOT NULL,
+    "CreatedOn" TIMESTAMP(7) NOT NULL,
+    "LastModifiedBy" NVARCHAR2(2000) NOT NULL,
+    "LastModifiedOn" TIMESTAMP(7) NOT NULL,
+    CONSTRAINT "PK_Ticket" PRIMARY KEY ("Id")
+)';
+END;
+2022-10-23 16:22:28.837 -05:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+BEGIN 
+
+execute immediate 'CREATE TABLE "TicketDetail" (
+    "Id" RAW(16) NOT NULL,
+    "Message" NVARCHAR2(2000) NOT NULL,
+    "CreatedBy" NVARCHAR2(2000) NOT NULL,
+    "CreatedOn" TIMESTAMP(7) NOT NULL,
+    "LastModifiedBy" NVARCHAR2(2000) NOT NULL,
+    "LastModifiedOn" TIMESTAMP(7) NOT NULL,
+    CONSTRAINT "PK_TicketDetail" PRIMARY KEY ("Id")
+)';
+END;
+2022-10-23 16:22:28.854 -05:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+BEGIN 
+
+execute immediate 'CREATE TABLE "User" (
+    "Id" RAW(16) NOT NULL,
+    "Name" NVARCHAR2(30) NOT NULL,
+    "Username" NVARCHAR2(15) NOT NULL,
+    "Password" NVARCHAR2(2000) NOT NULL,
+    "CreatedBy" NVARCHAR2(2000) NOT NULL,
+    "CreatedOn" TIMESTAMP(7) NOT NULL,
+    "LastModifiedBy" NVARCHAR2(2000) NOT NULL,
+    "LastModifiedOn" TIMESTAMP(7) NOT NULL,
+    CONSTRAINT "PK_User" PRIMARY KEY ("Id")
+)';
+END;
+2022-10-23 16:22:28.879 -05:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+BEGIN 
+
+execute immediate 'CREATE TABLE "MenuItemRole" (
+    "MenuItemId" RAW(16) NOT NULL,
+    "RoleId" RAW(16) NOT NULL,
+    "Id" RAW(16) NOT NULL,
+    "CreatedBy" NVARCHAR2(2000),
+    "CreatedOn" TIMESTAMP(7) NOT NULL,
+    "LastModifiedBy" NVARCHAR2(2000) NOT NULL,
+    "LastModifiedOn" TIMESTAMP(7) NOT NULL,
+    CONSTRAINT "PK_MenuItemRole" PRIMARY KEY ("RoleId", "MenuItemId"),
+    CONSTRAINT "FK_MenuItemRole_MenuItem_MenuItemId" FOREIGN KEY ("MenuItemId") REFERENCES "MenuItem" ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_MenuItemRole_Role_RoleId" FOREIGN KEY ("RoleId") REFERENCES "Role" ("Id") ON DELETE CASCADE
+)';
+END;
+2022-10-23 16:22:28.893 -05:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+BEGIN 
+
+execute immediate 'CREATE TABLE "Attachment" (
+    "Id" RAW(16) NOT NULL,
+    "Url" NVARCHAR2(2000) NOT NULL,
+    "TicketDetailId" RAW(16),
+    "CreatedBy" NVARCHAR2(2000) NOT NULL,
+    "CreatedOn" TIMESTAMP(7) NOT NULL,
+    "LastModifiedBy" NVARCHAR2(2000) NOT NULL,
+    "LastModifiedOn" TIMESTAMP(7) NOT NULL,
+    CONSTRAINT "PK_Attachment" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_Attachment_TicketDetail_TicketDetailId" FOREIGN KEY ("TicketDetailId") REFERENCES "TicketDetail" ("Id")
+)';
+END;
+2022-10-23 16:22:28.909 -05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+BEGIN 
+
+execute immediate 'CREATE TABLE "UserRole" (
+    "UserId" RAW(16) NOT NULL,
+    "RoleId" RAW(16) NOT NULL,
+    "Id" RAW(16) NOT NULL,
+    "CreatedBy" NVARCHAR2(2000) NOT NULL,
+    "CreatedOn" TIMESTAMP(7) NOT NULL,
+    "LastModifiedBy" NVARCHAR2(2000) NOT NULL,
+    "LastModifiedOn" TIMESTAMP(7) NOT NULL,
+    CONSTRAINT "PK_UserRole" PRIMARY KEY ("RoleId", "UserId"),
+    CONSTRAINT "FK_UserRole_Role_RoleId" FOREIGN KEY ("RoleId") REFERENCES "Role" ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_UserRole_User_UserId" FOREIGN KEY ("UserId") REFERENCES "User" ("Id") ON DELETE CASCADE
+)';
+END;
+2022-10-23 16:22:28.916 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+CREATE INDEX "IX_Attachment_TicketDetailId" ON "Attachment" ("TicketDetailId")
+2022-10-23 16:22:28.923 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+CREATE INDEX "IX_MenuItemRole_MenuItemId" ON "MenuItemRole" ("MenuItemId")
+2022-10-23 16:22:28.930 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+CREATE INDEX "IX_UserRole_UserId" ON "UserRole" ("UserId")
+2022-10-23 16:22:28.939 -05:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+INSERT INTO "_MigrationHistory" ("MigrationId", "ProductVersion")
+VALUES (N'20221021182633_InitialCreate', N'6.0.10')
+2022-10-23 16:22:28.949 -05:00 [INF] Applying migration '20221021183702_ToTableProperties'.
+2022-10-23 16:22:29.039 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+DROP TABLE "Attachment"
+2022-10-23 16:22:29.065 -05:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+DROP TABLE "TicketDetail"
+2022-10-23 16:22:29.068 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+INSERT INTO "_MigrationHistory" ("MigrationId", "ProductVersion")
+VALUES (N'20221021183702_ToTableProperties', N'6.0.10')
+2022-10-23 16:22:29.072 -05:00 [INF] Applying migration '20221022045240_Seeding added'.
+2022-10-23 16:22:29.158 -05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+declare
+   l_nullable user_tab_columns.nullable % type;
+begin 
+   select nullable into l_nullable 
+   from user_tab_columns 
+  where table_name = 'UserRole' 
+  and column_name = 'LastModifiedBy' 
+;
+   if l_nullable = 'N' then 
+        EXECUTE IMMEDIATE 'ALTER TABLE "UserRole" MODIFY "LastModifiedBy" NVARCHAR2(2000) NULL';
+ else 
+        EXECUTE IMMEDIATE 'ALTER TABLE "UserRole" MODIFY "LastModifiedBy" NVARCHAR2(2000)';
+ end if;
+end;
+2022-10-23 16:22:29.168 -05:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+declare
+   l_nullable user_tab_columns.nullable % type;
+begin 
+   select nullable into l_nullable 
+   from user_tab_columns 
+  where table_name = 'User' 
+  and column_name = 'LastModifiedBy' 
+;
+   if l_nullable = 'N' then 
+        EXECUTE IMMEDIATE 'ALTER TABLE "User" MODIFY "LastModifiedBy" NVARCHAR2(2000) NULL';
+ else 
+        EXECUTE IMMEDIATE 'ALTER TABLE "User" MODIFY "LastModifiedBy" NVARCHAR2(2000)';
+ end if;
+end;
+2022-10-23 16:22:29.178 -05:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+declare
+   l_nullable user_tab_columns.nullable % type;
+begin 
+   select nullable into l_nullable 
+   from user_tab_columns 
+  where table_name = 'Ticket' 
+  and column_name = 'LastModifiedBy' 
+;
+   if l_nullable = 'N' then 
+        EXECUTE IMMEDIATE 'ALTER TABLE "Ticket" MODIFY "LastModifiedBy" NVARCHAR2(2000) NULL';
+ else 
+        EXECUTE IMMEDIATE 'ALTER TABLE "Ticket" MODIFY "LastModifiedBy" NVARCHAR2(2000)';
+ end if;
+end;
+2022-10-23 16:22:29.189 -05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+ALTER TABLE "Ticket" ADD "GeneratedById" RAW(16) DEFAULT '00000000000000000000000000000000' NOT NULL
+2022-10-23 16:22:29.201 -05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+declare
+   l_nullable user_tab_columns.nullable % type;
+begin 
+   select nullable into l_nullable 
+   from user_tab_columns 
+  where table_name = 'Role' 
+  and column_name = 'LastModifiedBy' 
+;
+   if l_nullable = 'N' then 
+        EXECUTE IMMEDIATE 'ALTER TABLE "Role" MODIFY "LastModifiedBy" NVARCHAR2(2000) NULL';
+ else 
+        EXECUTE IMMEDIATE 'ALTER TABLE "Role" MODIFY "LastModifiedBy" NVARCHAR2(2000)';
+ end if;
+end;
+2022-10-23 16:22:29.212 -05:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+declare
+   l_nullable user_tab_columns.nullable % type;
+begin 
+   select nullable into l_nullable 
+   from user_tab_columns 
+  where table_name = 'MenuItemRole' 
+  and column_name = 'LastModifiedBy' 
+;
+   if l_nullable = 'N' then 
+        EXECUTE IMMEDIATE 'ALTER TABLE "MenuItemRole" MODIFY "LastModifiedBy" NVARCHAR2(2000) NULL';
+ else 
+        EXECUTE IMMEDIATE 'ALTER TABLE "MenuItemRole" MODIFY "LastModifiedBy" NVARCHAR2(2000)';
+ end if;
+end;
+2022-10-23 16:22:29.221 -05:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+declare
+   l_nullable user_tab_columns.nullable % type;
+begin 
+   select nullable into l_nullable 
+   from user_tab_columns 
+  where table_name = 'MenuItem' 
+  and column_name = 'LastModifiedBy' 
+;
+   if l_nullable = 'N' then 
+        EXECUTE IMMEDIATE 'ALTER TABLE "MenuItem" MODIFY "LastModifiedBy" NVARCHAR2(2000) NULL';
+ else 
+        EXECUTE IMMEDIATE 'ALTER TABLE "MenuItem" MODIFY "LastModifiedBy" NVARCHAR2(2000)';
+ end if;
+end;
+2022-10-23 16:22:29.233 -05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+BEGIN
+INSERT INTO "MenuItem" ("Id", "CreatedBy", "CreatedOn", "Icon", "Label", "LastModifiedBy", "LastModifiedOn", "Order", "RouterLink")
+VALUES ('70FF2F01E284624984A33B7833BB71FB', N'AutoGenerated', TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), N'fa-solid fa-house', N'Inicio', NULL, TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), 0, N'home');
+INSERT INTO "MenuItem" ("Id", "CreatedBy", "CreatedOn", "Icon", "Label", "LastModifiedBy", "LastModifiedOn", "Order", "RouterLink")
+VALUES ('D4314750340AD5419B0B0611B3F76096', N'AutoGenerated', TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), N'fa-solid fa-plane-departure', N'Tickets', NULL, TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), 1, N'tickets');
+END;
+2022-10-23 16:22:29.249 -05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+BEGIN
+INSERT INTO "Role" ("Id", "CreatedBy", "CreatedOn", "LastModifiedBy", "LastModifiedOn", "RoleName")
+VALUES ('E4CE774AFA5C904CB41A08DA36159111', N'AutoGenerated', TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), NULL, TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), N'User');
+INSERT INTO "Role" ("Id", "CreatedBy", "CreatedOn", "LastModifiedBy", "LastModifiedOn", "RoleName")
+VALUES ('AAE11DBF78FC924B694208DA36131198', N'AutoGenerated', TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), NULL, TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), N'Admin');
+END;
+2022-10-23 16:22:29.259 -05:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+BEGIN
+INSERT INTO "User" ("Id", "CreatedBy", "CreatedOn", "LastModifiedBy", "LastModifiedOn", "Name", "Password", "Username")
+VALUES ('E4CE774AFA5C904CB41A08DA36159120', N'AutoGenerated', TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), NULL, TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), N'Kevin Pontón', N'8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', N'Admin');
+INSERT INTO "User" ("Id", "CreatedBy", "CreatedOn", "LastModifiedBy", "LastModifiedOn", "Name", "Password", "Username")
+VALUES ('C6182AC873E476495F2E08DA35E4EB6F', N'AutoGenerated', TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), NULL, TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), N'Usuario', N'03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', N'User');
+END;
+2022-10-23 16:22:29.275 -05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+BEGIN
+INSERT INTO "MenuItemRole" ("MenuItemId", "RoleId", "CreatedBy", "CreatedOn", "Id", "LastModifiedBy", "LastModifiedOn")
+VALUES ('70FF2F01E284624984A33B7833BB71FB', 'E4CE774AFA5C904CB41A08DA36159111', N'AutoGenerated', TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), 'C6182AC873E476495F2E08DA35E4EB8B', NULL, TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'));
+INSERT INTO "MenuItemRole" ("MenuItemId", "RoleId", "CreatedBy", "CreatedOn", "Id", "LastModifiedBy", "LastModifiedOn")
+VALUES ('D4314750340AD5419B0B0611B3F76096', 'E4CE774AFA5C904CB41A08DA36159111', N'AutoGenerated', TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), 'C6182AC873E476495F2E08DA35E4EB8A', NULL, TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'));
+INSERT INTO "MenuItemRole" ("MenuItemId", "RoleId", "CreatedBy", "CreatedOn", "Id", "LastModifiedBy", "LastModifiedOn")
+VALUES ('70FF2F01E284624984A33B7833BB71FB', 'AAE11DBF78FC924B694208DA36131198', N'AutoGenerated', TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), 'C6182AC873E476495F2E08DA35E4EB8E', NULL, TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'));
+INSERT INTO "MenuItemRole" ("MenuItemId", "RoleId", "CreatedBy", "CreatedOn", "Id", "LastModifiedBy", "LastModifiedOn")
+VALUES ('D4314750340AD5419B0B0611B3F76096', 'AAE11DBF78FC924B694208DA36131198', N'AutoGenerated', TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), 'C6182AC873E476495F2E08DA35E4EBFE', NULL, TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'));
+END;
+2022-10-23 16:22:29.288 -05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+BEGIN
+INSERT INTO "UserRole" ("RoleId", "UserId", "CreatedBy", "CreatedOn", "Id", "LastModifiedBy", "LastModifiedOn")
+VALUES ('E4CE774AFA5C904CB41A08DA36159111', 'C6182AC873E476495F2E08DA35E4EB6F', N'AutoGenerated', TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), 'AAE11DBF78FC924B694209DA3E131298', NULL, TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'));
+INSERT INTO "UserRole" ("RoleId", "UserId", "CreatedBy", "CreatedOn", "Id", "LastModifiedBy", "LastModifiedOn")
+VALUES ('AAE11DBF78FC924B694208DA36131198', 'E4CE774AFA5C904CB41A08DA36159120', N'AutoGenerated', TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'), 'AAE11DBF78FC924B694209DA36131298', NULL, TO_TIMESTAMP('0001-01-01 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.FF'));
+END;
+2022-10-23 16:22:29.298 -05:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+CREATE INDEX "IX_Ticket_GeneratedById" ON "Ticket" ("GeneratedById")
+2022-10-23 16:22:29.311 -05:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+ALTER TABLE "Ticket" ADD CONSTRAINT "FK_Ticket_User_GeneratedById" FOREIGN KEY ("GeneratedById") REFERENCES "User" ("Id") ON DELETE CASCADE
+2022-10-23 16:22:29.316 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+INSERT INTO "_MigrationHistory" ("MigrationId", "ProductVersion")
+VALUES (N'20221022045240_Seeding added', N'6.0.10')
+2022-10-23 16:22:29.320 -05:00 [INF] Applying migration '20221023200129_Ticked code generated auto'.
+2022-10-23 16:22:29.382 -05:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+ALTER TABLE "Ticket" DROP CONSTRAINT "FK_Ticket_User_GeneratedById"
+2022-10-23 16:22:29.393 -05:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+DROP INDEX "IX_Ticket_GeneratedById"
+2022-10-23 16:22:29.411 -05:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+ALTER TABLE "Ticket" DROP COLUMN "GeneratedById"
+2022-10-23 16:22:29.421 -05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+declare
+   l_nullable user_tab_columns.nullable % type;
+begin 
+   select nullable into l_nullable 
+   from user_tab_columns 
+  where table_name = 'Ticket' 
+  and column_name = 'Code' 
+;
+   if l_nullable = 'N' then 
+        EXECUTE IMMEDIATE 'ALTER TABLE "Ticket" MODIFY "Code" NUMBER(10) ';
+ else 
+        EXECUTE IMMEDIATE 'ALTER TABLE "Ticket" MODIFY "Code" NUMBER(10) NOT NULL';
+ end if;
+end;
+2022-10-23 16:22:29.431 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+INSERT INTO "_MigrationHistory" ("MigrationId", "ProductVersion")
+VALUES (N'20221023200129_Ticked code generated auto', N'6.0.10')
+2022-10-23 16:22:29.435 -05:00 [INF] Applying migration '20221023201156_Fixed oracle sql compatibility'.
+2022-10-23 16:22:29.488 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+INSERT INTO "_MigrationHistory" ("MigrationId", "ProductVersion")
+VALUES (N'20221023201156_Fixed oracle sql compatibility', N'6.0.10')
+2022-10-23 16:22:29.491 -05:00 [INF] Applying migration '20221023201446_Ticket generated by user relation fixed'.
+2022-10-23 16:22:29.549 -05:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+ALTER TABLE "Ticket" ADD "GeneratedById" RAW(16) DEFAULT '00000000000000000000000000000000' NOT NULL
+2022-10-23 16:22:29.556 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+CREATE INDEX "IX_Ticket_GeneratedById" ON "Ticket" ("GeneratedById")
+2022-10-23 16:22:29.567 -05:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+ALTER TABLE "Ticket" ADD CONSTRAINT "FK_Ticket_User_GeneratedById" FOREIGN KEY ("GeneratedById") REFERENCES "User" ("Id") ON DELETE CASCADE
+2022-10-23 16:22:29.570 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+INSERT INTO "_MigrationHistory" ("MigrationId", "ProductVersion")
+VALUES (N'20221023201446_Ticket generated by user relation fixed', N'6.0.10')
+2022-10-23 16:22:29.574 -05:00 [INF] Applying migration '20221023201940_Ticket generated by user relation fixedd'.
+2022-10-23 16:22:29.621 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+INSERT INTO "_MigrationHistory" ("MigrationId", "ProductVersion")
+VALUES (N'20221023201940_Ticket generated by user relation fixedd', N'6.0.10')
+2022-10-23 16:22:29.625 -05:00 [INF] Applying migration '20221023211747_Ticket code seq added'.
+2022-10-23 16:22:29.675 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+CREATE SEQUENCE "sq_ticket_code" START WITH 1 INCREMENT BY 1 NOMINVALUE NOMAXVALUE NOCYCLE
+2022-10-23 16:22:29.680 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+begin
+execute immediate
+'drop sequence SQ_Code';
+exception
+when others then
+if sqlcode <> -2289 then
+raise;
+end if;
+end;
+2022-10-23 16:22:29.684 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+begin
+execute immediate
+'drop trigger TR_Code';
+exception
+when others then
+if sqlcode <> -4080 then
+raise;
+end if;
+end;
+2022-10-23 16:22:29.742 -05:00 [ERR] 2022-10-23 16:22:29.731230 ThreadID:1   (ERROR)   OracleRelationalCommand.ExecuteNonQuery() :  Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-22818: subquery expressions not allowed here
+ORA-06512: at line 10
+   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteNonQuery(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, OracleException& exceptionForArrayBindDML, OracleConnection connection, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   at Oracle.EntityFrameworkCore.Storage.Internal.OracleRelationalCommandBuilderFactory.OracleRelationalCommandBuilder.OracleRelationalCommand.ExecuteNonQuery(RelationalCommandParameterObject parameterObject)
+2022-10-23 16:22:29.748 -05:00 [ERR] Failed executing DbCommand (55ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+declare
+   l_nullable user_tab_columns.nullable % type;
+begin 
+   select nullable into l_nullable 
+   from user_tab_columns 
+  where table_name = 'Ticket' 
+  and column_name = 'Code' 
+;
+   if l_nullable = 'N' then 
+        EXECUTE IMMEDIATE 'ALTER TABLE "Ticket" MODIFY "Code" NUMBER(10) DEFAULT (SELECT sq_ticket_code.NEXTVAL FROM dual) ';
+ else 
+        EXECUTE IMMEDIATE 'ALTER TABLE "Ticket" MODIFY "Code" NUMBER(10) DEFAULT (SELECT sq_ticket_code.NEXTVAL FROM dual) NOT NULL';
+ end if;
+end;

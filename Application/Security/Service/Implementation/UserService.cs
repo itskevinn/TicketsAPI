@@ -5,33 +5,36 @@ using Application.Security.Http.Request;
 using AutoMapper;
 using Domain.Entity;
 using Domain.Ports;
+using Infrastructure.Persistence.Exceptions;
 using Infrastructure.Persistence.UnitOfWork;
 using Infrastructure.Security.Encrypt;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Security.Service.Implementation;
 
-public class UserService : BaseService, IUserService
+public class UserService : BaseService<User>, IUserService
 {
-    private readonly IGenericRepository<User> _userRepository;
+    private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
-    private readonly IGenericRepository<UserRole> _userRoleRepository;
-    private readonly IGenericRepository<MenuItem> _menuItemRepository;
-    private readonly IGenericRepository<MenuItemRole> _menuItemRoleRepository;
+    private readonly IUserRoleRepository _userRoleRepository;
+    private readonly IMenuItemRepository _menuItemRepository;
+    private readonly IMenuItemRoleRepository _menuItemRoleRepository;
+
 
     public UserService(IMapper mapper,
         IUnitOfWork unitOfWork,
-        IHttpContextAccessor accessor, IGenericRepository<UserRole> userRoleRepository,
-        IGenericRepository<MenuItemRole> menuItemRoleRepository) : base(accessor)
+        IHttpContextAccessor accessor) : base(accessor)
     {
         _mapper = mapper ?? throw new ArgumentNullException($"{nameof(mapper)}");
-        _userRoleRepository =
-            userRoleRepository ?? throw new ArgumentNullException($"{nameof(menuItemRoleRepository)}");
-        _menuItemRoleRepository = menuItemRoleRepository ??
-                                  throw new ArgumentNullException($"{nameof(menuItemRoleRepository)}");
+        _userRoleRepository = unitOfWork.UserRoleRepository ??
+                              throw new RepoUnavailableException($"{nameof(unitOfWork.UserRoleRepository)}");
+        _menuItemRoleRepository = unitOfWork.MenuItemRoleRepository ??
+                                  throw new RepoUnavailableException($"{nameof(unitOfWork.MenuItemRoleRepository)}");
         _userRepository = unitOfWork.UserRepository ??
-                          throw new ArgumentNullException($"{nameof(unitOfWork)}");
-        _menuItemRepository = unitOfWork.MenuItemRepository ?? throw new ArgumentNullException($"{nameof(unitOfWork)}");
+                          throw new RepoUnavailableException($"{nameof(unitOfWork)}");
+        _menuItemRepository = unitOfWork.MenuItemRepository ??
+                              throw new RepoUnavailableException($"{nameof(unitOfWork)}");
     }
 
     public async Task<Response<UserDto>> Save(UserRequest userRequest)
@@ -40,6 +43,7 @@ public class UserService : BaseService, IUserService
         {
             var user = _mapper.Map<User>(userRequest);
             user.Password = Hash.GetSha256(user.Password);
+            SetCurrentUserToEntity(user);
             user = await _userRepository.CreateAsync(user);
             await _userRoleRepository.CreateAsync(new UserRole(user.Id, userRequest.RoleId));
             var userDto = _mapper.Map<UserDto>(user);
@@ -71,10 +75,10 @@ public class UserService : BaseService, IUserService
     {
         try
         {
-            var user = await _userRepository.Find(u => u.Id == id, false, "UserRoles");
+            var user = await _userRepository.FindByAsync(u => u.Id == id, false, "UserRoles,UserRoles.Role");
             var userDto = await SetUserRoles(user);
             var authorities = new List<MenuItem>();
-            SetRoleAuthorities(userDto, authorities);
+            await SetRoleAuthorities(userDto, authorities);
             return new Response<UserDto>
                 (HttpStatusCode.OK, "Usuario encontrado", true, userDto);
         }
@@ -96,16 +100,17 @@ public class UserService : BaseService, IUserService
         return userDto;
     }
 
-    private void SetRoleAuthorities(UserDto userDto, ICollection<MenuItem> authorities)
+    private async Task SetRoleAuthorities(UserDto userDto, List<MenuItem> authorities)
     {
         foreach (var userDtoRole in userDto.Roles)
         {
-            var roleMenuItems =
-                _menuItemRoleRepository.GetAsync(m => m.RoleId == userDtoRole.Id).Result.ToList();
-            roleMenuItems.ForEach(r =>
+            var roleMenuItems = await
+                _menuItemRoleRepository.GetAsync(m => m.RoleId == userDtoRole.Id);
+            await roleMenuItems.ForEachAsync(r =>
             {
-                authorities.Add(_menuItemRepository.GetAsync(m => m.Id == r.MenuItemId).Result.MinBy(m => m.Order) ??
-                                throw new InvalidOperationException());
+                var auths = _menuItemRepository.GetAsync(m => m.Id == r.MenuItemId).Result.OrderBy(m => m.Order) ??
+                            throw new InvalidOperationException();
+                authorities.AddRange(auths);
             });
             var authoritiesDto = _mapper.Map<IEnumerable<MenuItemDto>>(authorities);
             userDtoRole.Authorities = authoritiesDto;

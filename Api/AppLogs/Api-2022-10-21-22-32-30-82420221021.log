@@ -1,0 +1,255 @@
+2022-10-21 22:32:31.010 -05:00 [INF] User profile is available. Using 'C:\Users\WINDOWS\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-21 22:32:31.180 -05:00 [INF] Now listening on: https://localhost:7055
+2022-10-21 22:32:31.183 -05:00 [INF] Now listening on: http://localhost:5286
+2022-10-21 22:32:31.189 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-21 22:32:31.190 -05:00 [INF] Hosting environment: Development
+2022-10-21 22:32:31.191 -05:00 [INF] Content root path: C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\
+2022-10-21 22:33:19.461 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7055/api/User/Authenticate application/json 47
+2022-10-21 22:33:20.354 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-21 22:33:20.368 -05:00 [INF] CORS policy execution successful.
+2022-10-21 22:33:20.398 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/User/Authenticate
+Accept: text/plain
+Host: localhost:7055
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.47
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Content-Type: application/json
+Cookie: [Redacted]
+Origin: [Redacted]
+Referer: [Redacted]
+Content-Length: 47
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2022-10-21 22:33:20.432 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Security.UserController.Authenticate (Api)'
+2022-10-21 22:33:20.452 -05:00 [INF] Route matched with {action = "Authenticate", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[Application.Security.Http.Dto.AuthenticateDto]] Authenticate(Application.Security.Http.Request.AuthenticateRequest) on controller TicketsWebServices.Controllers.Security.UserController (Api).
+2022-10-21 22:33:21.481 -05:00 [INF] Executed DbCommand (133ms) [Parameters=[:authenticateRequest_Username_0='?' (Size = 15), :GetSha256_1='?' (Size = 2000)], CommandType='"Text"', CommandTimeout='60']
+SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+FROM "User" "u"
+WHERE (("u"."Username" = :authenticateRequest_Username_0) AND ("u"."Password" = :GetSha256_1))
+FETCH FIRST 2 ROWS ONLY
+2022-10-21 22:33:21.520 -05:00 [INF] Executing ObjectResult, writing value of type 'Application.Base.Response`1[[Application.Security.Http.Dto.AuthenticateDto, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-10-21 22:33:21.545 -05:00 [INF] Executed action TicketsWebServices.Controllers.Security.UserController.Authenticate (Api) in 1083.3669ms
+2022-10-21 22:33:21.547 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Security.UserController.Authenticate (Api)'
+2022-10-21 22:33:21.548 -05:00 [INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Date: Sat, 22 Oct 2022 03:33:20 GMT
+Server: Kestrel
+Access-Control-Allow-Origin: [Redacted]
+2022-10-21 22:33:21.554 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7055/api/User/Authenticate application/json 47 - 200 - application/json;+charset=utf-8 2098.3279ms
+2022-10-21 22:33:27.816 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7055/swagger/index.html - -
+2022-10-21 22:33:27.852 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7055/swagger/index.html - - - 200 - text/html;charset=utf-8 36.0151ms
+2022-10-21 22:33:28.109 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7055/swagger/v1/swagger.json - -
+2022-10-21 22:33:28.302 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7055/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 192.4910ms
+2022-10-21 22:33:55.177 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7055/api/User/Authenticate application/json 48
+2022-10-21 22:33:55.264 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-21 22:33:55.267 -05:00 [INF] CORS policy execution successful.
+2022-10-21 22:33:55.271 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/User/Authenticate
+Accept: text/plain
+Host: localhost:7055
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.47
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Content-Type: application/json
+Cookie: [Redacted]
+Origin: [Redacted]
+Referer: [Redacted]
+Content-Length: 48
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2022-10-21 22:33:55.274 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Security.UserController.Authenticate (Api)'
+2022-10-21 22:33:55.275 -05:00 [INF] Route matched with {action = "Authenticate", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[Application.Security.Http.Dto.AuthenticateDto]] Authenticate(Application.Security.Http.Request.AuthenticateRequest) on controller TicketsWebServices.Controllers.Security.UserController (Api).
+2022-10-21 22:33:55.350 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[:authenticateRequest_Username_0='?' (Size = 15), :GetSha256_1='?' (Size = 2000)], CommandType='"Text"', CommandTimeout='60']
+SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+FROM "User" "u"
+WHERE (("u"."Username" = :authenticateRequest_Username_0) AND ("u"."Password" = :GetSha256_1))
+FETCH FIRST 2 ROWS ONLY
+2022-10-21 22:33:55.363 -05:00 [INF] Executing ObjectResult, writing value of type 'Application.Base.Response`1[[Application.Security.Http.Dto.AuthenticateDto, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-10-21 22:33:55.365 -05:00 [INF] Executed action TicketsWebServices.Controllers.Security.UserController.Authenticate (Api) in 86.2864ms
+2022-10-21 22:33:55.366 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Security.UserController.Authenticate (Api)'
+2022-10-21 22:33:55.367 -05:00 [INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Date: Sat, 22 Oct 2022 03:33:54 GMT
+Server: Kestrel
+Access-Control-Allow-Origin: [Redacted]
+2022-10-21 22:33:55.369 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7055/api/User/Authenticate application/json 48 - 200 - application/json;+charset=utf-8 191.5638ms
+2022-10-21 22:35:05.442 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7055/api/User/Authenticate application/json 47
+2022-10-21 22:35:05.461 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-21 22:35:05.467 -05:00 [INF] CORS policy execution successful.
+2022-10-21 22:35:05.468 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/User/Authenticate
+Accept: text/plain
+Host: localhost:7055
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.47
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Content-Type: application/json
+Cookie: [Redacted]
+Origin: [Redacted]
+Referer: [Redacted]
+Content-Length: 47
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2022-10-21 22:35:05.472 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Security.UserController.Authenticate (Api)'
+2022-10-21 22:35:05.474 -05:00 [INF] Route matched with {action = "Authenticate", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[Application.Security.Http.Dto.AuthenticateDto]] Authenticate(Application.Security.Http.Request.AuthenticateRequest) on controller TicketsWebServices.Controllers.Security.UserController (Api).
+2022-10-21 22:35:05.539 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[:authenticateRequest_Username_0='?' (Size = 15), :GetSha256_1='?' (Size = 2000)], CommandType='"Text"', CommandTimeout='60']
+SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+FROM "User" "u"
+WHERE (("u"."Username" = :authenticateRequest_Username_0) AND ("u"."Password" = :GetSha256_1))
+FETCH FIRST 2 ROWS ONLY
+2022-10-21 22:35:05.550 -05:00 [INF] Executing ObjectResult, writing value of type 'Application.Base.Response`1[[Application.Security.Http.Dto.AuthenticateDto, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-10-21 22:35:05.552 -05:00 [INF] Executed action TicketsWebServices.Controllers.Security.UserController.Authenticate (Api) in 75.4425ms
+2022-10-21 22:35:05.553 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Security.UserController.Authenticate (Api)'
+2022-10-21 22:35:05.557 -05:00 [INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Date: Sat, 22 Oct 2022 03:35:04 GMT
+Server: Kestrel
+Access-Control-Allow-Origin: [Redacted]
+2022-10-21 22:35:05.558 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7055/api/User/Authenticate application/json 47 - 200 - application/json;+charset=utf-8 116.8036ms
+2022-10-21 22:37:19.956 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7055/api/User/Authenticate application/json 48
+2022-10-21 22:37:19.959 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-21 22:37:19.962 -05:00 [INF] CORS policy execution successful.
+2022-10-21 22:37:19.962 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/User/Authenticate
+Accept: text/plain
+Host: localhost:7055
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.47
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Content-Type: application/json
+Cookie: [Redacted]
+Origin: [Redacted]
+Referer: [Redacted]
+Content-Length: 48
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2022-10-21 22:37:19.964 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Security.UserController.Authenticate (Api)'
+2022-10-21 22:37:19.969 -05:00 [INF] Route matched with {action = "Authenticate", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[Application.Security.Http.Dto.AuthenticateDto]] Authenticate(Application.Security.Http.Request.AuthenticateRequest) on controller TicketsWebServices.Controllers.Security.UserController (Api).
+2022-10-21 22:37:20.243 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[:authenticateRequest_Username_0='?' (Size = 15), :GetSha256_1='?' (Size = 2000)], CommandType='"Text"', CommandTimeout='60']
+SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+FROM "User" "u"
+WHERE (("u"."Username" = :authenticateRequest_Username_0) AND ("u"."Password" = :GetSha256_1))
+FETCH FIRST 2 ROWS ONLY
+2022-10-21 22:37:20.254 -05:00 [INF] Executing ObjectResult, writing value of type 'Application.Base.Response`1[[Application.Security.Http.Dto.AuthenticateDto, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-10-21 22:37:20.255 -05:00 [INF] Executed action TicketsWebServices.Controllers.Security.UserController.Authenticate (Api) in 120.293ms
+2022-10-21 22:37:20.256 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Security.UserController.Authenticate (Api)'
+2022-10-21 22:37:20.257 -05:00 [INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Date: Sat, 22 Oct 2022 03:37:19 GMT
+Server: Kestrel
+Access-Control-Allow-Origin: [Redacted]
+2022-10-21 22:37:20.259 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7055/api/User/Authenticate application/json 48 - 200 - application/json;+charset=utf-8 303.1458ms
+2022-10-21 22:39:08.571 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7055/api/User/Authenticate application/json 48
+2022-10-21 22:39:08.573 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-21 22:39:08.577 -05:00 [INF] CORS policy execution successful.
+2022-10-21 22:39:08.579 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/User/Authenticate
+Accept: text/plain
+Host: localhost:7055
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.47
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Content-Type: application/json
+Cookie: [Redacted]
+Origin: [Redacted]
+Referer: [Redacted]
+Content-Length: 48
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2022-10-21 22:39:08.581 -05:00 [INF] Executing endpoint 'TicketsWebServices.Controllers.Security.UserController.Authenticate (Api)'
+2022-10-21 22:39:08.582 -05:00 [INF] Route matched with {action = "Authenticate", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Application.Base.Response`1[Application.Security.Http.Dto.AuthenticateDto]] Authenticate(Application.Security.Http.Request.AuthenticateRequest) on controller TicketsWebServices.Controllers.Security.UserController (Api).
+2022-10-21 22:39:08.640 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[:authenticateRequest_Username_0='?' (Size = 15), :GetSha256_1='?' (Size = 2000)], CommandType='"Text"', CommandTimeout='60']
+SELECT "u"."Id", "u"."CreatedBy", "u"."CreatedOn", "u"."LastModifiedBy", "u"."LastModifiedOn", "u"."Name", "u"."Password", "u"."Username"
+FROM "User" "u"
+WHERE (("u"."Username" = :authenticateRequest_Username_0) AND ("u"."Password" = :GetSha256_1))
+FETCH FIRST 2 ROWS ONLY
+2022-10-21 22:39:08.655 -05:00 [INF] Executing ObjectResult, writing value of type 'Application.Base.Response`1[[Application.Security.Http.Dto.AuthenticateDto, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-10-21 22:39:08.656 -05:00 [INF] Executed action TicketsWebServices.Controllers.Security.UserController.Authenticate (Api) in 71.8783ms
+2022-10-21 22:39:08.658 -05:00 [INF] Executed endpoint 'TicketsWebServices.Controllers.Security.UserController.Authenticate (Api)'
+2022-10-21 22:39:08.660 -05:00 [INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Date: Sat, 22 Oct 2022 03:39:07 GMT
+Server: Kestrel
+Access-Control-Allow-Origin: [Redacted]
+2022-10-21 22:39:08.662 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7055/api/User/Authenticate application/json 48 - 200 - application/json;+charset=utf-8 90.3051ms
+2022-10-21 22:39:12.689 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7055/api/User/Authenticate - -
+2022-10-21 22:39:12.691 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Oracle.EntityFrameworkCore:6.0.21.1-20220418' with options: MigrationsHistoryTable=_MigrationHistory 
+2022-10-21 22:39:12.700 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: GET
+Scheme: https
+PathBase: 
+Path: /api/User/Authenticate
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Host: localhost:7055
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.47
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Cookie: [Redacted]
+Upgrade-Insecure-Requests: [Redacted]
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-user: [Redacted]
+sec-fetch-dest: [Redacted]
+2022-10-21 22:39:12.704 -05:00 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2022-10-21 22:39:12.706 -05:00 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2022-10-21 22:39:12.707 -05:00 [INF] Response:
+StatusCode: 405
+Allow: POST
+2022-10-21 22:39:12.713 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7055/api/User/Authenticate - - - 405 0 - 23.3525ms
+2022-10-21 22:39:14.432 -05:00 [INF] Application is shutting down...

@@ -3,5 +3,5 @@
 public class UpdateTicketRequest : TicketRequest
 {
     public Guid Id { get; set; }
-    public string UpdatedBy { get; set; } = default!;
+    public string LastModifiedBy { get; set; } = default!;
 }

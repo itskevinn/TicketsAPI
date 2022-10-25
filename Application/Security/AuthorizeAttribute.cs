@@ -18,19 +18,19 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
 
     public void OnAuthorization(AuthorizationFilterContext context)
     {
-        var user = (UserDto)context.HttpContext.Items["User"]!;
-
+        var user = (UserDto?)context.HttpContext.Items["User"];
+        if (user == null) context.Result = new UnauthorizedResult();
         if (_validRoles is null) throw new MethodWithNotRolesAdmittedException();
-        IEnumerable<RoleDto> userRoles = new List<RoleDto>();
-        foreach (var role in _validRoles)
+        var isAuthorized = false;
+        foreach (var rol in _validRoles)
         {
-            userRoles = user.Roles.Where(r => r.RoleName == role);
+            if (isAuthorized) break;
+            isAuthorized = user!.Roles.FirstOrDefault(ur => ur.RoleName == rol) != null;
         }
 
-        if (!userRoles.Any())
+        if (!isAuthorized)
         {
             context.Result = new UnauthorizedResult();
         }
     }
 }
-
