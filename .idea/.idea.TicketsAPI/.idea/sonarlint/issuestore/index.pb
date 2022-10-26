@@ -23,8 +23,6 @@ I
 Domain/Entity/UserRole.cs,7\c\7cd9848e5c0555e3ba0cc41e36efc49593a5784a
 K
 Domain/Entity/Attachment.cs,b\6\b68d55e4fea5fdef6893b1bc958acb32e83d009f
-Y
-)Api/Utils/Extensions/ServiceExtensions.cs,9\0\90b8e61f4c2fdd51c11728fbcf1d787378d9406d
 O
 Api/AppLogs/Api-78120221021.log,d\7\d77eb5b85e386972ce02a8af6b3b8961549a028c
 O
@@ -65,8 +63,6 @@ k
 ;Infrastructure/Persistence/Mapping/MenuItemConfiguration.cs,c\3\c3e619e7d16ebcf4a42fc5245031ac140d9a5bc7
 g
 7Infrastructure/Persistence/Mapping/UserConfiguration.cs,1\f\1f501d5698ff25f2fab607d68884b81b9f8a5b36
-Z
-*Infrastructure/Core/Helpers/AppSettings.cs,a\8\a8319ebddc59e5a8d4fe4be27759df91fa412a89
 R
 "Domain/Ports/IGenericRepository.cs,0\0\00e24b37eba99a2c791e5191e3ddc55fc6f16d91
 k
@@ -111,5 +107,3 @@ k
 ;Infrastructure/Persistence/Repositories/TicketRepository.cs,7\1\71735dcdf76600e9d645a7b29cffb2f2f6da9422
 q
 AInfrastructure/Persistence/Repositories/Base/GenericRepository.cs,7\8\781e03fef64f8f0ca96e061cf6659c5916463d57
-\
-,Api/Utils/Extensions/AutoMapperExtensions.cs,f\0\f0852408f9f863c99ad83246598e59324189514b
