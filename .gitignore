@@ -3,3 +3,7 @@
 .sonarqube
 *.pb
 *.dll
+/Infrastructure/obj
+/Api/obj
+/Domain/obj
+/Application/obj
