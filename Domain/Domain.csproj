@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <Target Name="AfterClean">
+        <Exec Command="rm .\bin -r"/>
+        <Exec Command="rm .\obj -r"/>
+    </Target>
 </Project>

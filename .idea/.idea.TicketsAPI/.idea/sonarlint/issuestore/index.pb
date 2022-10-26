@@ -39,10 +39,6 @@ O
 Api/AppLogs/Api-29820221021.log,c\5\c553eaba3d6705458f5d0e4bbc7b3b5a0698b35e
 ~
 NInfrastructure/Persistence/Migrations/20221021182633_InitialCreate.Designer.cs,b\2\b277acf42a2d749482a14dc52e638ee48fe4409f
-T
-$Infrastructure/Infrastructure.csproj,1\e\1eee757ae25be91d8006f58490360abe9e76bfb0
->
-Api/Api.csproj,e\3\e3b7e2d9fc7a6778a2f897bde01ad0ff5ada45c5
 W
 'Api/Utils/Database/HandySelfMigrator.cs,2\e\2e853968780cdcfd2f770bac6b6bd2a500eb31a3
 c

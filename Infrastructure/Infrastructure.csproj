@@ -23,4 +23,8 @@
       <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
 
+    <Target Name="AfterClean">
+        <Exec Command="rm .\bin -r"/>
+        <Exec Command="rm .\obj -r"/>
+    </Target>
 </Project>
