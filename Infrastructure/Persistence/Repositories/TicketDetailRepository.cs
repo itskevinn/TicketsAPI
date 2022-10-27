@@ -5,6 +5,7 @@ using Infrastructure.Persistence.Context;
 using Infrastructure.Persistence.Exceptions;
 using Infrastructure.Persistence.Factory;
 using Infrastructure.Persistence.Repositories.Base;
+using Infrastructure.Persistence.UnitOfWork;
 
 namespace Infrastructure.Persistence.Repositories;
 
@@ -12,7 +13,7 @@ public class TicketDetailRepository : GenericRepository<TicketDetail>, ITicketDe
 {
     private readonly IConnectionFactory _connectionFactory;
 
-    public TicketDetailRepository(TicketsContext context, IConnectionFactory connectionFactory) : base(context)
+    public TicketDetailRepository(TicketsContext context, IConnectionFactory connectionFactory, IUnitOfWork unitOfWork) : base(context, unitOfWork)
     {
         _connectionFactory = connectionFactory;
     }

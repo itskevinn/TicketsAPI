@@ -1,4 +1,5 @@
-﻿using Application.Base;
+﻿using System.ComponentModel.DataAnnotations;
+using Application.Base;
 using Application.Security;
 using Application.Tickets.Http.Dto;
 using Application.Tickets.Http.Request;
@@ -41,9 +42,22 @@ public class TicketController : Controller
 
     [Authorize(new[] { "Admin", "User" })]
     [HttpGet("GetByCode/{code:int}")]
-    public async Task<Response<TicketDto>> GetById(int code)
+    public Response<TicketDto> GetById(int code)
     {
-        return await _ticketService.GetByCodeAsync(code);
+        return _ticketService.GetByCodeAsync(code);
     }
 
+    [Authorize(new[] { "Admin", "User" })]
+    [HttpPut("Update")]
+    public Response<TicketDto> Update(UpdateTicketRequest code)
+    {
+        return _ticketService.Update(code);
+    }
+
+    [Authorize(new[] { "Admin", "User" })]
+    [HttpPatch("UpdateStatus")]
+    public async Task<Response<bool>> UpdateStatus([Required] string newState, [Required] int code)
+    {
+        return await _ticketService.UpdateStatusAsync(newState, code);
+    }
 }

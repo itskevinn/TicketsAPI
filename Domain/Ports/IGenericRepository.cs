@@ -12,8 +12,10 @@ public interface IGenericRepository<TEntity> where TEntity : DomainEntity
     Task<TEntity?> FindAsync(object? id);
     Task<bool> ExistsAsync(object id);
     Task CreateAllAsync(IEnumerable<TEntity> entities);
-
-    Task<TEntity> FindByAsync(Expression<Func<TEntity, bool>>? filter = null,
+    TEntity? FindBy(Expression<Func<TEntity, bool>>? filter = null,
+        bool isTracking = false,
+        string includeStringProperties = "");
+    Task<TEntity?> FindByAsync(Expression<Func<TEntity, bool>>? filter = null,
         bool isTracking = false,
         string includeStringProperties = "");
 

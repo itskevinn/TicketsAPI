@@ -11,5 +11,6 @@ public class TicketProfile : Profile
     {
         CreateMap<Ticket, TicketDto>();
         CreateMap<TicketRequest, Ticket>();
+        CreateMap<UpdateTicketRequest, Ticket>();
     }
 }

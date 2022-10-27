@@ -26,8 +26,15 @@ public class BaseService<TEntity> where TEntity : IAuditableEntity
     protected void SetCurrentUserToEntity(TEntity entity, bool updating = false)
     {
         var value = (UserDto)_contextAccessor?.HttpContext?.Items["User"]!;
-        entity.GetType().GetProperty("CreatedBy")?.SetValue(entity, value.Username, null);
         entity.GetType().GetProperty("GeneratedBy")?.SetValue(entity, value.Username, null);
-        if (updating) entity.GetType().GetProperty("LastModifiedBy")?.SetValue(entity, value.Username, null);
+        switch (updating)
+        {
+            case false:
+                entity.GetType().GetProperty("CreatedBy")?.SetValue(entity, value.Username, null);
+                break;
+            case true:
+                entity.GetType().GetProperty("LastModifiedBy")?.SetValue(entity, value.Username, null);
+                break;
+        }
     }
 }

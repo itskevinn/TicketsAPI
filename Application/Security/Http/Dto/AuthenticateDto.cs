@@ -6,7 +6,7 @@ public class AuthenticateDto
     public string Name { get; set; }
     public string Username { get; set; }
     public string Token { get; set; }
-    public IEnumerable<RoleDto> Roles { get; set; } = default!;
+    public IEnumerable<RoleDto> Roles { get; set; }
 
 
     public AuthenticateDto(UserDto user, string token)

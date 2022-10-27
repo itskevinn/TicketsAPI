@@ -6,4 +6,5 @@ public class AuditableEntity<TKey> : BaseEntity<TKey>, IAuditableEntity
     public DateTime CreatedOn { get; set; } = default!;
     public string LastModifiedBy { get; set; } = default!;
     public DateTime LastModifiedOn { get; set; } = default!;
+    public bool Status { get; set; } = true;
 }

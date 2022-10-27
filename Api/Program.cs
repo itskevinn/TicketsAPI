@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using TicketsWebServices.Utils.Database;
 using TicketsWebServices.Utils.Extensions;
 using TicketsWebServices.Utils.Filters;
 
@@ -52,7 +53,7 @@ builder.Services.AddHealthChecks().AddOracle(config["ConnectionStrings:local"]);
 
 builder.Services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
 
-builder.Services.AddPersistence(config).AddServices().AddScopedServices();
+builder.Services.AddPersistence(config).AddServices();
 
 builder.Services.AddScoped(typeof(IJwtUtils<>), typeof(JwtUtils<>));
 builder.Services.AddAuthorization();
@@ -113,7 +114,7 @@ if (app.Environment.IsDevelopment())
     );
 }
 
-//TODO: Migration in runtime
+HandySelfMigrator.Migrate<TicketsContext>(app);
 
 app.UseMiddleware<JwtMiddleware<UserDto>>();
 app.UseCors(myAllowSpecificOrigins);

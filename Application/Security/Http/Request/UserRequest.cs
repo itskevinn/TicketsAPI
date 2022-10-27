@@ -6,5 +6,5 @@ public class UserRequest
     public string Username { get; set; } = default!;
     public string Password { get; set; } = default!;
     public string CreatedBy { get; set; } = default!;
-    public Guid RoleId { get; set; } = default!;
+    public Guid RoleId { get; set; } = Guid.Empty;
 }

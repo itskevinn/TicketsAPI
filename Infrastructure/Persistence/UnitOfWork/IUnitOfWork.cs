@@ -5,16 +5,19 @@ namespace Infrastructure.Persistence.UnitOfWork;
 
 public interface IUnitOfWork
 {
-    public TicketRepository TicketRepository { get; }
-    public TicketDetailRepository TicketDetailRepository { get; }
-    public UserRepository UserRepository { get; }
+    TicketRepository TicketRepository { get; }
+    TicketDetailRepository TicketDetailRepository { get; }
+    UserRepository UserRepository { get; }
 
-    public UserRoleRepository UserRoleRepository { get; }
-    public RoleRepository RoleRepository { get; }
-    public MenuItemRepository MenuItemRepository { get; }
-    public MenuItemRoleRepository MenuItemRoleRepository { get; }
+    UserRoleRepository UserRoleRepository { get; }
+    RoleRepository RoleRepository { get; }
+    MenuItemRepository MenuItemRepository { get; }
+    MenuItemRoleRepository MenuItemRoleRepository { get; }
 
-    public void Save();
-    public DbContext GetDbContext();
-
+    void Save();
+    Task SaveChangesAsync();
+    DbContext GetDbContext();
+    Task CommitAsync();
+    void Commit();
+    void ClearTracking();
 }

@@ -19,7 +19,12 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
     public void OnAuthorization(AuthorizationFilterContext context)
     {
         var user = (UserDto?)context.HttpContext.Items["User"];
-        if (user == null) context.Result = new UnauthorizedResult();
+        if (user == null)
+        {
+            context.Result = new UnauthorizedResult();
+            return;
+        }
+
         if (_validRoles is null) throw new MethodWithNotRolesAdmittedException();
         var isAuthorized = false;
         foreach (var rol in _validRoles)

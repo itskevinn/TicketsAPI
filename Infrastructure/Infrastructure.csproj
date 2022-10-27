@@ -24,7 +24,7 @@
     </ItemGroup>
 
     <Target Name="AfterClean">
-        <Exec Command="rm .\bin -r"/>
-        <Exec Command="rm .\obj -r"/>
+        <Exec Command="rm .\bin -r" />
+        <Exec Command="rm .\obj -r" />
     </Target>
 </Project>

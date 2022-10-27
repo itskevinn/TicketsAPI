@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 
 namespace Application.Exceptions;
-
+[Serializable]
 public class MethodWithNotRolesAdmittedException : Exception
 {
     public MethodWithNotRolesAdmittedException()

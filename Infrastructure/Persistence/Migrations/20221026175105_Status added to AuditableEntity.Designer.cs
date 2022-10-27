@@ -3,6 +3,7 @@ using System;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Oracle.EntityFrameworkCore.Metadata;
 
@@ -11,9 +12,10 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(TicketsContext))]
-    partial class TicketsContextModelSnapshot : ModelSnapshot
+    [Migration("20221026175105_Status added to AuditableEntity")]
+    partial class StatusaddedtoAuditableEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -280,21 +282,16 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("SolvedOn")
                         .HasColumnType("TIMESTAMP(7)");
 
-                    b.Property<string>("State")
+                    b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("NVARCHAR2(2000)");
 
-                    b.Property<bool>("Status")
-                        .HasColumnType("NUMBER(1)");
-
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("NVARCHAR2(50)");
+                        .HasMaxLength(255)
+                        .HasColumnType("NVARCHAR2(255)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Code");
 
                     b.ToTable("Ticket");
                 });

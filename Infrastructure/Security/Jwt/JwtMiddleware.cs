@@ -73,8 +73,12 @@ public class JwtMiddleware<T>
     {
         var user = await userRepository.FindByAsync(u => u.Id == userId, false, "UserRoles");
         var userRoles =
-            await userRoleRepository.GetAsync(ur => ur.UserId == user.Id, null, false, "Role");
-        user.Roles = userRoles.Select(u => u.Role);
-        return user;
+            await userRoleRepository.GetAsync(ur => user != null && ur.UserId == user.Id, null, false, "Role");
+        if (user == null) return null!;
+        {
+            user.Roles = userRoles.Select(u => u.Role);
+            return user;
+        }
+
     }
 }

@@ -30,43 +30,88 @@ public sealed class UnitOfWork : IUnitOfWork, IDisposable
         get
         {
             if (_connectionFactory.Connection == null) return null!;
-            return _ticketRepository ??= new TicketRepository(_context, _connectionFactory.Connection);
+            return _ticketRepository ??= new TicketRepository(_context, _connectionFactory.Connection, this);
         }
     }
 
     public UserRoleRepository UserRoleRepository
     {
-        get { return _userRoleRepository ??= new UserRoleRepository(_context); }
+        get { return _userRoleRepository ??= new UserRoleRepository(_context, this); }
     }
 
     public RoleRepository RoleRepository
     {
-        get { return _roleRepository ??= new RoleRepository(_context); }
+        get { return _roleRepository ??= new RoleRepository(_context, this); }
     }
 
     public TicketDetailRepository TicketDetailRepository
     {
-        get { return _ticketDetailRepository ??= new TicketDetailRepository(_context, _connectionFactory); }
+        get { return _ticketDetailRepository ??= new TicketDetailRepository(_context, _connectionFactory, this); }
     }
 
     public MenuItemRepository MenuItemRepository
     {
-        get { return _menuItemRepository ??= new MenuItemRepository(_context); }
+        get { return _menuItemRepository ??= new MenuItemRepository(_context, this); }
     }
 
     public MenuItemRoleRepository MenuItemRoleRepository
     {
-        get { return _menuItemRoleRepository ??= new MenuItemRoleRepository(_context); }
+        get { return _menuItemRoleRepository ??= new MenuItemRoleRepository(_context, this); }
     }
 
     public UserRepository UserRepository
     {
-        get { return _userRepository ??= new UserRepository(_context); }
+        get { return _userRepository ??= new UserRepository(_context, this); }
     }
 
     public void Save()
     {
         _context.SaveChanges();
+    }
+
+    public async Task SaveChangesAsync()
+    {
+        await CommitAsync();
+    }
+
+    public void ClearTracking()
+    {
+        _context.ChangeTracker.Clear();
+    }
+
+    public async Task CommitAsync()
+    {
+        CheckEntityState();
+        await _context.SaveChangesAsync().ConfigureAwait(false);
+    }
+
+    public void Commit()
+    {
+        CheckEntityState();
+        _context.SaveChanges();
+    }
+
+    private void CheckEntityState()
+    {
+        _context.ChangeTracker.DetectChanges();
+
+        foreach (var entry in _context.ChangeTracker.Entries())
+        {
+            switch (entry.State)
+            {
+                case EntityState.Added:
+                    entry.Property("CreatedOn").CurrentValue = DateTime.UtcNow;
+                    entry.Property("Status").CurrentValue = true;
+                    break;
+                case EntityState.Modified:
+                    entry.Property("LastModifiedOn").CurrentValue = DateTime.UtcNow;
+                    entry.Property("Status").CurrentValue = true;
+                    break;
+                case EntityState.Deleted:
+                    entry.Property("Status").CurrentValue = false;
+                    break;
+            }
+        }
     }
 
     public DbContext GetDbContext()
@@ -90,5 +135,11 @@ public sealed class UnitOfWork : IUnitOfWork, IDisposable
     {
         Dispose(true);
         GC.SuppressFinalize(this);
+    }
+
+    ~UnitOfWork()
+    {
+        _context.Dispose();
+        _connectionFactory.Connection?.Dispose();
     }
 }

@@ -2,7 +2,6 @@
 using Application.Base;
 using Application.Security.Http.Dto;
 using Application.Security.Http.Request;
-using AutoMapper;
 using Domain.Entity;
 using Domain.Ports;
 using Infrastructure.Persistence.Exceptions;
@@ -15,20 +14,15 @@ namespace Application.Security.Service.Implementation;
 public class AuthService : BaseService<User>, IAuthService
 {
     private readonly IUserRepository _userRepository;
-    private readonly IUserRoleRepository _userRoleRepository;
-    private readonly IMapper _mapper;
     private readonly IJwtUtils<UserDto> _jwtUtils;
     private readonly IUserService _userService;
 
-    public AuthService(IUserService userService, IMapper mapper, IJwtUtils<UserDto> jwtUtils, IUnitOfWork unitOfWork)
+    public AuthService(IUserService userService, IJwtUtils<UserDto> jwtUtils, IUnitOfWork unitOfWork)
     {
         _userRepository = unitOfWork.UserRepository ??
                           throw new RepoUnavailableException($"{nameof(unitOfWork.RoleRepository)}");
 
-        _userRoleRepository = unitOfWork.UserRoleRepository ??
-                              throw new RepoUnavailableException($"{nameof(unitOfWork.UserRoleRepository)}");
         _userService = userService;
-        _mapper = mapper;
         _jwtUtils = jwtUtils;
     }
 
@@ -45,17 +39,5 @@ public class AuthService : BaseService<User>, IAuthService
         var token = _jwtUtils.GenerateJwtToken(userDto.Data);
         return new Response<AuthenticateDto>(HttpStatusCode.OK, "Bienvenido", true,
             new AuthenticateDto(userDto.Data, token));
-    }
-
-    public async Task<UserDto> GetOnlyUserById(Guid id)
-    {
-        var user = await _userRepository.FindByAsync(u => u.Id == id, false, "UserRoles");
-        var userRoles =
-            await _userRoleRepository.GetAsync(ur => ur.UserId == user.Id, null, false, "Role");
-        var roles = new List<Role>();
-        userRoles.ToList().ForEach(u => { roles.Add(u.Role); });
-        user.Roles = roles;
-        var userDto = _mapper.Map<UserDto>(user);
-        return userDto;
     }
 }

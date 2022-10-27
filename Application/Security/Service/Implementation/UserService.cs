@@ -76,11 +76,13 @@ public class UserService : BaseService<User>, IUserService
         try
         {
             var user = await _userRepository.FindByAsync(u => u.Id == id, false, "UserRoles,UserRoles.Role");
+            if (user == null) return null!;
             var userDto = await SetUserRoles(user);
             var authorities = new List<MenuItem>();
             await SetRoleAuthorities(userDto, authorities);
             return new Response<UserDto>
                 (HttpStatusCode.OK, "Usuario encontrado", true, userDto);
+
         }
         catch (Exception e)
         {
