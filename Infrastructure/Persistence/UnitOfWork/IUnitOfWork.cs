@@ -5,10 +5,11 @@ namespace Infrastructure.Persistence.UnitOfWork;
 
 public interface IUnitOfWork
 {
+    AttachmentRepository AttachmentRepository { get; }
     TicketRepository TicketRepository { get; }
     TicketDetailRepository TicketDetailRepository { get; }
     UserRepository UserRepository { get; }
-
+    TicketStatusRepository TicketStatusRepository { get; }
     UserRoleRepository UserRoleRepository { get; }
     RoleRepository RoleRepository { get; }
     MenuItemRepository MenuItemRepository { get; }

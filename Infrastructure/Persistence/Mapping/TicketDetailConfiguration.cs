@@ -8,7 +8,8 @@ public class TicketDetailConfiguration : IEntityTypeConfiguration<TicketDetail>
 {
     public void Configure(EntityTypeBuilder<TicketDetail> builder)
     {
-        builder.ToTable("TicketDetail");
         builder.HasKey(t => t.Id);
+        builder.HasMany(t => t.Attachments).WithOne();
+        builder.Property(p => p.LastModifiedBy).IsRequired(false);
     }
 }

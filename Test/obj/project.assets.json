@@ -3968,19 +3968,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\WINDOWS\\.nuget\\packages\\": {}
+    "C:\\Users\\kevin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\WINDOWS\\RiderProjects\\TicketsAPI\\Test\\Test.csproj",
+      "projectUniqueName": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Test\\Test.csproj",
       "projectName": "Test",
-      "projectPath": "C:\\Users\\WINDOWS\\RiderProjects\\TicketsAPI\\Test\\Test.csproj",
-      "packagesPath": "C:\\Users\\WINDOWS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\WINDOWS\\RiderProjects\\TicketsAPI\\Test\\obj\\",
+      "projectPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Test\\Test.csproj",
+      "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\WINDOWS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"

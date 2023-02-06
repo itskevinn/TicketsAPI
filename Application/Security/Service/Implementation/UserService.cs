@@ -24,7 +24,7 @@ public class UserService : BaseService<User>, IUserService
 
     public UserService(IMapper mapper,
         IUnitOfWork unitOfWork,
-        IHttpContextAccessor accessor) : base(accessor)
+        IHttpContextAccessor accessor) : base(accessor, unitOfWork, mapper)
     {
         _mapper = mapper ?? throw new ArgumentNullException($"{nameof(mapper)}");
         _userRoleRepository = unitOfWork.UserRoleRepository ??
@@ -82,7 +82,6 @@ public class UserService : BaseService<User>, IUserService
             await SetRoleAuthorities(userDto, authorities);
             return new Response<UserDto>
                 (HttpStatusCode.OK, "Usuario encontrado", true, userDto);
-
         }
         catch (Exception e)
         {
@@ -115,7 +114,7 @@ public class UserService : BaseService<User>, IUserService
                 authorities.AddRange(auths);
             });
             var authoritiesDto = _mapper.Map<IEnumerable<MenuItemDto>>(authorities);
-            userDtoRole.Authorities = authoritiesDto;
+            userDtoRole.Authorities = authoritiesDto.OrderBy(a => a.Order);
         }
     }
 }

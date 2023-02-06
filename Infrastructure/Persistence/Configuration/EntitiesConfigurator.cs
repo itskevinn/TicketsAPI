@@ -13,5 +13,8 @@ public static class EntitiesConfigurator
         modelBuilder.ApplyConfiguration(new MenuItemRoleConfiguration());
         modelBuilder.ApplyConfiguration(new RoleConfiguration());
         modelBuilder.ApplyConfiguration(new TicketConfiguration());
+        modelBuilder.ApplyConfiguration(new TicketStatusConfiguration());
+        modelBuilder.ApplyConfiguration(new TicketDetailConfiguration());
+        modelBuilder.ApplyConfiguration(new AttachmentConfiguration());
     }
 }

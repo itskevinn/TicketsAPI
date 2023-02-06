@@ -16,7 +16,9 @@ public static class AutoMapperExtensions
                 new RoleProfile(),
                 new UserProfile(),
                 new TicketProfile(),
-                new TicketDetailProfile()
+                new TicketDetailProfile(),
+                new TicketStatusProfile(),
+                new AttachmentProfile()
             };
             m.AddProfiles(profiles);
         });

@@ -43,6 +43,13 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
         if (entityToDelete != null) Delete(entityToDelete);
         await _context.SaveChangesAsync();
     }
+    public virtual async Task DeleteAsync(object? id)
+    {
+        _ = id ?? throw new ArgumentNullException(nameof(id), $"{nameof(id)} can not be null");
+        var entityToDelete = await _dbSet.FindAsync(id);
+        if (entityToDelete != null) Delete(entityToDelete);
+        await _context.SaveChangesAsync();
+    }
 
     public virtual void Delete(TEntity entity)
     {

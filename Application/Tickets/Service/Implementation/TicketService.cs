@@ -23,31 +23,33 @@ public class TicketService : BaseService<Ticket>, ITicketService
     private readonly ITicketRepository _ticketRepository;
     private readonly IMapper _mapper;
     private readonly ILogger<TicketService> _logger;
-    private readonly IUserRepository _userRepository;
     private readonly IConnectionFactory _connectionFactory;
-    private readonly IUnitOfWork _unitOfWork;
-
+    private readonly ITicketStatusRepository _ticketStatusRepository;
+    private readonly IUserRepository _userRepository;
 
     public TicketService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<TicketService> logger,
-        IConnectionFactory connectionFactory, IHttpContextAccessor accessor) : base(accessor)
+        IConnectionFactory connectionFactory, IHttpContextAccessor accessor) : base(accessor, unitOfWork, mapper)
 
     {
         _ticketRepository = unitOfWork.TicketRepository ??
                             throw new RepoUnavailableException(
                                 $"Repo not available {nameof(unitOfWork.TicketRepository)}");
-        _unitOfWork = unitOfWork;
+        _ticketStatusRepository = unitOfWork.TicketStatusRepository ??
+                                  throw new RepoUnavailableException(
+                                      $"Repo not available {nameof(unitOfWork.TicketStatusRepository)}");
+        _userRepository = unitOfWork.UserRepository ??
+                          throw new RepoUnavailableException(
+                              $"Repo not available {nameof(unitOfWork.UserRepository)}");
         _mapper = mapper ?? throw new RepoUnavailableException("Mapper not available");
         _logger = logger;
         _connectionFactory = connectionFactory;
-        _userRepository = unitOfWork.UserRepository ?? throw new RepoUnavailableException(
-            $"Repo not available {nameof(unitOfWork.TicketRepository)}");
     }
 
     public async Task<Response<IEnumerable<TicketDto>>> GetAllAsync()
     {
         try
         {
-            var tickets = await _ticketRepository.GetAsync();
+            var tickets = await _ticketRepository.GetAsync(null, null, false, "TicketStatus,TicketDetails,TicketDetails.Attachments");
             var ticketDtoList = _mapper.Map<IEnumerable<TicketDto>>(tickets.AsEnumerable());
             return new Response<IEnumerable<TicketDto>>(HttpStatusCode.OK, "Found tickets: ",
                 true, ticketDtoList);
@@ -105,13 +107,29 @@ public class TicketService : BaseService<Ticket>, ITicketService
                        throw new DatabaseUnavailableException($"{nameof(_connectionFactory.Connection)}");
 
             var ticket = _mapper.Map<Ticket>(request);
+
             ticket.Code = await conn.QueryFirstAsync<int>(sqlGetCode);
             SetCurrentUserToEntity(ticket);
-            var userExists = _userRepository.ExistsByUsername(ticket.GeneratedBy);
-            if (!userExists) throw new UserNotFoundException("This user does not exist");
+            ticket.GeneratedOn = DateTime.Today;
+
+            var foundStatus = await _ticketStatusRepository.FindAsync(request.StatusId);
+            if (foundStatus == null)
+            {
+                throw new TicketStatusNotFoundException(
+                    $"The given status id: {request.StatusId} was not found in the status repository");
+            }
+
+            ticket.TicketStatus = foundStatus;
+
+            var foundUser = await _userRepository.FindByAsync(u => u.Username == request.AssignedTo);
+            if (request.AssignedTo != string.Empty && foundUser == null)
+                throw new UserNotFoundException($"User {request.AssignedTo} was not found");
 
             ticket = await _ticketRepository.CreateAsync(ticket);
+
             var ticketDto = _mapper.Map<TicketDto>(ticket);
+            ticketDto.AssignedTo = _mapper.Map<UserTicketDto>(foundUser);
+
             return new Response<TicketDto>(HttpStatusCode.OK, "Ticket registered successfully",
                 true, ticketDto);
         }
@@ -134,7 +152,7 @@ public class TicketService : BaseService<Ticket>, ITicketService
             ticket.Id = oldTicket.Id;
             ticket.CreatedBy = oldTicket.CreatedBy;
             ticket.CreatedOn = oldTicket.CreatedOn;
-            _unitOfWork.ClearTracking();
+            UnitOfWork.ClearTracking();
             _ticketRepository.Update(ticket);
             var ticketDto = _mapper.Map<TicketDto>(ticket);
             return new Response<TicketDto>(HttpStatusCode.OK, "Ticket updated successfully", true, ticketDto);
@@ -154,7 +172,7 @@ public class TicketService : BaseService<Ticket>, ITicketService
             var ticketExists = _ticketRepository.FindByCode(code) != null;
             if (!ticketExists)
                 throw new TicketNotFoundException("Ticket not found");
-            _unitOfWork.ClearTracking();
+            UnitOfWork.ClearTracking();
             await _ticketRepository.UpdateState(newState, code);
             return new Response<bool>(HttpStatusCode.OK, "Ticket updated successfully", true, true);
         }
@@ -163,6 +181,28 @@ public class TicketService : BaseService<Ticket>, ITicketService
             _logger.Log(LogLevel.Error, "{AnErrorHappenedMessage} {EMessage}", AnErrorHappenedMessage, e.Message);
             return new Response<bool>(HttpStatusCode.InternalServerError, AnErrorHappenedMessage,
                 false, false, e);
+        }
+    }
+
+    public Response<IEnumerable<UserTicketDto>> GetAllAvailableUsersAsync()
+    {
+        try
+        {
+            const string sqlGetCode = "SELECT u.\"Id\", u.\"Name\", u.\"Username\" FROM \"User\" u";
+            var conn = _connectionFactory.Connection ??
+                       throw new DatabaseUnavailableException($"{nameof(_connectionFactory.Connection)}");
+
+            var users = conn.Query<User>(sqlGetCode)
+                .Select(u => new User { Id = u.Id, Username = u.Username, Name = u.Name });
+            var usersDto = _mapper.Map<IEnumerable<UserTicketDto>>(users);
+            return new Response<IEnumerable<UserTicketDto>>(HttpStatusCode.OK, "Ticket registered successfully",
+                true, usersDto);
+        }
+        catch (Exception e)
+        {
+            _logger.Log(LogLevel.Error, "{AnErrorHappenedMessage} {EMessage}", AnErrorHappenedMessage, e.Message);
+            return new Response<IEnumerable<UserTicketDto>>(HttpStatusCode.InternalServerError, AnErrorHappenedMessage,
+                false, new List<UserTicketDto>(), e);
         }
     }
 }

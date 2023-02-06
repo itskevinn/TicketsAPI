@@ -2,7 +2,7 @@
 
 namespace Application.Base;
 
-public class Response<T>
+public class Response<T> 
 {
     public Response(HttpStatusCode statusCode, string message, bool success, T data = default!,
         Exception exception = null!)

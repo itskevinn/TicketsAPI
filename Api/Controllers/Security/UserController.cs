@@ -42,7 +42,7 @@ public class UserController : Controller
     }
 
     [Application.Security.Authorize(new[] { "Admin" })]
-    [HttpPost("Save")]
+    [HttpPost("SaveAsync")]
     public async Task<Response<UserDto>> Save(UserRequest userRequest)
     {
         return await _userService.Save(userRequest);

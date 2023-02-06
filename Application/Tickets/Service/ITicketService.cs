@@ -55,4 +55,9 @@ public interface ITicketService : ITransientService
     /// <returns> Saved ticket <see cref="Response{T}"/> <see cref="TicketDto"/></returns>
     /// <exception cref="UserNotFoundException"></exception>
     Task<Response<bool>> UpdateStatusAsync(string newState, int code);
+
+    /// <summary>
+    /// Method used to get all users available to assign tickets
+    /// </summary>
+    Response<IEnumerable<UserTicketDto>> GetAllAvailableUsersAsync();
 }

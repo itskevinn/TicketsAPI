@@ -1,5 +1,6 @@
 ﻿using Application.Security.Http.Dto;
 using Application.Security.Http.Request;
+using Application.Tickets.Http.Dto;
 using AutoMapper;
 using Domain.Entity;
 
@@ -14,5 +15,6 @@ public class UserProfile : Profile
         CreateMap<User, UserDto>().ReverseMap()
             .ForMember(r => r.Roles, u
                 => u.MapFrom(ur => ur.Roles));
+        CreateMap<User, UserTicketDto>();
     }
 }

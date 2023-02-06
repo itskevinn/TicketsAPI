@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Application.Base;
+﻿using Application.Base;
 using Application.Security;
 using Application.Tickets.Http.Dto;
 using Application.Tickets.Http.Request;
 using Application.Tickets.Service;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace TicketsWebServices.Controllers.Tickets;
 
@@ -13,7 +13,6 @@ namespace TicketsWebServices.Controllers.Tickets;
 public class TicketController : Controller
 {
     private readonly ITicketService _ticketService;
-
     public TicketController(ITicketService ticketService)
     {
         _ticketService = ticketService;
@@ -49,15 +48,22 @@ public class TicketController : Controller
 
     [Authorize(new[] { "Admin", "User" })]
     [HttpPut("Update")]
-    public Response<TicketDto> Update(UpdateTicketRequest code)
+    public Response<TicketDto> Update(UpdateTicketRequest updateTicketRequest)
     {
-        return _ticketService.Update(code);
+        return _ticketService.Update(updateTicketRequest);
     }
 
     [Authorize(new[] { "Admin", "User" })]
     [HttpPatch("UpdateStatus")]
-    public async Task<Response<bool>> UpdateStatus([Required] string newState, [Required] int code)
+    public async Task<Response<bool>> UpdateStatus([Required] int code, [Required] string newStatus)
     {
-        return await _ticketService.UpdateStatusAsync(newState, code);
+        return await _ticketService.UpdateStatusAsync(newStatus, code);
+    }
+
+    [Authorize(new[] { "Admin", "User" })]
+    [HttpGet("GetAllAvailableUsers")]
+    public Response<IEnumerable<UserTicketDto>> GetAllUsers()
+    {
+        return _ticketService.GetAllAvailableUsersAsync();
     }
 }

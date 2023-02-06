@@ -30,11 +30,11 @@ public class TicketRepository : GenericRepository<Ticket>, ITicketRepository
         }
     }
 
-    public async Task UpdateState(string newState, int code)
+    public async Task UpdateState(string newStatusId, int code)
     {
         try
         {
-            var sql = $"UPDATE \"Ticket\" SET \"State\" = '{newState}' WHERE \"Code\" = '{code}'";
+            var sql = $"UPDATE \"Ticket\" SET \"State\" = '{newStatusId}' WHERE \"Code\" = '{code}'";
             await _dbConnection.ExecuteAsync(sql);
         }
         finally

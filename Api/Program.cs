@@ -1,5 +1,7 @@
 using System.Reflection;
 using System.Text;
+using Amazon.S3;
+using Amazon.S3.Transfer;
 using Application.Security.Http.Dto;
 using Infrastructure.Core.Helpers;
 using Infrastructure.Persistence.Context;
@@ -9,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using TicketsWebServices.Utils.Database;
 using TicketsWebServices.Utils.Extensions;
 using TicketsWebServices.Utils.Filters;
 
@@ -95,6 +96,16 @@ builder.Services.AddDbContext<TicketsContext>(opt =>
         });
 });
 
+builder.Services.AddDefaultAWSOptions(config.GetAWSOptions());
+builder.Services.AddAWSService<IAmazonS3>();
+builder.Services.AddTransient<TransferUtility>();
+builder.Services.AddHttpContextAccessor();
+
+builder.Configuration.SetBasePath(builder.Environment.ContentRootPath);
+builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true,
+    reloadOnChange: true);
+builder.Configuration.AddEnvironmentVariables();
 
 Log.Logger = new LoggerConfiguration().Enrich.FromLogContext()
     .WriteTo.Console()
@@ -114,7 +125,6 @@ if (app.Environment.IsDevelopment())
     );
 }
 
-HandySelfMigrator.Migrate<TicketsContext>(app);
 
 app.UseMiddleware<JwtMiddleware<UserDto>>();
 app.UseCors(myAllowSpecificOrigins);

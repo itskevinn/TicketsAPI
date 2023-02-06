@@ -21,9 +21,10 @@ public sealed class UnitOfWork : IUnitOfWork, IDisposable
     private UserRepository? _userRepository;
     private MenuItemRepository? _menuItemRepository;
     private MenuItemRoleRepository? _menuItemRoleRepository;
-
     private UserRoleRepository? _userRoleRepository;
     private RoleRepository? _roleRepository;
+    private TicketStatusRepository? _ticketStatusRepository;
+    private AttachmentRepository? _attachmentRepository;
 
     public TicketRepository TicketRepository
     {
@@ -32,6 +33,16 @@ public sealed class UnitOfWork : IUnitOfWork, IDisposable
             if (_connectionFactory.Connection == null) return null!;
             return _ticketRepository ??= new TicketRepository(_context, _connectionFactory.Connection, this);
         }
+    }
+
+    public AttachmentRepository AttachmentRepository
+    {
+        get { return _attachmentRepository ??= new AttachmentRepository(_context, this); }
+    }
+
+    public TicketStatusRepository TicketStatusRepository
+    {
+        get { return _ticketStatusRepository ??= new TicketStatusRepository(_context, this); }
     }
 
     public UserRoleRepository UserRoleRepository

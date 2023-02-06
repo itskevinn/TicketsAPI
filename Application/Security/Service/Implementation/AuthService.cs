@@ -2,6 +2,7 @@
 using Application.Base;
 using Application.Security.Http.Dto;
 using Application.Security.Http.Request;
+using AutoMapper;
 using Domain.Entity;
 using Domain.Ports;
 using Infrastructure.Persistence.Exceptions;
@@ -17,7 +18,8 @@ public class AuthService : BaseService<User>, IAuthService
     private readonly IJwtUtils<UserDto> _jwtUtils;
     private readonly IUserService _userService;
 
-    public AuthService(IUserService userService, IJwtUtils<UserDto> jwtUtils, IUnitOfWork unitOfWork)
+    public AuthService(IUserService userService, IJwtUtils<UserDto> jwtUtils, IUnitOfWork unitOfWork, IMapper mapper) :
+        base(unitOfWork, mapper)
     {
         _userRepository = unitOfWork.UserRepository ??
                           throw new RepoUnavailableException($"{nameof(unitOfWork.RoleRepository)}");

@@ -32,9 +32,9 @@ public class TicketsContext : DbContext
         {
             var t = entityType.ClrType;
             if (!typeof(DomainEntity).IsAssignableFrom(t)) continue;
-            modelBuilder.Entity(entityType.Name).Property<DateTime>("CreatedOn").HasDefaultValueSql("sysdate()");
+            modelBuilder.Entity(entityType.Name).Property<DateTime>("CreatedOn").HasDefaultValue(DateTime.Now);
             modelBuilder.Entity(entityType.Name).Property<DateTime>("LastModifiedOn")
-                .HasDefaultValueSql("sysdate()");
+                .HasDefaultValue(DateTime.Now);
             modelBuilder.Entity(entityType.Name).Property<string>("LastModifiedBy").IsRequired(false);
         }
     }
