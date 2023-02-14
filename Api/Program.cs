@@ -94,7 +94,7 @@ builder.Services.AddDbContext<TicketsContext>(opt =>
             sqlOpts.MigrationsHistoryTable("_MigrationHistory",
                 config.GetValue<string>("SchemaName"));
         });
-});
+}, ServiceLifetime.Singleton);
 
 builder.Services.AddDefaultAWSOptions(config.GetAWSOptions());
 builder.Services.AddAWSService<IAmazonS3>();

@@ -6,7 +6,6 @@ using AutoMapper;
 using Domain.Entity;
 using Domain.Ports;
 using Infrastructure.Persistence.Exceptions;
-using Infrastructure.Persistence.UnitOfWork;
 using Infrastructure.Security.Encrypt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -23,18 +22,19 @@ public class UserService : BaseService<User>, IUserService
 
 
     public UserService(IMapper mapper,
-        IUnitOfWork unitOfWork,
-        IHttpContextAccessor accessor) : base(accessor, unitOfWork, mapper)
+        IHttpContextAccessor accessor,
+        IUserRoleRepository userRoleRepository, IMenuItemRoleRepository menuItemRoleRepository,
+        IUserRepository userRepository, IMenuItemRepository menuItemRepository) : base(accessor, mapper)
     {
         _mapper = mapper ?? throw new ArgumentNullException($"{nameof(mapper)}");
-        _userRoleRepository = unitOfWork.UserRoleRepository ??
-                              throw new RepoUnavailableException($"{nameof(unitOfWork.UserRoleRepository)}");
-        _menuItemRoleRepository = unitOfWork.MenuItemRoleRepository ??
-                                  throw new RepoUnavailableException($"{nameof(unitOfWork.MenuItemRoleRepository)}");
-        _userRepository = unitOfWork.UserRepository ??
-                          throw new RepoUnavailableException($"{nameof(unitOfWork)}");
-        _menuItemRepository = unitOfWork.MenuItemRepository ??
-                              throw new RepoUnavailableException($"{nameof(unitOfWork)}");
+        _userRoleRepository = userRoleRepository ??
+                              throw new RepoUnavailableException($"{nameof(userRoleRepository)}");
+        _menuItemRoleRepository = menuItemRoleRepository ??
+                                  throw new RepoUnavailableException($"{nameof(menuItemRoleRepository)}");
+        _userRepository = userRepository ??
+                          throw new RepoUnavailableException($"{nameof(userRepository)}");
+        _menuItemRepository = menuItemRepository ??
+                              throw new RepoUnavailableException($"{nameof(menuItemRepository)}");
     }
 
     public async Task<Response<UserDto>> Save(UserRequest userRequest)

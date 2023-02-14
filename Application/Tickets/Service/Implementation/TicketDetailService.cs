@@ -8,7 +8,6 @@ using Domain.Entity;
 using Domain.Ports;
 using Infrastructure.Persistence.Exceptions;
 using Infrastructure.Persistence.FileManagement;
-using Infrastructure.Persistence.UnitOfWork;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -24,20 +23,22 @@ public class TicketDetailService : BaseService<TicketDetail>, ITicketDetailServi
     private readonly ITicketRepository _ticketRepository;
     private readonly IAttachmentRepository _attachmentRepository;
 
-    public TicketDetailService(IUnitOfWork unitOfWork, ILogger<TicketDetailService> logger, IMapper mapper,
-        IHttpContextAccessor accessor, IFileManagementService fileManagementService) :
-        base(accessor, unitOfWork, mapper)
+    public TicketDetailService(ILogger<TicketDetailService> logger, IMapper mapper,
+        IHttpContextAccessor accessor, IFileManagementService fileManagementService,
+        IAttachmentRepository attachmentRepository, ITicketRepository ticketRepository,
+        ITicketDetailRepository ticketDetailRepository) :
+        base(accessor, mapper)
     {
         _fileManagementService = fileManagementService;
         _logger = logger;
         _mapper = mapper;
-        _attachmentRepository = unitOfWork.AttachmentRepository ?? throw new RepoUnavailableException(
-            $"Repo not available {nameof(unitOfWork.AttachmentRepository)}");
+        _attachmentRepository = attachmentRepository ?? throw new RepoUnavailableException(
+            $"Repo not available {nameof(attachmentRepository)}");
 
-        _ticketRepository = unitOfWork.TicketRepository ?? throw new RepoUnavailableException(
-            $"Repo not available {nameof(unitOfWork.TicketRepository)}");
-        _ticketDetailRepository = unitOfWork.TicketDetailRepository ?? throw new RepoUnavailableException(
-            $"Repo not available {nameof(unitOfWork.TicketDetailRepository)}");
+        _ticketRepository = ticketRepository ?? throw new RepoUnavailableException(
+            $"Repo not available {nameof(ticketRepository)}");
+        _ticketDetailRepository = ticketDetailRepository ?? throw new RepoUnavailableException(
+            $"Repo not available {nameof(ticketDetailRepository)}");
     }
 
     public async Task<Response<IEnumerable<TicketDetailDto>>> GetAllByTicketCode(int ticketCode)
@@ -127,7 +128,6 @@ public class TicketDetailService : BaseService<TicketDetail>, ITicketDetailServi
             ticketDetail.Id = oldTicket.Id;
             ticketDetail.CreatedBy = oldTicket.CreatedBy;
             ticketDetail.CreatedOn = oldTicket.CreatedOn;
-            UnitOfWork.ClearTracking();
             _ticketDetailRepository.Update(ticketDetail);
             var ticketDto = _mapper.Map<TicketDetailDto>(ticketDetail);
             return new Response<TicketDetailDto>(HttpStatusCode.OK, "Detail updated successfully", true, ticketDto);

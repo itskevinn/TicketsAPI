@@ -3,23 +3,22 @@ using Application.Base;
 using Application.Tickets.Http.Dto;
 using AutoMapper;
 using Domain.Entity;
-using Infrastructure.Persistence.Repositories;
-using Infrastructure.Persistence.UnitOfWork;
+using Domain.Ports;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Tickets.Service.Implementation;
 
 public class TicketStatusService : BaseService<TicketStatus>, ITicketStatusService
 {
-    private readonly TicketStatusRepository _ticketStatusRepository;
+    private readonly ITicketStatusRepository _ticketStatusRepository;
     private readonly ILogger<TicketStatusService> _logger;
     private readonly IMapper _mapper;
 
-    public TicketStatusService(IUnitOfWork unitOfWork, ILogger<TicketStatusService> logger,
-        IMapper mapper) : base(unitOfWork, mapper)
+    public TicketStatusService(ILogger<TicketStatusService> logger,
+        IMapper mapper, ITicketStatusRepository ticketStatusRepository) : base(mapper)
     {
-        _ticketStatusRepository = unitOfWork.TicketStatusRepository ??
-                                  throw new ArgumentException($"{nameof(TicketStatusRepository)} not available");
+        _ticketStatusRepository = ticketStatusRepository ??
+                                  throw new ArgumentException($"{nameof(ticketStatusRepository)} not available");
         _logger = logger;
         _mapper = mapper;
     }

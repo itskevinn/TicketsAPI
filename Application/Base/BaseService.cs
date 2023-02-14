@@ -2,7 +2,6 @@
 using AutoMapper;
 using Domain.Entity;
 using Domain.Entity.Base;
-using Infrastructure.Persistence.UnitOfWork;
 using Microsoft.AspNetCore.Http;
 
 namespace Application.Base;
@@ -11,19 +10,16 @@ public class BaseService<TEntity> where TEntity : IAuditableEntity
 {
     protected const string AnErrorHappenedMessage = "Ocurrió un error";
     private readonly IHttpContextAccessor? _contextAccessor;
-    protected readonly IUnitOfWork UnitOfWork;
     private readonly IMapper _mapper;
 
-    protected BaseService(IHttpContextAccessor context, IUnitOfWork unitOfWork, IMapper mapper)
+    protected BaseService(IHttpContextAccessor context, IMapper mapper)
     {
         _contextAccessor = context;
-        UnitOfWork = unitOfWork;
         _mapper = mapper;
     }
 
-    protected BaseService(IUnitOfWork unitOfWork, IMapper mapper)
+    protected BaseService(IMapper mapper)
     {
-        UnitOfWork = unitOfWork;
         _mapper = mapper;
     }
 

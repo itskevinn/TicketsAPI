@@ -9,7 +9,6 @@ using Domain.Entity;
 using Domain.Ports;
 using Infrastructure.Persistence.Exceptions;
 using Infrastructure.Persistence.Factory;
-using Infrastructure.Persistence.UnitOfWork;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
@@ -27,19 +26,20 @@ public class TicketService : BaseService<Ticket>, ITicketService
     private readonly ITicketStatusRepository _ticketStatusRepository;
     private readonly IUserRepository _userRepository;
 
-    public TicketService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<TicketService> logger,
-        IConnectionFactory connectionFactory, IHttpContextAccessor accessor) : base(accessor, unitOfWork, mapper)
+    public TicketService(IMapper mapper, ILogger<TicketService> logger,
+        IConnectionFactory connectionFactory, IHttpContextAccessor accessor, ITicketRepository ticketRepository,
+        ITicketStatusRepository ticketStatusRepository, IUserRepository userRepository) : base(accessor, mapper)
 
     {
-        _ticketRepository = unitOfWork.TicketRepository ??
+        _ticketRepository = ticketRepository ??
                             throw new RepoUnavailableException(
-                                $"Repo not available {nameof(unitOfWork.TicketRepository)}");
-        _ticketStatusRepository = unitOfWork.TicketStatusRepository ??
+                                $"Repo not available {nameof(ticketRepository)}");
+        _ticketStatusRepository = ticketStatusRepository ??
                                   throw new RepoUnavailableException(
-                                      $"Repo not available {nameof(unitOfWork.TicketStatusRepository)}");
-        _userRepository = unitOfWork.UserRepository ??
+                                      $"Repo not available {nameof(ticketStatusRepository)}");
+        _userRepository = userRepository ??
                           throw new RepoUnavailableException(
-                              $"Repo not available {nameof(unitOfWork.UserRepository)}");
+                              $"Repo not available {nameof(userRepository)}");
         _mapper = mapper ?? throw new RepoUnavailableException("Mapper not available");
         _logger = logger;
         _connectionFactory = connectionFactory;
@@ -49,7 +49,8 @@ public class TicketService : BaseService<Ticket>, ITicketService
     {
         try
         {
-            var tickets = await _ticketRepository.GetAsync(null, null, false, "TicketStatus,TicketDetails,TicketDetails.Attachments");
+            var tickets = await _ticketRepository.GetAsync(null, null, false,
+                "TicketStatus,TicketDetails,TicketDetails.Attachments");
             var ticketDtoList = _mapper.Map<IEnumerable<TicketDto>>(tickets.AsEnumerable());
             return new Response<IEnumerable<TicketDto>>(HttpStatusCode.OK, "Found tickets: ",
                 true, ticketDtoList);
@@ -152,7 +153,6 @@ public class TicketService : BaseService<Ticket>, ITicketService
             ticket.Id = oldTicket.Id;
             ticket.CreatedBy = oldTicket.CreatedBy;
             ticket.CreatedOn = oldTicket.CreatedOn;
-            UnitOfWork.ClearTracking();
             _ticketRepository.Update(ticket);
             var ticketDto = _mapper.Map<TicketDto>(ticket);
             return new Response<TicketDto>(HttpStatusCode.OK, "Ticket updated successfully", true, ticketDto);
@@ -172,7 +172,6 @@ public class TicketService : BaseService<Ticket>, ITicketService
             var ticketExists = _ticketRepository.FindByCode(code) != null;
             if (!ticketExists)
                 throw new TicketNotFoundException("Ticket not found");
-            UnitOfWork.ClearTracking();
             await _ticketRepository.UpdateState(newState, code);
             return new Response<bool>(HttpStatusCode.OK, "Ticket updated successfully", true, true);
         }

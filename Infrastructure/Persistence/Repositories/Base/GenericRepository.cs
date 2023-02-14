@@ -2,7 +2,6 @@
 using Domain.Entity.Base;
 using Domain.Ports;
 using Infrastructure.Persistence.Context;
-using Infrastructure.Persistence.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories.Base;
@@ -10,13 +9,11 @@ namespace Infrastructure.Persistence.Repositories.Base;
 public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : DomainEntity
 {
     private readonly TicketsContext _context;
-    private readonly IUnitOfWork _unitOfWork;
     private readonly DbSet<TEntity> _dbSet;
 
-    protected GenericRepository(TicketsContext context, IUnitOfWork unitOfWork)
+    public GenericRepository(TicketsContext context)
     {
         _context = context;
-        _unitOfWork = unitOfWork;
         _dbSet = context.Set<TEntity>();
     }
 
@@ -24,7 +21,7 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
     {
         _ = entity ?? throw new ArgumentNullException(nameof(entity), $"{nameof(entity)} can not be null");
         await _dbSet.AddAsync(entity);
-        await _unitOfWork.CommitAsync();
+        await _context.SaveChangesAsync();
         return entity;
     }
 
@@ -32,8 +29,9 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
     {
         _ = entity ?? throw new ArgumentNullException(nameof(entity), $"{nameof(entity)} can not be null");
         _context.Entry(entity).State = EntityState.Modified;
+        _context.ChangeTracker.Clear();
         _dbSet.Update(entity);
-        _unitOfWork.CommitAsync();
+        _context.SaveChangesAsync();
     }
 
     public virtual async Task DeleteAsync(TEntity entity)
@@ -43,6 +41,7 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
         if (entityToDelete != null) Delete(entityToDelete);
         await _context.SaveChangesAsync();
     }
+
     public virtual async Task DeleteAsync(object? id)
     {
         _ = id ?? throw new ArgumentNullException(nameof(id), $"{nameof(id)} can not be null");
@@ -125,9 +124,14 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
             query = query.Where(filter);
         }
 
-        query = includeStringProperties.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-            .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+        if (!string.IsNullOrEmpty(includeStringProperties))
+        {
+            query = includeStringProperties.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+        }
 
-        return Task.FromResult(orderBy != null ? orderBy(query) : query);
+        query = orderBy != null ? orderBy(query) : query;
+
+        return Task.FromResult(isTracking ? query.AsTracking() : query.AsNoTracking());
     }
 }

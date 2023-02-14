@@ -5,7 +5,6 @@ using Domain.Entity;
 using Domain.Exceptions;
 using Domain.Ports;
 using Infrastructure.Core.Helpers;
-using Infrastructure.Persistence.UnitOfWork;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -21,20 +20,25 @@ public class JwtMiddleware<T>
     private readonly RequestDelegate _next;
     private readonly AppSettings _appSettings;
     private readonly IMapper _mapper;
+    private readonly IUserRepository _userRepository;
+    private readonly IUserRoleRepository _userRoleRepository;
 
-    public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings, IMapper mapper)
+    public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings, IMapper mapper,
+        IUserRepository userRepository, IUserRoleRepository userRoleRepository)
     {
         _next = next;
         _mapper = mapper;
+        _userRepository = userRepository;
+        _userRoleRepository = userRoleRepository;
         _appSettings = appSettings.Value;
     }
 
-    public async Task Invoke(HttpContext context, IUnitOfWork unitOfWork)
+    public async Task Invoke(HttpContext context)
     {
         var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
         if (token != null)
-            await AttachUserToContext(context, unitOfWork.UserRepository, token, unitOfWork.UserRoleRepository);
+            await AttachUserToContext(context, _userRepository, token, _userRoleRepository);
 
         await _next(context);
     }
@@ -75,10 +79,7 @@ public class JwtMiddleware<T>
         var userRoles =
             await userRoleRepository.GetAsync(ur => user != null && ur.UserId == user.Id, null, false, "Role");
         if (user == null) return null!;
-        {
-            user.Roles = userRoles.Select(u => u.Role);
-            return user;
-        }
-
+        user.Roles = userRoles.Select(u => u.Role);
+        return user;
     }
 }

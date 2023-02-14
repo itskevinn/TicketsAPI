@@ -6,7 +6,6 @@ using AutoMapper;
 using Domain.Entity;
 using Domain.Ports;
 using Infrastructure.Persistence.Exceptions;
-using Infrastructure.Persistence.UnitOfWork;
 using Infrastructure.Security.Encrypt;
 using Infrastructure.Security.Jwt;
 
@@ -18,11 +17,12 @@ public class AuthService : BaseService<User>, IAuthService
     private readonly IJwtUtils<UserDto> _jwtUtils;
     private readonly IUserService _userService;
 
-    public AuthService(IUserService userService, IJwtUtils<UserDto> jwtUtils, IUnitOfWork unitOfWork, IMapper mapper) :
-        base(unitOfWork, mapper)
+    public AuthService(IUserService userService, IUserRepository userRepository, IJwtUtils<UserDto> jwtUtils,
+        IMapper mapper) :
+        base(mapper)
     {
-        _userRepository = unitOfWork.UserRepository ??
-                          throw new RepoUnavailableException($"{nameof(unitOfWork.RoleRepository)}");
+        _userRepository = userRepository ??
+                          throw new RepoUnavailableException($"{nameof(userRepository)}");
 
         _userService = userService;
         _jwtUtils = jwtUtils;

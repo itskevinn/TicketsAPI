@@ -26,6 +26,7 @@
         <PackageReference Include="Serilog.Extensions" Version="2.2.2" />
         <PackageReference Include="Serilog.Extensions.Autofac.DependencyInjection" Version="5.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.4.0" />
+        <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
     </ItemGroup>
 
     <ItemGroup>

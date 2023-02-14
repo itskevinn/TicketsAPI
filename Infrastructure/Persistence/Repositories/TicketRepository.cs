@@ -4,7 +4,6 @@ using Domain.Entity;
 using Domain.Ports;
 using Infrastructure.Persistence.Context;
 using Infrastructure.Persistence.Repositories.Base;
-using Infrastructure.Persistence.UnitOfWork;
 
 namespace Infrastructure.Persistence.Repositories;
 
@@ -12,8 +11,7 @@ public class TicketRepository : GenericRepository<Ticket>, ITicketRepository
 {
     private readonly IDbConnection _dbConnection;
 
-    public TicketRepository(TicketsContext context, IDbConnection dbConnection, IUnitOfWork unitOfWork) : base(context,
-        unitOfWork)
+    public TicketRepository(TicketsContext context, IDbConnection dbConnection) : base(context)
     {
         _dbConnection = dbConnection;
     }

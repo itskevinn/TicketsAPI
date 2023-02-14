@@ -175,9 +175,3 @@ public static class Seeder
         #endregion
     }
 }
-/*
- *insert into KEVINADMIN.Ticket (Id, Code, Title, Status, GeneratedOn, SolvedOn, AllegedSolveDate, Description, CreatedBy, CreatedOn, LastModifiedBy, LastModifiedOn, GeneratedBy, State)
-values  (''72AEEAC34340EF489B17C9DDACA008B1'', 35, 'Aplicativo deja actualizar', 1, '2022-12-13 00:02:44.9200000', '2022-12-13 00:02:44.9200000', '2022-12-15 00:02:44.9200000', 'string', 'Admin', '0001-01-01 00:00:00.0000000', 'Admin', '2022-12-13 00:04:10.8192923', 'Admin', 'Solved'),
-        (''4DB79282E4E58C4883723F0CA474440B'', 36, 'No actualiza tickets todavia', 1, '0001-01-01 00:00:00.0000000', '0001-01-01 00:00:00.0000000', '0001-01-01 00:00:00.0000000', null, 'Admin', '0001-01-01 00:00:00.0000000', 'Admin', '2022-10-26 21:30:25.3289529', 'Admin', 'Solved');
- * 
- */
