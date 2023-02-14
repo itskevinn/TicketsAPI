@@ -2,10 +2,8 @@ using System.Reflection;
 using System.Text;
 using Amazon.S3;
 using Amazon.S3.Transfer;
-using Application.Security.Http.Dto;
 using Infrastructure.Core.Helpers;
 using Infrastructure.Persistence.Context;
-using Infrastructure.Security.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -56,7 +54,6 @@ builder.Services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose:
 
 builder.Services.AddPersistence(config).AddServices();
 
-builder.Services.AddScoped(typeof(IJwtUtils<>), typeof(JwtUtils<>));
 builder.Services.AddAuthorization();
 
 var appSettingsSection = config.GetSection("AppSettings");
@@ -126,7 +123,6 @@ if (app.Environment.IsDevelopment())
 }
 
 
-app.UseMiddleware<JwtMiddleware<UserDto>>();
 app.UseCors(myAllowSpecificOrigins);
 app.UseRouting();
 app.UseHttpLogging();

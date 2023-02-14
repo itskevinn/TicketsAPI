@@ -43,44 +43,10 @@ public class FakeRepository
         var repo = new TicketStatusRepository(context);
         return repo;
     }
-
-    public async Task<IUserRepository> GetInMemoryUserRepository()
-    {
-        if (_appSettings == null) return null!;
-        var context = new TicketsContext(_options, _appSettings);
-        await context.Database.EnsureDeletedAsync();
-        await context.Database.EnsureCreatedAsync();
-        await Populate(context);
-        var repo = new UserRepository(context);
-        return repo;
-    }
+    
 
     private static async Task Populate(DbContext context)
     {
-        context.Set<User>().AddRange(
-            new User
-            {
-                Id = new Guid("a4c7072e-dd10-4d5b-8dfa-4dfa0a5a4e00"),
-                Email = "ek@gmail.com",
-                Name = "User",
-                Password = "1234",
-                Roles = new List<Role>(),
-                Username = "user",
-                Status = true,
-                CreatedBy = "yopitip",
-                CreatedOn = new DateTime()
-            }, new User
-            {
-                Id = new Guid("a4c7072e-dd10-4d5b-8dfa-4dfa0a5a4e01"),
-                Email = "ek@gmail.com",
-                Name = "Admin",
-                Password = "1234",
-                Roles = new List<Role>(),
-                Username = "admin",
-                Status = true,
-                CreatedBy = "yopitip",
-                CreatedOn = new DateTime()
-            });
         context.Set<Ticket>().AddRange(
             new Ticket
             {

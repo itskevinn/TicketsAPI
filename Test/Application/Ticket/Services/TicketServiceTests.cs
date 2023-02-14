@@ -1,5 +1,5 @@
-using Application.Tickets.Http.Profiles;
-using Application.Tickets.Service.Implementation;
+using Application.Http.Profiles;
+using Application.Service.Implementation;
 using AutoMapper;
 using Infrastructure.Persistence.Factory;
 using Microsoft.AspNetCore.Http;
@@ -32,12 +32,11 @@ public class TicketServiceTests
         var ticketService = new TicketService(_ticketMapper, loggerMock.Object, connectionFactoryMock.Object,
             httpContextAccessorMock.Object,
             await fakeRepository.GetInMemoryTicketsRepository(),
-            await fakeRepository.GetInMemoryTicketStatusRepository(),
-            await fakeRepository.GetInMemoryUserRepository());
-        
+            await fakeRepository.GetInMemoryTicketStatusRepository());
+
         //Act
         var response = await ticketService.GetAllAsync();
-        
+
         //Assert
         var tickets = response.Data.AsQueryable();
         Assert.NotEmpty(tickets);
@@ -58,12 +57,32 @@ public class TicketServiceTests
         var ticketService = new TicketService(_ticketMapper, loggerMock.Object, connectionFactoryMock.Object,
             httpContextAccessorMock.Object,
             await fakeRepository.GetInMemoryTicketsRepository(),
-            await fakeRepository.GetInMemoryTicketStatusRepository(),
-            await fakeRepository.GetInMemoryUserRepository());
+            await fakeRepository.GetInMemoryTicketStatusRepository());
         //Act
         var response = await ticketService.GetByIdAsync(ticketId);
         //Assert
         var ticket = response.Data;
         Assert.NotNull(ticket);
+    }
+
+    [Fact]
+    public async Task TicketService_GetByIdNotFount_ThrowsTicketNotFoundException()
+    {
+        //Arrange
+        var ticketId = new Guid("a4c7072e-dd10-4d5b-8dfa-4dfa0a5a4e4e");
+        var loggerMock = new Mock<ILogger<TicketService>>();
+        var connectionFactoryMock = new Mock<IConnectionFactory>();
+
+        var fakeRepository = new FakeRepository();
+        var httpContextAccessorMock = new Mock<IHttpContextAccessor>();
+
+        var ticketService = new TicketService(_ticketMapper, loggerMock.Object, connectionFactoryMock.Object,
+            httpContextAccessorMock.Object,
+            await fakeRepository.GetInMemoryTicketsRepository(),
+            await fakeRepository.GetInMemoryTicketStatusRepository());
+        //Act
+        var response = await ticketService.GetByIdAsync(ticketId);
+        //Assert
+        Assert.Null(response.Data);
     }
 }

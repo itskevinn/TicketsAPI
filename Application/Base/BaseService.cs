@@ -1,6 +1,5 @@
-﻿using Application.Security.Http.Dto;
+﻿using Application.Http.Dto;
 using AutoMapper;
-using Domain.Entity;
 using Domain.Entity.Base;
 using Microsoft.AspNetCore.Http;
 
@@ -44,10 +43,8 @@ public class BaseService<TEntity> where TEntity : IAuditableEntity
         }
     }
 
-    protected User GetCurrentUser()
+    protected UserDto GetCurrentUser()
     {
-        var currentUserDto = (UserDto)_contextAccessor?.HttpContext?.Items["User"]!;
-        var currentUser = _mapper.Map<User>(currentUserDto);
-        return currentUser;
+        return (UserDto)_contextAccessor?.HttpContext?.Items["User"]!;
     }
 }
