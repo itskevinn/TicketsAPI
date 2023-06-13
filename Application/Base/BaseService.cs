@@ -1,5 +1,4 @@
 ﻿using Application.Http.Dto;
-using AutoMapper;
 using Domain.Entity.Base;
 using Microsoft.AspNetCore.Http;
 
@@ -9,17 +8,14 @@ public class BaseService<TEntity> where TEntity : IAuditableEntity
 {
     protected const string AnErrorHappenedMessage = "Ocurrió un error";
     private readonly IHttpContextAccessor? _contextAccessor;
-    private readonly IMapper _mapper;
 
-    protected BaseService(IHttpContextAccessor context, IMapper mapper)
+    protected BaseService(IHttpContextAccessor context)
     {
         _contextAccessor = context;
-        _mapper = mapper;
     }
 
-    protected BaseService(IMapper mapper)
+    protected BaseService()
     {
-        _mapper = mapper;
     }
 
     /// <summary>

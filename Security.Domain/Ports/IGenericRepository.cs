@@ -1,9 +1,8 @@
 ﻿using System.Linq.Expressions;
-using Security.Domain.Entity.Base;
 
 namespace Security.Domain.Ports;
 
-public interface IGenericRepository<TEntity> where TEntity : DomainEntity 
+public interface IGenericRepository<TEntity>
 {
     Task<TEntity> CreateAsync(TEntity entity);
     void Update(TEntity entity);

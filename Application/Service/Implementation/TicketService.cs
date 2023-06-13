@@ -27,7 +27,7 @@ public class TicketService : BaseService<Ticket>, ITicketService
 
     public TicketService(IMapper mapper, ILogger<TicketService> logger,
         IConnectionFactory connectionFactory, IHttpContextAccessor accessor, ITicketRepository ticketRepository,
-        ITicketStatusRepository ticketStatusRepository) : base(accessor, mapper)
+        ITicketStatusRepository ticketStatusRepository) : base(accessor)
 
     {
         _ticketRepository = ticketRepository ??
@@ -117,9 +117,9 @@ public class TicketService : BaseService<Ticket>, ITicketService
             }
 
             ticket.TicketStatus = foundStatus;
-            
-            //TODO: Validate from users microservice
-            var foundUser = new UserTicketDto();
+
+            //TODO: Validate if user exist from security microservice
+            var foundUser = await FindUserTicketByUsername(request.AssignedTo); // <- Assign the found user here
             if (request.AssignedTo != string.Empty && foundUser == null)
                 throw new UserNotFoundException($"User {request.AssignedTo} was not found");
 
@@ -137,6 +137,11 @@ public class TicketService : BaseService<Ticket>, ITicketService
             return new Response<TicketDto>(HttpStatusCode.InternalServerError, AnErrorHappenedMessage,
                 false, new TicketDto(), e);
         }
+    }
+
+    private async Task<UserTicketDto> FindUserTicketByUsername(string username)
+    {
+        return null;
     }
 
     public Response<TicketDto> Update(UpdateTicketRequest request)

@@ -16,7 +16,7 @@ public static class PersistenceExtensions
         svc.AddTransient(typeof(ITicketDetailRepository), typeof(TicketDetailRepository));
         svc.AddTransient(typeof(ITicketRepository), typeof(TicketRepository));
         svc.AddTransient(typeof(ITicketStatusRepository), typeof(TicketStatusRepository));
-        svc.AddTransient<IDbConnection>((_) => new SqlConnection(config.GetConnectionString("local")));
+        svc.AddTransient<IDbConnection>(_ => new SqlConnection(config.GetConnectionString("local")));
 
         return svc;
     }

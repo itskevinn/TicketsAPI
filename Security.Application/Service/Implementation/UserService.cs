@@ -75,7 +75,8 @@ public class UserService : BaseService<User>, IUserService
     {
         try
         {
-            var user = await _userRepository.FindByAsync(u => u.Id == id, false, "UserRoles,UserRoles.Role");
+            var user = await _userRepository.FindByAsync(u => u.Id == id, false,
+                "UserRoles,UserRoles.Role,UserRoles.Role.RoleMenuItems,UserRoles.Role.RoleMenuItems.MenuItem");
             if (user == null) return null!;
             var userDto = await SetUserRoles(user);
             var authorities = new List<MenuItem>();

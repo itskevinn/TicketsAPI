@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Api\\Security.Api.csproj": {}
+    "E:\\Development\\GitHub\\TicketsAPI\\Security.Api\\Security.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Api\\Security.Api.csproj": {
+    "E:\\Development\\GitHub\\TicketsAPI\\Security.Api\\Security.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Api\\Security.Api.csproj",
+        "projectUniqueName": "E:\\Development\\GitHub\\TicketsAPI\\Security.Api\\Security.Api.csproj",
         "projectName": "Security.Api",
-        "projectPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Api\\Security.Api.csproj",
+        "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Api\\Security.Api.csproj",
         "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Api\\obj\\",
+        "outputPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,11 +26,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Application\\Security.Application.csproj": {
-                "projectPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Application\\Security.Application.csproj"
+              "E:\\Development\\GitHub\\TicketsAPI\\Security.Application\\Security.Application.csproj": {
+                "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Application\\Security.Application.csproj"
               },
-              "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj"
+              "E:\\Development\\GitHub\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj": {
+                "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj"
               }
             }
           }
@@ -45,9 +45,43 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AWSSDK.Core": {
+              "target": "Package",
+              "version": "[3.7.105.2, )"
+            },
+            "AWSSDK.DynamoDBv2": {
+              "target": "Package",
+              "version": "[3.7.101.44, )"
+            },
+            "AWSSDK.Extensions.NETCore.Setup": {
+              "target": "Package",
+              "version": "[3.7.4, )"
+            },
             "AutoMapper": {
               "target": "Package",
               "version": "[12.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.14, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[2.12.0, )"
+            },
+            "Serilog.Extensions.Autofac.DependencyInjection": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -81,14 +115,14 @@
         }
       }
     },
-    "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Application\\Security.Application.csproj": {
+    "E:\\Development\\GitHub\\TicketsAPI\\Security.Application\\Security.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Application\\Security.Application.csproj",
+        "projectUniqueName": "E:\\Development\\GitHub\\TicketsAPI\\Security.Application\\Security.Application.csproj",
         "projectName": "Security.Application",
-        "projectPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Application\\Security.Application.csproj",
+        "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Application\\Security.Application.csproj",
         "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Application\\obj\\",
+        "outputPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -103,11 +137,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Domain\\Security.Domain.csproj": {
-                "projectPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Domain\\Security.Domain.csproj"
+              "E:\\Development\\GitHub\\TicketsAPI\\Security.Domain\\Security.Domain.csproj": {
+                "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Domain\\Security.Domain.csproj"
               },
-              "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj"
+              "E:\\Development\\GitHub\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj": {
+                "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj"
               }
             }
           }
@@ -125,10 +159,6 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[12.0.0, )"
-            },
-            "Microsoft.AspNet.Mvc": {
-              "target": "Package",
-              "version": "[5.2.9, )"
             },
             "Microsoft.AspNetCore.Mvc": {
               "target": "Package",
@@ -155,14 +185,14 @@
         }
       }
     },
-    "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Domain\\Security.Domain.csproj": {
+    "E:\\Development\\GitHub\\TicketsAPI\\Security.Domain\\Security.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Domain\\Security.Domain.csproj",
+        "projectUniqueName": "E:\\Development\\GitHub\\TicketsAPI\\Security.Domain\\Security.Domain.csproj",
         "projectName": "Security.Domain",
-        "projectPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Domain\\Security.Domain.csproj",
+        "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Domain\\Security.Domain.csproj",
         "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Domain\\obj\\",
+        "outputPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -208,14 +238,14 @@
         }
       }
     },
-    "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj": {
+    "E:\\Development\\GitHub\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj",
+        "projectUniqueName": "E:\\Development\\GitHub\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj",
         "projectName": "Security.Infrastructure",
-        "projectPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj",
+        "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Infrastructure\\obj\\",
+        "outputPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -230,8 +260,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Domain\\Security.Domain.csproj": {
-                "projectPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Domain\\Security.Domain.csproj"
+              "E:\\Development\\GitHub\\TicketsAPI\\Security.Domain\\Security.Domain.csproj": {
+                "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Domain\\Security.Domain.csproj"
               }
             }
           }
@@ -246,6 +276,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AWSSDK.DynamoDBv2": {
+              "target": "Package",
+              "version": "[3.7.101.44, )"
+            },
             "AutoMapper": {
               "target": "Package",
               "version": "[12.0.0, )"
@@ -254,13 +288,23 @@
               "target": "Package",
               "version": "[2.2.2, )"
             },
-            "Microsoft.EntityFrameworkCore": {
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[6.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.10, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",

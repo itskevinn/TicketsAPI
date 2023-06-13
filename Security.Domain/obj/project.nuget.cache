@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t+okK6VovGe5l2tDhb726NREDg433Qxne6mxX2pSUiIh9riaKG/emfqTCxJBy77OCiswTRs6MXfsxS0yedjWvA==",
+  "dgSpecHash": "clfv5MU4g+2Sm7cqHy0+jcNYmTxHTOcxp2cmHIDCjxYio/+/zUXovwIv0JGr7b6WTs7mAEgBsRpOJKU0/QJWEw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Domain\\Security.Domain.csproj",
+  "projectFilePath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Domain\\Security.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

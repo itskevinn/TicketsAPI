@@ -15,7 +15,7 @@ public class TicketStatusService : BaseService<TicketStatus>, ITicketStatusServi
     private readonly IMapper _mapper;
 
     public TicketStatusService(ILogger<TicketStatusService> logger,
-        IMapper mapper, ITicketStatusRepository ticketStatusRepository) : base(mapper)
+        IMapper mapper, ITicketStatusRepository ticketStatusRepository)
     {
         _ticketStatusRepository = ticketStatusRepository ??
                                   throw new ArgumentException($"{nameof(ticketStatusRepository)} not available");

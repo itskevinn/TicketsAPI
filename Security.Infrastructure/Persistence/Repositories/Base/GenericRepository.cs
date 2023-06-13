@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.Data.Common;
+using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Security.Domain.Entity.Base;
 using Security.Domain.Ports;
@@ -19,10 +20,19 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
 
     public virtual async Task<TEntity> CreateAsync(TEntity entity)
     {
-        _ = entity ?? throw new ArgumentNullException(nameof(entity), $"{nameof(entity)} can not be null");
-        await _dbSet.AddAsync(entity);
-        await _context.SaveChangesAsync();
-        return entity;
+        try
+        {
+            _ = entity ?? throw new ArgumentNullException(nameof(entity), $"{nameof(entity)} can not be null");
+            await _dbSet.AddAsync(entity);
+            await _context.SaveChangesAsync();
+            return entity;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+     
     }
 
     public virtual void Update(TEntity entity)

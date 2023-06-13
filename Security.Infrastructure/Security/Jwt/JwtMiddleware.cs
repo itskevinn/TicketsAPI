@@ -14,7 +14,7 @@ namespace Security.Infrastructure.Security.Jwt;
 /// <summary>
 /// Middleware for handling request for controllers with Authorize notation
 /// </summary>
-/// <typeparam name="T"></typeparam>
+/// <typeparam name="T">Type of the user dto</typeparam>
 public class JwtMiddleware<T>
 {
     private readonly RequestDelegate _next;

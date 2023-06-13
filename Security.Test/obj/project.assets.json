@@ -3973,11 +3973,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Test\\Security.Test.csproj",
+      "projectUniqueName": "E:\\Development\\GitHub\\TicketsAPI\\Security.Test\\Security.Test.csproj",
       "projectName": "Security.Test",
-      "projectPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Test\\Security.Test.csproj",
+      "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Test\\Security.Test.csproj",
       "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Test\\obj\\",
+      "outputPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"

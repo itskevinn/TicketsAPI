@@ -45,16 +45,13 @@ builder.Services.AddSwaggerGen(c =>
     {
         { securityScheme, Array.Empty<string>() }
     });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tickets Api", Version = "v1" }); 
 });
 builder.Services.AddAutoMapper(Assembly.Load("Application"));
-
-builder.Services.AddHealthChecks().AddOracle(config["ConnectionStrings:local"]);
 
 builder.Services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
 
 builder.Services.AddPersistence(config).AddServices();
-
-builder.Services.AddAuthorization();
 
 var appSettingsSection = config.GetSection("AppSettings");
 builder.Services.Configure<AppSettings>(appSettingsSection);
@@ -80,14 +77,13 @@ builder.Services.AddAuthentication(x =>
             ValidateAudience = false
         };
     });
-builder.Services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tickets Api", Version = "v1" }); });
+
 builder.Services.Configure<AppSettings>(builder.Configuration);
 builder.Services.AddDbContext<TicketsContext>(opt =>
 {
-    opt.UseOracle(config.GetConnectionString("local"),
+    opt.UseSqlServer(config.GetConnectionString("local"),
         sqlOpts =>
         {
-            sqlOpts.UseOracleSQLCompatibility("11");
             sqlOpts.MigrationsHistoryTable("_MigrationHistory",
                 config.GetValue<string>("SchemaName"));
         });
@@ -122,12 +118,16 @@ if (app.Environment.IsDevelopment())
     );
 }
 
+//Apply migrations automatically
+var context = app.Services.GetRequiredService<TicketsContext>();
+if (context.Database.GetPendingMigrations().Any())
+{
+    context.Database.Migrate();
+}
 
 app.UseCors(myAllowSpecificOrigins);
 app.UseRouting();
 app.UseHttpLogging();
 app.UseHttpsRedirection();
-app.UseAuthorization();
-app.UseAuthentication();
 app.MapControllers();
 app.Run();

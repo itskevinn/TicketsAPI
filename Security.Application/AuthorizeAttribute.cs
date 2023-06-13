@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Security.Application.Exceptions;
 using Security.Application.Http.Dto;
-using MethodWithNotRolesAdmittedException = Security.Application.Exceptions.MethodWithNotRolesAdmittedException;
 
 namespace Security.Application;
 
@@ -30,7 +30,7 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
         foreach (var rol in _validRoles)
         {
             if (isAuthorized) break;
-            isAuthorized = user!.Roles.FirstOrDefault(ur => ur.RoleName == rol) != null;
+            isAuthorized = user.Roles.FirstOrDefault(ur => ur.RoleName == rol) != null;
         }
 
         if (!isAuthorized)

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Domain\\Security.Domain.csproj": {}
+    "E:\\Development\\GitHub\\TicketsAPI\\Security.Domain\\Security.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Domain\\Security.Domain.csproj": {
+    "E:\\Development\\GitHub\\TicketsAPI\\Security.Domain\\Security.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Domain\\Security.Domain.csproj",
+        "projectUniqueName": "E:\\Development\\GitHub\\TicketsAPI\\Security.Domain\\Security.Domain.csproj",
         "projectName": "Security.Domain",
-        "projectPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Domain\\Security.Domain.csproj",
+        "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Domain\\Security.Domain.csproj",
         "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kevin\\RiderProjects\\TicketsAPI\\Security.Domain\\obj\\",
+        "outputPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"

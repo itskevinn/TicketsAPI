@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Security.Domain.Entity.Base;
 using Security.Infrastructure.Core.Helpers;
 using Security.Infrastructure.Persistence.Configuration;

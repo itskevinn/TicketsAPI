@@ -1,0 +1,12 @@
+E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\bin\Debug\net6.0\TicketsGateway.Application.deps.json
+E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\bin\Debug\net6.0\TicketsGateway.Application.dll
+E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\bin\Debug\net6.0\TicketsGateway.Application.pdb
+E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\TicketsGateway.Application.csproj.AssemblyReference.cache
+E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\TicketsGateway.Application.GeneratedMSBuildEditorConfig.editorconfig
+E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\TicketsGateway.Application.AssemblyInfoInputs.cache
+E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\TicketsGateway.Application.AssemblyInfo.cs
+E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\TicketsGateway.Application.csproj.CoreCompileInputs.cache
+E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\TicketsGateway.Application.dll
+E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\refint\TicketsGateway.Application.dll
+E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\TicketsGateway.Application.pdb
+E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\ref\TicketsGateway.Application.dll

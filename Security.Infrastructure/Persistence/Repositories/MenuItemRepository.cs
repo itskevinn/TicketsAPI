@@ -8,7 +8,7 @@ namespace Security.Infrastructure.Persistence.Repositories;
 
 public class MenuItemRepository : GenericRepository<MenuItem>, IMenuItemRepository
 {
-    public MenuItemRepository(SecurityContext context) : base(context)
+    public MenuItemRepository(SecurityContext securityContext) : base(securityContext)
     {
     }
 }

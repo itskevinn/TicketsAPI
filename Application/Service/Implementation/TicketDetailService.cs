@@ -27,7 +27,7 @@ public class TicketDetailService : BaseService<TicketDetail>, ITicketDetailServi
         IHttpContextAccessor accessor, IFileManagementService fileManagementService,
         IAttachmentRepository attachmentRepository, ITicketRepository ticketRepository,
         ITicketDetailRepository ticketDetailRepository) :
-        base(accessor, mapper)
+        base(accessor)
     {
         _fileManagementService = fileManagementService;
         _logger = logger;

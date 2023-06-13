@@ -1,0 +1,55 @@
+version: '3.4'
+
+services:
+
+  tickets-api-gateway:
+    image: tickets/ticket-gateway
+    environment:
+      - SecurityUrl=http://ticket-security-api
+      - TicketManagementUrl=http://ticket-management-api
+      - ConnectionString=Server=mssqlserver;Database=TicketDB;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True
+    ports:
+      - "8083:80"
+    depends_on:
+      - ticket-security-api
+      - ticket-management-api
+    networks:
+      - database
+
+  ticket-security-api:
+    image: tickets/ticket-security-api
+    environment:
+      - ConnectionString=Server=mssqlserver;Database=TicketDB;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True
+    ports:
+      - "8081:80"
+    depends_on:
+      - sqldata
+    networks:
+      - database
+
+  ticket-management-api:
+    image: tickets/ticket-management-api
+    environment:
+      - ConnectionString=Server=mssqlserver;Database=SecurityDB;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True
+    ports:
+      - "8082:80"
+    depends_on:
+      - sqldata
+    networks:
+      - database
+
+  sqldata:
+    image: mcr.microsoft.com/mssql/server
+    container_name: mssqlserver
+    networks:
+      database:
+        aliases:
+          - mssqlserver
+    environment:
+      - MSSQL_SA_PASSWORD=Kevin.2!
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+networks:
+  database:

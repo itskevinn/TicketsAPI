@@ -1,6 +1,6 @@
 ﻿using System.Data;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using Oracle.ManagedDataAccess.Client;
 
 namespace Infrastructure.Persistence.Factory;
 
@@ -11,7 +11,7 @@ public class ConnectionFactory : IConnectionFactory
     public ConnectionFactory(IConfiguration config)
     {
         _connection =
-            new OracleConnection(config.GetConnectionString("local"));
+            new SqlConnection(config.GetConnectionString("local"));
     }
 
     public IDbConnection? Connection

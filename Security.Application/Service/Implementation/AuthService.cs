@@ -31,7 +31,8 @@ public class AuthService : BaseService<User>, IAuthService
     public async Task<Response<AuthenticateDto>> Authenticate(AuthenticateRequest authenticateRequest)
     {
         var users = await _userRepository.GetAsync();
-        var user = users.SingleOrDefault(x =>
+
+    var user = users.SingleOrDefault(x =>
             string.Equals(x.Username.ToLower(), authenticateRequest.Username.ToLower()) &&
             x.Password == Hash.GetSha256(authenticateRequest.Password));
         if (user == null)
@@ -41,5 +42,10 @@ public class AuthService : BaseService<User>, IAuthService
         var token = _jwtUtils.GenerateJwtToken(userDto.Data);
         return new Response<AuthenticateDto>(HttpStatusCode.OK, "Bienvenido", true,
             new AuthenticateDto(userDto.Data, token));
+    }
+
+    public Guid GetUserIdFromToken(string token)
+    {
+        return _jwtUtils.ValidateJwtToken(token);
     }
 }

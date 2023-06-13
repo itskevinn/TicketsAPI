@@ -1,0 +1,6 @@
+2023-05-07 15:22:19.918 -05:00 [INF] User profile is available. Using 'C:\Users\kevin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-05-07 15:22:20.849 -05:00 [INF] Now listening on: https://localhost:7053
+2023-05-07 15:22:20.896 -05:00 [INF] Now listening on: http://localhost:5039
+2023-05-07 15:22:20.915 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-07 15:22:20.924 -05:00 [INF] Hosting environment: Development
+2023-05-07 15:22:20.932 -05:00 [INF] Content root path: E:\Development\GitHub\TicketsAPI\TicketsGateway.Api\

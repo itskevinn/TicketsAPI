@@ -1,8 +1,7 @@
-﻿using Security.Application.Http.Profiles;
+﻿using AutoMapper;
+using Security.Application.Http.Profiles;
 
 namespace Security.Api.Utils.Extensions;
-
-using AutoMapper;
 
 public static class AutoMapperExtensions
 {
