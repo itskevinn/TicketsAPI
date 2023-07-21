@@ -10116,35 +10116,36 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kevin\\.nuget\\packages\\": {}
+    "C:\\Users\\AuxiliarN-PC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Development\\GitHub\\TicketsAPI\\Security.Api\\Security.Api.csproj",
+      "projectUniqueName": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Security.Api\\Security.Api.csproj",
       "projectName": "Security.Api",
-      "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Api\\Security.Api.csproj",
-      "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-      "outputPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Api\\obj\\",
+      "projectPath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Security.Api\\Security.Api.csproj",
+      "packagesPath": "C:\\Users\\AuxiliarN-PC\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Security.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\AuxiliarN-PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "E:\\Development\\GitHub\\TicketsAPI\\Security.Application\\Security.Application.csproj": {
-              "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Application\\Security.Application.csproj"
+            "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Security.Application\\Security.Application.csproj": {
+              "projectPath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Security.Application\\Security.Application.csproj"
             },
-            "E:\\Development\\GitHub\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj": {
-              "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj"
+            "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj"
             }
           }
         }
@@ -10225,7 +10226,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }

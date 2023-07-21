@@ -1,33 +1,34 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Development\\GitHub\\TicketsAPI\\TicketsGateway.Api\\TicketsGateway.Api.csproj": {}
+    "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\TicketsGateway.Api\\TicketsGateway.Api.csproj": {}
   },
   "projects": {
-    "E:\\Development\\GitHub\\TicketsAPI\\TicketsGateway.Api\\TicketsGateway.Api.csproj": {
+    "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\TicketsGateway.Api\\TicketsGateway.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Development\\GitHub\\TicketsAPI\\TicketsGateway.Api\\TicketsGateway.Api.csproj",
+        "projectUniqueName": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\TicketsGateway.Api\\TicketsGateway.Api.csproj",
         "projectName": "TicketsGateway.Api",
-        "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\TicketsGateway.Api\\TicketsGateway.Api.csproj",
-        "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "E:\\Development\\GitHub\\TicketsAPI\\TicketsGateway.Api\\obj\\",
+        "projectPath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\TicketsGateway.Api\\TicketsGateway.Api.csproj",
+        "packagesPath": "C:\\Users\\AuxiliarN-PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\TicketsGateway.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\AuxiliarN-PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\Development\\GitHub\\TicketsAPI\\TicketsGateway.Application\\TicketsGateway.Application.csproj": {
-                "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\TicketsGateway.Application\\TicketsGateway.Application.csproj"
+              "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\TicketsGateway.Application\\TicketsGateway.Application.csproj": {
+                "projectPath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\TicketsGateway.Application\\TicketsGateway.Application.csproj"
               }
             }
           }
@@ -90,21 +91,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Development\\GitHub\\TicketsAPI\\TicketsGateway.Application\\TicketsGateway.Application.csproj": {
+    "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\TicketsGateway.Application\\TicketsGateway.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Development\\GitHub\\TicketsAPI\\TicketsGateway.Application\\TicketsGateway.Application.csproj",
+        "projectUniqueName": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\TicketsGateway.Application\\TicketsGateway.Application.csproj",
         "projectName": "TicketsGateway.Application",
-        "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\TicketsGateway.Application\\TicketsGateway.Application.csproj",
-        "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "E:\\Development\\GitHub\\TicketsAPI\\TicketsGateway.Application\\obj\\",
+        "projectPath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\TicketsGateway.Application\\TicketsGateway.Application.csproj",
+        "packagesPath": "C:\\Users\\AuxiliarN-PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\TicketsGateway.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\AuxiliarN-PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -169,7 +170,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }

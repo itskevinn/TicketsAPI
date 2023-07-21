@@ -11563,19 +11563,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kevin\\.nuget\\packages\\": {}
+    "C:\\Users\\AuxiliarN-PC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Development\\GitHub\\TicketsAPI\\Test\\Test.csproj",
+      "projectUniqueName": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Test\\Test.csproj",
       "projectName": "Test",
-      "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Test\\Test.csproj",
-      "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-      "outputPath": "E:\\Development\\GitHub\\TicketsAPI\\Test\\obj\\",
+      "projectPath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Test\\Test.csproj",
+      "packagesPath": "C:\\Users\\AuxiliarN-PC\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\AuxiliarN-PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -11587,17 +11587,17 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "E:\\Development\\GitHub\\TicketsAPI\\Api\\Api.csproj": {
-              "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Api\\Api.csproj"
+            "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Api\\Api.csproj": {
+              "projectPath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Api\\Api.csproj"
             },
-            "E:\\Development\\GitHub\\TicketsAPI\\Application\\Application.csproj": {
-              "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Application\\Application.csproj"
+            "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Application\\Application.csproj"
             },
-            "E:\\Development\\GitHub\\TicketsAPI\\Domain\\Domain.csproj": {
-              "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Domain\\Domain.csproj"
+            "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Domain\\Domain.csproj"
             },
-            "E:\\Development\\GitHub\\TicketsAPI\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "E:\\Development\\GitHub\\TicketsAPI\\Infrastructure\\Infrastructure.csproj"
+            "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
@@ -11661,7 +11661,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }

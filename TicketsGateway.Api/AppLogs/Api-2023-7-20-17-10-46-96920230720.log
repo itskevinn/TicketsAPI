@@ -1,0 +1,93 @@
+2023-07-20 17:10:47.120 -05:00 [INF] User profile is available. Using 'C:\Users\AuxiliarN-PC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-07-20 17:10:47.283 -05:00 [INF] Now listening on: https://localhost:7053
+2023-07-20 17:10:47.285 -05:00 [INF] Now listening on: http://localhost:5039
+2023-07-20 17:10:47.290 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-07-20 17:10:47.292 -05:00 [INF] Hosting environment: Development
+2023-07-20 17:10:47.293 -05:00 [INF] Content root path: C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Api\
+2023-07-20 17:10:47.840 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/swagger/index.html - -
+2023-07-20 17:10:47.915 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/swagger/index.html - - - 200 - text/html;charset=utf-8 76.4236ms
+2023-07-20 17:10:48.073 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - -
+2023-07-20 17:10:48.169 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 96.9298ms
+2023-07-20 17:14:34.412 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - -
+2023-07-20 17:14:34.437 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: GET
+Scheme: https
+PathBase: 
+Path: /api/v1/User/FindAll
+Accept: text/plain
+Host: localhost:7053
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.82
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br, zsdch
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Referer: [Redacted]
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2023-07-20 17:14:34.441 -05:00 [INF] Executing endpoint 'TicketsGateway.Api.Controllers.UserController.GetAll (TicketsGateway.Api)'
+2023-07-20 17:14:34.454 -05:00 [INF] Route matched with {action = "GetAll", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[TicketsGateway.Application.Base.Response`1[System.Collections.Generic.IEnumerable`1[TicketsGateway.Application.Security.Http.Dto.UserDto]]] GetAll() on controller TicketsGateway.Api.Controllers.UserController (TicketsGateway.Api).
+2023-07-20 17:14:34.457 -05:00 [INF] Authorization failed for the request at filter 'TicketsGateway.Application.Security.AuthorizeAttribute'.
+2023-07-20 17:14:34.463 -05:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2023-07-20 17:14:34.473 -05:00 [INF] Executed action TicketsGateway.Api.Controllers.UserController.GetAll (TicketsGateway.Api) in 12.5958ms
+2023-07-20 17:14:34.476 -05:00 [INF] Executed endpoint 'TicketsGateway.Api.Controllers.UserController.GetAll (TicketsGateway.Api)'
+2023-07-20 17:14:34.477 -05:00 [INF] Response:
+StatusCode: 401
+Content-Type: application/problem+json; charset=utf-8
+Date: Thu, 20 Jul 2023 22:14:34 GMT
+Server: Kestrel
+2023-07-20 17:14:34.478 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - - - 401 - application/problem+json;+charset=utf-8 66.5846ms
+2023-07-20 17:14:46.143 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7053/api/v1/Auth/Authenticate application/json 48
+2023-07-20 17:14:46.145 -05:00 [INF] CORS policy execution successful.
+2023-07-20 17:14:46.147 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/v1/Auth/Authenticate
+Accept: text/plain
+Host: localhost:7053
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.82
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Content-Type: application/json
+Origin: [Redacted]
+Referer: [Redacted]
+Content-Length: 48
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2023-07-20 17:14:46.149 -05:00 [INF] Executing endpoint 'TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api)'
+2023-07-20 17:14:46.156 -05:00 [INF] Route matched with {action = "Authenticate", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[TicketsGateway.Application.Base.Response`1[TicketsGateway.Application.Security.Http.Dto.AuthenticateDto]] Authenticate(TicketsGateway.Application.Security.Http.Request.AuthenticateRequest) on controller TicketsGateway.Api.Controllers.AuthController (TicketsGateway.Api).
+2023-07-20 17:14:46.233 -05:00 [INF] Executing action method TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api) - Validation state: "Valid"
+2023-07-20 17:14:47.207 -05:00 [INF] Executed action method TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 969.5639ms.
+2023-07-20 17:14:47.214 -05:00 [INF] Executing ObjectResult, writing value of type 'TicketsGateway.Application.Base.Response`1[[TicketsGateway.Application.Security.Http.Dto.AuthenticateDto, TicketsGateway.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-07-20 17:14:47.226 -05:00 [INF] Executed action TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api) in 1068.1321ms
+2023-07-20 17:14:47.227 -05:00 [INF] Executed endpoint 'TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api)'
+2023-07-20 17:14:47.229 -05:00 [INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Date: Thu, 20 Jul 2023 22:14:47 GMT
+Server: Kestrel
+Access-Control-Allow-Origin: [Redacted]
+2023-07-20 17:14:47.233 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7053/api/v1/Auth/Authenticate application/json 48 - 200 - application/json;+charset=utf-8 1089.8190ms
+2023-07-20 17:15:01.369 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - -
+2023-07-20 17:15:01.597 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+TicketsGateway.Api.Exceptions.AppException: IDX10503: Signature validation failed. Token does not have a kid. Keys tried: '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'. 
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.AttachUserToContext(HttpContext context, String token) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 60
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.Invoke(HttpContext context) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 32
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2023-07-20 17:15:01.603 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - - - 500 - text/plain;+charset=utf-8 234.7269ms
