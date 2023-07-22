@@ -1,4 +1,4 @@
-﻿namespace Security.Infrastructure.Security.Jwt;
+﻿namespace TicketsGateway.Application.Security.Jwt;
 
 public interface IJwtUtils<in T>
 {

@@ -1,5 +1,6 @@
 using Application.Base;
 using Application.Http.Dto;
+using Application.Security;
 using Application.Service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +17,7 @@ public class TicketStatusController : Controller
         _ticketStatusService = ticketStatusService;
     }
 
+    [Authorize(new[] { "Admin", "User" })]
     [HttpGet("GetAll")]
     public async Task<Response<IEnumerable<TicketStatusDto>>> GetAll()
     {

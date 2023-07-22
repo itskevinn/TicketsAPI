@@ -1,0 +1,95 @@
+2023-07-22 13:13:09.926 -05:00 [INF] User profile is available. Using 'C:\Users\AuxiliarN-PC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-07-22 13:13:10.059 -05:00 [INF] Now listening on: https://localhost:7053
+2023-07-22 13:13:10.060 -05:00 [INF] Now listening on: http://localhost:5039
+2023-07-22 13:13:10.064 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-07-22 13:13:10.064 -05:00 [INF] Hosting environment: Development
+2023-07-22 13:13:10.065 -05:00 [INF] Content root path: C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Api\
+2023-07-22 13:13:10.417 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/swagger/index.html - -
+2023-07-22 13:13:10.508 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/swagger/index.html - - - 200 - text/html;charset=utf-8 93.9537ms
+2023-07-22 13:13:10.684 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - -
+2023-07-22 13:13:10.801 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 116.3769ms
+2023-07-22 13:14:18.384 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7053/api/v1/Auth/Authenticate application/json 48
+2023-07-22 13:14:18.390 -05:00 [INF] CORS policy execution successful.
+2023-07-22 13:14:18.412 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/v1/Auth/Authenticate
+Accept: text/plain
+Host: localhost:7053
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.82
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Content-Type: application/json
+Origin: [Redacted]
+Referer: [Redacted]
+Content-Length: 48
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2023-07-22 13:14:18.416 -05:00 [INF] Executing endpoint 'TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api)'
+2023-07-22 13:14:18.441 -05:00 [INF] Route matched with {action = "Authenticate", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[TicketsGateway.Application.Base.Response`1[TicketsGateway.Application.Security.Http.Dto.AuthenticateDto]] Authenticate(TicketsGateway.Application.Security.Http.Request.AuthenticateRequest) on controller TicketsGateway.Api.Controllers.AuthController (TicketsGateway.Api).
+2023-07-22 13:14:22.778 -05:00 [ERR] Ocurrió un error No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión. (localhost:7193)
+2023-07-22 13:14:22.791 -05:00 [INF] Executing ObjectResult, writing value of type 'TicketsGateway.Application.Base.Response`1[[TicketsGateway.Application.Security.Http.Dto.AuthenticateDto, TicketsGateway.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-07-22 13:14:22.805 -05:00 [INF] Executed action TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api) in 4355.7665ms
+2023-07-22 13:14:22.810 -05:00 [INF] Executed endpoint 'TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api)'
+2023-07-22 13:14:22.813 -05:00 [INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Date: Sat, 22 Jul 2023 18:14:22 GMT
+Server: Kestrel
+Access-Control-Allow-Origin: [Redacted]
+2023-07-22 13:14:22.816 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7053/api/v1/Auth/Authenticate application/json 48 - 200 - application/json;+charset=utf-8 4431.6168ms
+2023-07-22 13:16:13.545 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7053/api/v1/Auth/Authenticate application/json 48
+2023-07-22 13:16:13.546 -05:00 [INF] CORS policy execution successful.
+2023-07-22 13:16:13.549 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/v1/Auth/Authenticate
+Accept: text/plain
+Host: localhost:7053
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.82
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Content-Type: application/json
+Origin: [Redacted]
+Referer: [Redacted]
+Content-Length: 48
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2023-07-22 13:16:13.550 -05:00 [INF] Executing endpoint 'TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api)'
+2023-07-22 13:16:13.552 -05:00 [INF] Route matched with {action = "Authenticate", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[TicketsGateway.Application.Base.Response`1[TicketsGateway.Application.Security.Http.Dto.AuthenticateDto]] Authenticate(TicketsGateway.Application.Security.Http.Request.AuthenticateRequest) on controller TicketsGateway.Api.Controllers.AuthController (TicketsGateway.Api).
+2023-07-22 13:16:13.568 -05:00 [INF] Executing action method TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api) - Validation state: "Valid"
+2023-07-22 13:16:14.741 -05:00 [INF] Executed action method TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 1165.1753ms.
+2023-07-22 13:16:14.744 -05:00 [INF] Executing ObjectResult, writing value of type 'TicketsGateway.Application.Base.Response`1[[TicketsGateway.Application.Security.Http.Dto.AuthenticateDto, TicketsGateway.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-07-22 13:16:14.756 -05:00 [INF] Executed action TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api) in 1201.9424ms
+2023-07-22 13:16:14.757 -05:00 [INF] Executed endpoint 'TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api)'
+2023-07-22 13:16:14.758 -05:00 [INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Date: Sat, 22 Jul 2023 18:16:14 GMT
+Server: Kestrel
+Access-Control-Allow-Origin: [Redacted]
+2023-07-22 13:16:14.759 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7053/api/v1/Auth/Authenticate application/json 48 - 200 - application/json;+charset=utf-8 1213.9296ms
+2023-07-22 13:17:35.201 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - -
+2023-07-22 13:17:35.418 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+TicketsGateway.Api.Exceptions.AppException: GET "https://localhost:7193/api/v1/User/FindById/4a77cee4-5cfa-4c90-b41a-08da36159120" failed because response status code does not indicate success: 401 (Unauthorized).
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.AttachUserToContext(HttpContext context, String token) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 60
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.Invoke(HttpContext context) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 32
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2023-07-22 13:17:35.424 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - - - 500 - text/plain;+charset=utf-8 222.6487ms
+2023-07-22 13:24:52.232 -05:00 [INF] Application is shutting down...

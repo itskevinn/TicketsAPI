@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Security.Application.Exceptions;
+namespace TicketsGateway.Application.Exceptions;
 /// <summary>
 /// Excepción cuando ocurre un conflicto con la base de datos
 /// </summary>

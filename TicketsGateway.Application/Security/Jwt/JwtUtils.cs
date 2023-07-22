@@ -3,7 +3,6 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Security.Infrastructure.Security.Jwt;
 using TicketsGateway.Application.Core.Helpers;
 
 namespace TicketsGateway.Application.Security.Jwt;

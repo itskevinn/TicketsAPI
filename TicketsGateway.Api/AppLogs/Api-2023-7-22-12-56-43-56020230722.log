@@ -1,0 +1,93 @@
+2023-07-22 12:56:43.811 -05:00 [INF] User profile is available. Using 'C:\Users\AuxiliarN-PC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-07-22 12:56:44.086 -05:00 [INF] Now listening on: https://localhost:7053
+2023-07-22 12:56:44.091 -05:00 [INF] Now listening on: http://localhost:5039
+2023-07-22 12:56:44.098 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-07-22 12:56:44.101 -05:00 [INF] Hosting environment: Development
+2023-07-22 12:56:44.107 -05:00 [INF] Content root path: C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Api\
+2023-07-22 12:56:44.705 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/swagger/index.html - -
+2023-07-22 12:56:44.797 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/swagger/index.html - - - 200 - text/html;charset=utf-8 94.5511ms
+2023-07-22 12:56:44.970 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - -
+2023-07-22 12:56:45.116 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 145.7063ms
+2023-07-22 12:56:47.039 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - -
+2023-07-22 12:56:47.046 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 6.8082ms
+2023-07-22 12:56:57.408 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7053/api/v1/Auth/Authenticate application/json 48
+2023-07-22 12:56:57.412 -05:00 [INF] CORS policy execution successful.
+2023-07-22 12:56:57.435 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: POST
+Scheme: https
+PathBase: 
+Path: /api/v1/Auth/Authenticate
+Accept: text/plain
+Host: localhost:7053
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.82
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Content-Type: application/json
+Origin: [Redacted]
+Referer: [Redacted]
+Content-Length: 48
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2023-07-22 12:56:57.438 -05:00 [INF] Executing endpoint 'TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api)'
+2023-07-22 12:56:57.460 -05:00 [INF] Route matched with {action = "Authenticate", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[TicketsGateway.Application.Base.Response`1[TicketsGateway.Application.Security.Http.Dto.AuthenticateDto]] Authenticate(TicketsGateway.Application.Security.Http.Request.AuthenticateRequest) on controller TicketsGateway.Api.Controllers.AuthController (TicketsGateway.Api).
+2023-07-22 12:56:59.089 -05:00 [INF] Executing ObjectResult, writing value of type 'TicketsGateway.Application.Base.Response`1[[TicketsGateway.Application.Security.Http.Dto.AuthenticateDto, TicketsGateway.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-07-22 12:56:59.107 -05:00 [INF] Executed action TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api) in 1640.5081ms
+2023-07-22 12:56:59.111 -05:00 [INF] Executed endpoint 'TicketsGateway.Api.Controllers.AuthController.Authenticate (TicketsGateway.Api)'
+2023-07-22 12:56:59.112 -05:00 [INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Date: Sat, 22 Jul 2023 17:56:58 GMT
+Server: Kestrel
+Access-Control-Allow-Origin: [Redacted]
+2023-07-22 12:56:59.114 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7053/api/v1/Auth/Authenticate application/json 48 - 200 - application/json;+charset=utf-8 1706.9425ms
+2023-07-22 12:57:18.873 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - -
+2023-07-22 12:57:22.066 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+TicketsGateway.Api.Exceptions.AppException: Host desconocido. (api:80)
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.AttachUserToContext(HttpContext context, String token) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 60
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.Invoke(HttpContext context) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 32
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2023-07-22 12:57:22.077 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - - - 500 - text/plain;+charset=utf-8 3203.6576ms
+2023-07-22 12:57:46.447 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - -
+2023-07-22 12:57:49.199 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+TicketsGateway.Api.Exceptions.AppException: Host desconocido. (api:80)
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.AttachUserToContext(HttpContext context, String token) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 60
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.Invoke(HttpContext context) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 32
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2023-07-22 12:57:49.202 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - - - 500 - text/plain;+charset=utf-8 2754.9972ms
+2023-07-22 12:58:11.530 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - -
+2023-07-22 12:58:14.330 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+TicketsGateway.Api.Exceptions.AppException: Host desconocido. (api:80)
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.AttachUserToContext(HttpContext context, String token) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 60
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.Invoke(HttpContext context) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 32
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2023-07-22 12:58:14.332 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - - - 500 - text/plain;+charset=utf-8 2802.1272ms
+2023-07-22 12:59:19.757 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - -
+2023-07-22 12:59:34.650 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+TicketsGateway.Api.Exceptions.AppException: Host desconocido. (api:80)
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.AttachUserToContext(HttpContext context, String token) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 60
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.Invoke(HttpContext context) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 32
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2023-07-22 12:59:34.653 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - - - 500 - text/plain;+charset=utf-8 14896.9744ms
+2023-07-22 12:59:36.191 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - -
+2023-07-22 13:03:53.738 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+TicketsGateway.Api.Exceptions.AppException: Host desconocido. (api:80)
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.AttachUserToContext(HttpContext context, String token) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 60
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.Invoke(HttpContext context) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 32
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2023-07-22 13:03:53.741 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - - - 500 - text/plain;+charset=utf-8 257549.9501ms

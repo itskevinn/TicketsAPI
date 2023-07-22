@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace TicketsGateway.Api.Exceptions;
+namespace TicketsGateway.Application.Exceptions;
 
 [Serializable]
 public class AppException : Exception

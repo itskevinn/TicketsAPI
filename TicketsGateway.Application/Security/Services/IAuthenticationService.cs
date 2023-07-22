@@ -1,7 +1,7 @@
 using TicketsGateway.Application.Base;
+using TicketsGateway.Application.Core.Interface;
 using TicketsGateway.Application.Security.Http.Dto;
 using TicketsGateway.Application.Security.Http.Request;
-using TicketsGateway.Infrastructure.Core.Interface;
 
 namespace TicketsGateway.Application.Security.Services;
 

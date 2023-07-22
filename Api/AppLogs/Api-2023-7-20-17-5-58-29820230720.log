@@ -1,0 +1,16 @@
+2023-07-20 17:05:58.942 -05:00 [INF] Entity Framework Core 6.0.10 initialized 'TicketsContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.10' with options: MigrationsHistoryTable=_MigrationHistory 
+2023-07-20 17:05:59.289 -05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-07-20 17:05:59.311 -05:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[_MigrationHistory]');
+2023-07-20 17:05:59.331 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [_MigrationHistory]
+ORDER BY [MigrationId];
+2023-07-20 17:05:59.373 -05:00 [INF] User profile is available. Using 'C:\Users\AuxiliarN-PC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-07-20 17:05:59.422 -05:00 [INF] Now listening on: https://localhost:7055
+2023-07-20 17:05:59.423 -05:00 [INF] Now listening on: http://localhost:5286
+2023-07-20 17:05:59.426 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-07-20 17:05:59.427 -05:00 [INF] Hosting environment: Development
+2023-07-20 17:05:59.427 -05:00 [INF] Content root path: C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\Api\
+2023-07-20 17:08:16.441 -05:00 [INF] Application is shutting down...

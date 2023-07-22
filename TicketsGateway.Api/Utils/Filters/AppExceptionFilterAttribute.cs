@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using TicketsGateway.Api.Exceptions;
+using TicketsGateway.Application.Exceptions;
 
 namespace TicketsGateway.Api.Utils.Filters;
 

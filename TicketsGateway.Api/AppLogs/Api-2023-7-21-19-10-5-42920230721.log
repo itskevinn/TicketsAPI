@@ -1,0 +1,13 @@
+2023-07-21 19:10:05.543 -05:00 [INF] User profile is available. Using 'C:\Users\AuxiliarN-PC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-07-21 19:10:05.648 -05:00 [INF] Now listening on: https://localhost:7053
+2023-07-21 19:10:05.649 -05:00 [INF] Now listening on: http://localhost:5039
+2023-07-21 19:10:05.653 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-07-21 19:10:05.653 -05:00 [INF] Hosting environment: Development
+2023-07-21 19:10:05.654 -05:00 [INF] Content root path: C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Api\
+2023-07-21 19:10:06.059 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/swagger/index.html - -
+2023-07-21 19:10:06.182 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/swagger/index.html - - - 200 - text/html;charset=utf-8 125.9750ms
+2023-07-21 19:10:06.269 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - -
+2023-07-21 19:10:06.402 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 133.0597ms
+2023-07-21 19:10:06.446 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - -
+2023-07-21 19:10:06.454 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 8.0953ms
+2023-07-21 19:10:14.486 -05:00 [INF] Application is shutting down...

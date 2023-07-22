@@ -1,0 +1,28 @@
+2023-07-21 19:38:19.332 -05:00 [INF] User profile is available. Using 'C:\Users\AuxiliarN-PC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-07-21 19:38:19.510 -05:00 [INF] Now listening on: https://localhost:7053
+2023-07-21 19:38:19.513 -05:00 [INF] Now listening on: http://localhost:5039
+2023-07-21 19:38:19.518 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-07-21 19:38:19.520 -05:00 [INF] Hosting environment: Development
+2023-07-21 19:38:19.524 -05:00 [INF] Content root path: C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Api\
+2023-07-21 19:38:19.820 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/swagger/index.html - -
+2023-07-21 19:38:19.889 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/swagger/index.html - - - 200 - text/html;charset=utf-8 70.2651ms
+2023-07-21 19:38:20.030 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - -
+2023-07-21 19:38:20.127 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 96.7617ms
+2023-07-21 19:39:16.851 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - -
+2023-07-21 19:39:45.761 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+TicketsGateway.Api.Exceptions.AppException: Host desconocido. (api:80)
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.AttachUserToContext(HttpContext context, String token) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 60
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.Invoke(HttpContext context) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 32
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2023-07-21 19:39:45.768 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - - - 500 - text/plain;+charset=utf-8 28916.4120ms
+2023-07-21 19:39:49.812 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - -
+2023-07-21 19:39:52.597 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+TicketsGateway.Api.Exceptions.AppException: Host desconocido. (api:80)
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.AttachUserToContext(HttpContext context, String token) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 60
+   at TicketsGateway.Application.Security.Jwt.SecurityMiddleware.Invoke(HttpContext context) in C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\Security\Jwt\SecurityMiddleware.cs:line 32
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2023-07-21 19:39:52.601 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - - - 500 - text/plain;+charset=utf-8 2788.2710ms

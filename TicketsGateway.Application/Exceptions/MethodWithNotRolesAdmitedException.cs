@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Security.Application.Exceptions;
+namespace TicketsGateway.Application.Exceptions;
 [Serializable]
 public class MethodWithNotRolesAdmittedException : Exception
 {

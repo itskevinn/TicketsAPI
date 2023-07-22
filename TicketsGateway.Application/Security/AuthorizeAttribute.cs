@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Security.Application.Exceptions;
+using TicketsGateway.Application.Exceptions;
 using TicketsGateway.Application.Security.Http.Dto;
 
 namespace TicketsGateway.Application.Security;

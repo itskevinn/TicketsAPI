@@ -22,3 +22,15 @@ E:\Development\GitHub\TicketsAPI\Security.Domain\obj\Debug\net6.0\Security.Domai
 E:\Development\GitHub\TicketsAPI\Security.Domain\obj\Debug\net6.0\refint\Security.Domain.dll
 E:\Development\GitHub\TicketsAPI\Security.Domain\obj\Debug\net6.0\Security.Domain.pdb
 E:\Development\GitHub\TicketsAPI\Security.Domain\obj\Debug\net6.0\ref\Security.Domain.dll
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\Security.Domain\bin\Debug\net6.0\Security.Domain.deps.json
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\Security.Domain\bin\Debug\net6.0\Security.Domain.dll
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\Security.Domain\bin\Debug\net6.0\Security.Domain.pdb
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\Security.Domain\obj\Debug\net6.0\Security.Domain.csproj.AssemblyReference.cache
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\Security.Domain\obj\Debug\net6.0\Security.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\Security.Domain\obj\Debug\net6.0\Security.Domain.AssemblyInfoInputs.cache
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\Security.Domain\obj\Debug\net6.0\Security.Domain.AssemblyInfo.cs
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\Security.Domain\obj\Debug\net6.0\Security.Domain.csproj.CoreCompileInputs.cache
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\Security.Domain\obj\Debug\net6.0\Security.Domain.dll
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\Security.Domain\obj\Debug\net6.0\refint\Security.Domain.dll
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\Security.Domain\obj\Debug\net6.0\Security.Domain.pdb
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\Security.Domain\obj\Debug\net6.0\ref\Security.Domain.dll

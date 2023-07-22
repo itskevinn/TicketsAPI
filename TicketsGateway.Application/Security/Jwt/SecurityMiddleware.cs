@@ -3,8 +3,8 @@ using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using TicketsGateway.Api.Exceptions;
 using TicketsGateway.Application.Core.Helpers;
+using TicketsGateway.Application.Exceptions;
 using TicketsGateway.Application.RestEaseClients;
 using TicketsGateway.Application.Security.Http.Dto;
 
@@ -52,7 +52,7 @@ public class SecurityMiddleware
             var jwtToken = (JwtSecurityToken)validatedToken;
             Guid.TryParse(jwtToken.Claims.First(x => x.Type.ToLower() == "id").Value, out var userId);
             if (userId == Guid.Empty) throw new InvalidOperationException("id must be in the claims");
-            var userDto = await GetUserInfo(userId);
+            var userDto = await GetUserInfo(userId, token);
             context.Items["User"] = userDto;
         }
         catch (Exception e)
@@ -61,10 +61,10 @@ public class SecurityMiddleware
         }
     }
 
-    private static async Task<UserDto> GetUserInfo(Guid userId)
+    private async Task<UserDto> GetUserInfo(Guid userId, string token)
     {
-        var userRestEaseClient = RestEase.RestClient.For<IUserRestEaseClient>();
-        var user = await userRestEaseClient.GetById(userId);
+        var userRestEaseClient = RestEase.RestClient.For<IUserRestEaseClient>(_appSettings.MicroservicesUrls.SecurityUrl);
+        var user = await userRestEaseClient.GetById(userId, token);
         return user.Data;
     }
 }

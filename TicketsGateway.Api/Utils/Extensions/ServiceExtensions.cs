@@ -1,4 +1,4 @@
-﻿using TicketsGateway.Infrastructure.Core.Interface;
+﻿using TicketsGateway.Application.Core.Interface;
 
 namespace TicketsGateway.Api.Utils.Extensions;
 

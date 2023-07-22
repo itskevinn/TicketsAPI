@@ -22,20 +22,20 @@ public class UserController : Controller
     [HttpGet("FindAll")]
     public async Task<Response<IEnumerable<UserDto>>> GetAll()
     {
-        return await _userService.GetAll();
+        return await _userService.GetAll(HttpContext.Request.Headers["Authorization"]);
     }
 
     [Authorize(new[] { "Admin" })]
     [HttpGet("FindById/{id:guid}")]
     public async Task<Response<UserDto>> GetById(Guid id)
     {
-        return await _userService.GetById(id);
+        return await _userService.GetById(id, HttpContext.Request.Headers["Authorization"]);
     }
 
     [Authorize(new[] { "Admin" })]
     [HttpPost("Create")]
-    public async Task<Response<UserDto>> Save(UserRequest userRequest)
+    public async Task<Response<UserDto>> Save([FromBody] UserRequest userRequest)
     {
-        return await _userService.Save(userRequest);
+        return await _userService.Save(userRequest, HttpContext.Request.Headers["Authorization"]);
     }
 }

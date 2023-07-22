@@ -10,3 +10,15 @@ E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\Tic
 E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\refint\TicketsGateway.Application.dll
 E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\TicketsGateway.Application.pdb
 E:\Development\GitHub\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\ref\TicketsGateway.Application.dll
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\bin\Debug\net6.0\TicketsGateway.Application.deps.json
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\bin\Debug\net6.0\TicketsGateway.Application.dll
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\bin\Debug\net6.0\TicketsGateway.Application.pdb
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\TicketsGateway.Application.csproj.AssemblyReference.cache
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\TicketsGateway.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\TicketsGateway.Application.AssemblyInfoInputs.cache
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\TicketsGateway.Application.AssemblyInfo.cs
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\TicketsGateway.Application.csproj.CoreCompileInputs.cache
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\TicketsGateway.Application.dll
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\refint\TicketsGateway.Application.dll
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\TicketsGateway.Application.pdb
+C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Application\obj\Debug\net6.0\ref\TicketsGateway.Application.dll

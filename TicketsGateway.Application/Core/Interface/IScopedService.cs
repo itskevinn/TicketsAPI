@@ -1,4 +1,4 @@
-﻿namespace TicketsGateway.Infrastructure.Core.Interface;
+﻿namespace TicketsGateway.Application.Core.Interface;
 
 public interface IScopedService
 {

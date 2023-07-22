@@ -1,0 +1,95 @@
+2023-07-22 13:51:17.646 -05:00 [INF] User profile is available. Using 'C:\Users\AuxiliarN-PC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-07-22 13:51:17.847 -05:00 [INF] Now listening on: https://localhost:7053
+2023-07-22 13:51:17.849 -05:00 [INF] Now listening on: http://localhost:5039
+2023-07-22 13:51:17.856 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-07-22 13:51:17.859 -05:00 [INF] Hosting environment: Development
+2023-07-22 13:51:17.861 -05:00 [INF] Content root path: C:\Users\AuxiliarN-PC\RiderProjects\TicketsAPI\TicketsGateway.Api\
+2023-07-22 13:51:18.114 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/swagger/index.html - -
+2023-07-22 13:51:18.203 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/swagger/index.html - - - 200 - text/html;charset=utf-8 90.7304ms
+2023-07-22 13:51:18.382 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - -
+2023-07-22 13:51:18.486 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 103.8563ms
+2023-07-22 13:52:14.076 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/api/v1/User/FindById/3fa85f64-5717-4562-b3fc-2c963f66afa6 - -
+2023-07-22 13:52:14.652 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: GET
+Scheme: https
+PathBase: 
+Path: /api/v1/User/FindById/3fa85f64-5717-4562-b3fc-2c963f66afa6
+Accept: text/plain
+Host: localhost:7053
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.82
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br, zsdch
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Authorization: [Redacted]
+Referer: [Redacted]
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2023-07-22 13:52:14.655 -05:00 [INF] Executing endpoint 'TicketsGateway.Api.Controllers.UserController.GetById (TicketsGateway.Api)'
+2023-07-22 13:52:14.672 -05:00 [INF] Route matched with {action = "GetById", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[TicketsGateway.Application.Base.Response`1[TicketsGateway.Application.Security.Http.Dto.UserDto]] GetById(System.Guid) on controller TicketsGateway.Api.Controllers.UserController (TicketsGateway.Api).
+2023-07-22 13:52:20.534 -05:00 [INF] Executing ObjectResult, writing value of type 'null'.
+2023-07-22 13:52:20.538 -05:00 [INF] Executed action TicketsGateway.Api.Controllers.UserController.GetById (TicketsGateway.Api) in 5861.9647ms
+2023-07-22 13:52:20.542 -05:00 [INF] Executed endpoint 'TicketsGateway.Api.Controllers.UserController.GetById (TicketsGateway.Api)'
+2023-07-22 13:52:20.544 -05:00 [INF] Response:
+StatusCode: 204
+Content-Length: 0
+2023-07-22 13:52:20.546 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/api/v1/User/FindById/3fa85f64-5717-4562-b3fc-2c963f66afa6 - - - 204 0 - 6470.3599ms
+2023-07-22 13:53:20.386 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - -
+2023-07-22 13:53:20.486 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: GET
+Scheme: https
+PathBase: 
+Path: /api/v1/User/FindAll
+Accept: text/plain
+Host: localhost:7053
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.82
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br, zsdch
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Authorization: [Redacted]
+Referer: [Redacted]
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2023-07-22 13:53:20.487 -05:00 [INF] Executing endpoint 'TicketsGateway.Api.Controllers.UserController.GetAll (TicketsGateway.Api)'
+2023-07-22 13:53:20.490 -05:00 [INF] Route matched with {action = "GetAll", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[TicketsGateway.Application.Base.Response`1[System.Collections.Generic.IEnumerable`1[TicketsGateway.Application.Security.Http.Dto.UserDto]]] GetAll() on controller TicketsGateway.Api.Controllers.UserController (TicketsGateway.Api).
+2023-07-22 13:53:20.541 -05:00 [INF] Executing ObjectResult, writing value of type 'TicketsGateway.Application.Base.Response`1[[System.Collections.Generic.IEnumerable`1[[TicketsGateway.Application.Security.Http.Dto.UserDto, TicketsGateway.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-07-22 13:53:20.551 -05:00 [INF] Executed action TicketsGateway.Api.Controllers.UserController.GetAll (TicketsGateway.Api) in 60.1075ms
+2023-07-22 13:53:20.553 -05:00 [INF] Executed endpoint 'TicketsGateway.Api.Controllers.UserController.GetAll (TicketsGateway.Api)'
+2023-07-22 13:53:20.553 -05:00 [INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Date: Sat, 22 Jul 2023 18:53:19 GMT
+Server: Kestrel
+2023-07-22 13:53:20.555 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7053/api/v1/User/FindAll - - - 200 - application/json;+charset=utf-8 168.6133ms
+2023-07-22 13:53:30.228 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7053/api/v1/User/FindById/c82a18c6-e473-4976-5f2e-08da35e4eb6f - -
+2023-07-22 13:53:30.276 -05:00 [INF] Request:
+Protocol: HTTP/2
+Method: GET
+Scheme: https
+PathBase: 
+Path: /api/v1/User/FindById/c82a18c6-e473-4976-5f2e-08da35e4eb6f
+Accept: text/plain
+Host: localhost:7053
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.82
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br, zsdch
+Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+Authorization: [Redacted]
+Referer: [Redacted]
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+2023-07-22 13:53:30.277 -05:00 [INF] Executing endpoint 'TicketsGateway.Api.Controllers.UserController.GetById (TicketsGateway.Api)'
+2023-07-22 13:53:30.278 -05:00 [INF] Route matched with {action = "GetById", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[TicketsGateway.Application.Base.Response`1[TicketsGateway.Application.Security.Http.Dto.UserDto]] GetById(System.Guid) on controller TicketsGateway.Api.Controllers.UserController (TicketsGateway.Api).
