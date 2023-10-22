@@ -1,11 +1,12 @@
 using System.Net;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TicketsGateway.Application.Base;
 using TicketsGateway.Application.Core.Helpers;
-using TicketsGateway.Application.RestEaseClients;
 using TicketsGateway.Application.Security.Http.Dto;
 using TicketsGateway.Application.Security.Http.Request;
+using TicketsGateway.Application.Security.RestEaseClients;
 
 namespace TicketsGateway.Application.Security.Services.Implementation;
 
@@ -14,7 +15,8 @@ public class AuthenticationService : BaseService, IAuthenticationService
     private readonly IAuthenticationRestEaseClient _authenticationRestClient;
     private readonly ILogger<AuthenticationService> _logger;
 
-    public AuthenticationService(IOptions<AppSettings> appSettings, ILogger<AuthenticationService> logger)
+    public AuthenticationService(IOptions<AppSettings> appSettings, ILogger<AuthenticationService> logger,
+        IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
     {
         _logger = logger;
         _authenticationRestClient =

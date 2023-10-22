@@ -5,8 +5,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using TicketsGateway.Application.Core.Helpers;
 using TicketsGateway.Application.Exceptions;
-using TicketsGateway.Application.RestEaseClients;
 using TicketsGateway.Application.Security.Http.Dto;
+using TicketsGateway.Application.Security.RestEaseClients;
 
 namespace TicketsGateway.Application.Security.Jwt;
 

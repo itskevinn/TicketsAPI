@@ -60,11 +60,4 @@ public class TicketController : Controller
     {
         return await _ticketService.UpdateStatusAsync(newStatus, code);
     }
-
-    [Authorize(new[] { "Admin", "User" })]
-    [HttpGet("GetAllAvailableUsers")]
-    public Response<IEnumerable<UserTicketDto>> GetAllUsers()
-    {
-        return _ticketService.GetAllAvailableUsersAsync();
-    }
 }

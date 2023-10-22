@@ -13,7 +13,7 @@ public static class AutoMapperExtensions
             {
                 new MenuItemProfile(),
                 new RoleProfile(),
-                new UserProfile(),
+                new UserProfile()
             };
             m.AddProfiles(profiles);
         });

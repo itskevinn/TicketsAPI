@@ -1,6 +1,0 @@
-2022-10-21 13:14:10.809 -05:00 [INF] User profile is available. Using 'C:\Users\WINDOWS\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-2022-10-21 13:14:11.068 -05:00 [INF] Now listening on: http://localhost:5000
-2022-10-21 13:14:11.071 -05:00 [INF] Now listening on: https://localhost:5001
-2022-10-21 13:14:11.078 -05:00 [INF] Application started. Press Ctrl+C to shut down.
-2022-10-21 13:14:11.082 -05:00 [INF] Hosting environment: Production
-2022-10-21 13:14:11.085 -05:00 [INF] Content root path: C:\Users\WINDOWS\RiderProjects\TicketsAPI\Api\

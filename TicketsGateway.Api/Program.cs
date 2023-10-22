@@ -76,7 +76,7 @@ Log.Logger = new LoggerConfiguration().Enrich.FromLogContext()
         $"{DateTime.Now.Second}-{DateTime.Now.Millisecond}.log",
         rollingInterval: RollingInterval.Day)
     .CreateLogger();
-
+builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

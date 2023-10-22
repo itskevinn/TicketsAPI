@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+4KbGYU/eclJLYKM62wrBs/tDGLj6RsI547qH56gZYT4eIEU8BJMg/n4DaKQFhHaNCZ++u6IzTXj5NBdbRpApQ==",
+  "dgSpecHash": "dOEVIdfz6O18fKU6J72oBhEaGfccbC1BnHV2oO9p5OpTo3MOt/n3iJsbBphftmYpdnxGHD0NAIOv+161XjlB1g==",
   "success": true,
   "projectFilePath": "C:\\Users\\AuxiliarN-PC\\RiderProjects\\TicketsAPI\\Security.Infrastructure\\Security.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -45,6 +45,7 @@
     "C:\\Users\\AuxiliarN-PC\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\AuxiliarN-PC\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\AuxiliarN-PC\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\AuxiliarN-PC\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Users\\AuxiliarN-PC\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\AuxiliarN-PC\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\AuxiliarN-PC\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",

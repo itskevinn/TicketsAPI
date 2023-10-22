@@ -7,15 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
 using System.Reflection;
 
-[assembly: AssemblyCompany("Security.Test")]
-[assembly: AssemblyConfiguration("Debug")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: AssemblyInformationalVersion("1.0.0")]
-[assembly: AssemblyProduct("Security.Test")]
-[assembly: AssemblyTitle("Security.Test")]
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Security.Test")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyProductAttribute("Security.Test")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Security.Test")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
 

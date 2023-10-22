@@ -8,22 +8,24 @@ namespace TicketsGateway.Application.TicketManagement.RestEaseClients;
 public interface ITicketDetailRestEaseClient
 {
     [Get("/FindById/{id}")]
-    public Task<Base.Response<UserDto>> GetById();
+    Task<Base.Response<UserDto>> GetById();
 
     [HttpGet("api/v1/Ticket/All/{ticketCode:int}")]
     Task<Base.Response<IEnumerable<TicketDetailDto>>> GetAllByTicketCode([Path] int ticketCode,
         [Header("Authorization")] string authorization);
 
     [HttpGet("api/v1/Ticket/All/{ticketId:guid}")]
-    public Task<Base.Response<IEnumerable<TicketDetailDto>>> GetAllByTicketId(Guid ticketId);
+    Task<Base.Response<IEnumerable<TicketDetailDto>>> GetAllByTicketId([Path] Guid ticketId,
+        [Header("Authorization")] string authorization);
 
     [HttpPost("api/v1/Ticket/Create")]
-    public Task<Base.Response<TicketDetailDto>> Create([FromForm] TicketDetailRequest request);
+    Task<Base.Response<TicketDetailDto>> Create([Body] TicketDetailRequest request,
+        [Header("Authorization")] string authorization);
 
     [HttpPut("api/v1/Ticket/Update")]
-    public Task<Base.Response<TicketDetailDto>> Update(
-        [FromForm] UpdateTicketDetailRequest updateTicketDetailRequest);
+    Task<Base.Response<TicketDetailDto>> Update(
+        [Body] UpdateTicketDetailRequest updateTicketDetailRequest, [Header("Authorization")] string authorization);
 
     [HttpDelete("api/v1/Ticket/UpdateStatus")]
-    public Task<Base.Response<bool>> Delete(Guid ticketDetailId);
+    public Task<Base.Response<bool>> Delete([Path] Guid ticketDetailId, [Header("Authorization")] string authorization);
 }

@@ -14,5 +14,8 @@ public class UserProfile : Profile
         CreateMap<User, UserDto>().ReverseMap()
             .ForMember(r => r.Roles, u
                 => u.MapFrom(ur => ur.Roles));
+        CreateMap<UserDto, Security.Infrastructure.Security.Models.UserDto>()
+            .ForMember(r => r.Roles,
+                u => u.MapFrom(ur => ur.Roles));
     }
 }

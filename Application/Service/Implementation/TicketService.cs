@@ -109,7 +109,7 @@ public class TicketService : BaseService<Ticket>, ITicketService
             SetCurrentUserToEntity(ticket);
             ticket.GeneratedOn = DateTime.Today;
 
-            var foundStatus = await _ticketStatusRepository.FindAsync(request.StatusId);
+            var foundStatus = await _ticketStatusRepository.FindAsync(request.StatusId.ToString());
             if (foundStatus == null)
             {
                 throw new TicketStatusNotFoundException(
@@ -118,8 +118,7 @@ public class TicketService : BaseService<Ticket>, ITicketService
 
             ticket.TicketStatus = foundStatus;
 
-            //TODO: Validate if user exist from security microservice
-            var foundUser = await FindUserTicketByUsername(request.AssignedTo); // <- Assign the found user here
+            var foundUser = await FindUserTicketByUsername(request.AssignedTo);
             if (request.AssignedTo != string.Empty && foundUser == null)
                 throw new UserNotFoundException($"User {request.AssignedTo} was not found");
 
@@ -139,9 +138,9 @@ public class TicketService : BaseService<Ticket>, ITicketService
         }
     }
 
-    private async Task<UserTicketDto> FindUserTicketByUsername(string username)
+    private Task<UserTicketDto> FindUserTicketByUsername(string username)
     {
-        return null;
+        return null!;
     }
 
     public Response<TicketDto> Update(UpdateTicketRequest request)
@@ -182,23 +181,6 @@ public class TicketService : BaseService<Ticket>, ITicketService
             _logger.Log(LogLevel.Error, "{AnErrorHappenedMessage} {EMessage}", AnErrorHappenedMessage, e.Message);
             return new Response<bool>(HttpStatusCode.InternalServerError, AnErrorHappenedMessage,
                 false, false, e);
-        }
-    }
-
-    public Response<IEnumerable<UserTicketDto>> GetAllAvailableUsersAsync()
-    {
-        try
-        {
-            //TODO: Get users from users microservice
-            var usersDto = new List<UserTicketDto>();
-            return new Response<IEnumerable<UserTicketDto>>(HttpStatusCode.OK, "Ticket registered successfully",
-                true, usersDto);
-        }
-        catch (Exception e)
-        {
-            _logger.Log(LogLevel.Error, "{AnErrorHappenedMessage} {EMessage}", AnErrorHappenedMessage, e.Message);
-            return new Response<IEnumerable<UserTicketDto>>(HttpStatusCode.InternalServerError, AnErrorHappenedMessage,
-                false, new List<UserTicketDto>(), e);
         }
     }
 }

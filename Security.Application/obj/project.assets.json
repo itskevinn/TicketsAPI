@@ -3343,6 +3343,7 @@
           "Microsoft.AspNetCore.Mvc.Abstractions": "2.2.0",
           "Microsoft.EntityFrameworkCore.Relational": "6.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.10",
+          "Newtonsoft.Json": "11.0.2",
           "Security.Domain": "1.0.0",
           "System.IdentityModel.Tokens.Jwt": "6.24.0"
         },

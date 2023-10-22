@@ -8,16 +8,18 @@ using Security.Domain.Ports;
 using Security.Infrastructure.Persistence.Exceptions;
 using Security.Infrastructure.Security.Encrypt;
 using Security.Infrastructure.Security.Jwt;
+using UserDto = Security.Infrastructure.Security.Models.UserDto;
 
 namespace Security.Application.Service.Implementation;
 
 public class AuthService : BaseService<User>, IAuthService
 {
     private readonly IUserRepository _userRepository;
-    private readonly IJwtUtils<UserDto> _jwtUtils;
+    private readonly IJwtUtils _jwtUtils;
+    private readonly IMapper _mapper;
     private readonly IUserService _userService;
 
-    public AuthService(IUserService userService, IUserRepository userRepository, IJwtUtils<UserDto> jwtUtils,
+    public AuthService(IUserService userService, IUserRepository userRepository, IJwtUtils jwtUtils,
         IMapper mapper) :
         base(mapper)
     {
@@ -26,20 +28,21 @@ public class AuthService : BaseService<User>, IAuthService
 
         _userService = userService;
         _jwtUtils = jwtUtils;
+        _mapper = mapper;
     }
 
     public async Task<Response<AuthenticateDto>> Authenticate(AuthenticateRequest authenticateRequest)
     {
         var users = await _userRepository.GetAsync();
 
-    var user = users.SingleOrDefault(x =>
+        var user = users.SingleOrDefault(x =>
             string.Equals(x.Username.ToLower(), authenticateRequest.Username.ToLower()) &&
             x.Password == Hash.GetSha256(authenticateRequest.Password));
         if (user == null)
             return new Response<AuthenticateDto>(HttpStatusCode.Unauthorized, "Usuario o contraseña incorrectos",
                 false);
         var userDto = await _userService.GetById(user.Id);
-        var token = _jwtUtils.GenerateJwtToken(userDto.Data);
+        var token = _jwtUtils.GenerateJwtToken(_mapper.Map<UserDto>(userDto.Data));
         return new Response<AuthenticateDto>(HttpStatusCode.OK, "Bienvenido", true,
             new AuthenticateDto(userDto.Data, token));
     }

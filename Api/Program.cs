@@ -4,6 +4,7 @@ using Amazon.S3;
 using Amazon.S3.Transfer;
 using Infrastructure.Core.Helpers;
 using Infrastructure.Persistence.Context;
+using Infrastructure.Security.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -124,7 +125,7 @@ if (context.Database.GetPendingMigrations().Any())
 {
     context.Database.Migrate();
 }
-
+app.UseMiddleware<JwtMiddleware>();
 app.UseCors(myAllowSpecificOrigins);
 app.UseRouting();
 app.UseHttpLogging();
